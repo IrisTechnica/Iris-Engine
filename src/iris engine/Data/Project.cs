@@ -4,15 +4,19 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SQLite;
+using System.IO;
 
 namespace iris_engine.Data
 {
     class Project
     {
         private string _name;
-        private string _actualPath;
+        private string _filePath;
 
-        private ObservableCollection<ProjectItem> _childs;
+        private int _testObject;
+
+        private IList<int> _idList;
 
         public string Name
         {
@@ -27,31 +31,35 @@ namespace iris_engine.Data
             }
         }
 
-        public string ActualPath
+        public string FilePath
         {
             get
             {
-                return _actualPath;
+                return _filePath;
             }
 
-            set
-            {
-                _actualPath = value;
-            }
         }
 
-        internal ObservableCollection<ProjectItem> Childs
+        public bool Load(string path)
         {
-            get
-            {
-                return _childs;
-            }
+            this._filePath = path;
+            if (Path.GetFileName(this._filePath) == "")
+                return false;
 
-            set
-            {
-                _childs = value;
-            }
+            if(!LoadDataBase())return false;
+
+            return true;
         }
 
+        private bool LoadDataBase()
+        {
+            var temporary_name = Path.GetFileNameWithoutExtension(this._filePath);
+            var current_directory = Path.GetDirectoryName(this._filePath);
+            var query = "Data Source=" + Path.Combine(current_directory, temporary_name + ".db");
+
+            var sql = new SQLiteConnection(query);
+
+            return true;
+        }
     }
 }
