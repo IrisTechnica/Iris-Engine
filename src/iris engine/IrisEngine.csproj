@@ -92,8 +92,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\NodeData.cs" />
+    <Compile Include="Data\NodeDataType.cs" />
+    <Compile Include="Data\Node.cs" />
+    <Compile Include="Data\NodeIOType.cs" />
+    <Compile Include="Data\NodePin.cs" />
     <Compile Include="Data\Project.cs" />
     <Compile Include="Data\ProjectItem.cs" />
+    <Compile Include="Data\Scene.cs" />
     <Compile Include="Managers\ConfigManager.cs" />
     <Compile Include="Managers\PackageManager.cs" />
     <Compile Include="Util\Json.cs" />
