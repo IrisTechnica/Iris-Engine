@@ -1,4 +1,4 @@
 src/.vs/
 bin/
 obj/
-src/packages/*/lib/
+src/packages/
