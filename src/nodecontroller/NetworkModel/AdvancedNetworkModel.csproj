@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionViewModel.cs" />
+    <Compile Include="ConnectorDataType.cs" />
     <Compile Include="ConnectorViewModel.cs" />
     <Compile Include="ConnectorType.cs" />
     <Compile Include="NetworkViewModel.cs" />

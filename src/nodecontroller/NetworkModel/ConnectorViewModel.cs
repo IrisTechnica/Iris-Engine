@@ -28,10 +28,11 @@ namespace NetworkModel
 
         #endregion Internal Data Members
 
-        public ConnectorViewModel(string name)
+        public ConnectorViewModel(string name,ConnectorDataType datatype)
         {
             this.Name = name;
             this.Type = ConnectorType.Undefined;
+            this.DataType = datatype;
         }
 
         /// <summary>
@@ -47,6 +48,14 @@ namespace NetworkModel
         /// Defines the type of the connector.
         /// </summary>
         public ConnectorType Type
+        {
+            get;
+            internal set;
+        }
+        //
+        // ノードのデータタイプ識別用
+        //
+        public ConnectorDataType DataType
         {
             get;
             internal set;

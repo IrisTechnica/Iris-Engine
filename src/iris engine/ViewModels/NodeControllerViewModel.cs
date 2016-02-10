@@ -330,7 +330,8 @@ namespace iris_engine.ViewModels
             // Also only allocation from one node to another, never one node back to the same node.
             //
             bool connectionOk = connectorDraggedOut.ParentNode != connectorDraggedOver.ParentNode &&
-                                connectorDraggedOut.Type != connectorDraggedOver.Type;
+                                connectorDraggedOut.Type != connectorDraggedOver.Type&&
+                                connectorDraggedOut.DataType == connectorDraggedOver.DataType;
 
             if (!connectionOk)
             {
@@ -447,10 +448,12 @@ namespace iris_engine.ViewModels
             node.X = nodeLocation.X;
             node.Y = nodeLocation.Y;
 
-            node.InputConnectors.Add(new ConnectorViewModel("In1"));
-            node.InputConnectors.Add(new ConnectorViewModel("In2"));
-            node.OutputConnectors.Add(new ConnectorViewModel("Out1"));
-            node.OutputConnectors.Add(new ConnectorViewModel("Out2"));
+            node.InputConnectors.Add(new ConnectorViewModel("In1",ConnectorDataType.Boolean));
+            node.InputConnectors.Add(new ConnectorViewModel("In2", ConnectorDataType.Number));
+            node.OutputConnectors.Add(new ConnectorViewModel("Out1", ConnectorDataType.Boolean));
+            node.OutputConnectors.Add(new ConnectorViewModel("Out2", ConnectorDataType.Number));
+            node.OutputConnectors.Add(new ConnectorViewModel("Out1", ConnectorDataType.Boolean));
+            node.OutputConnectors.Add(new ConnectorViewModel("Out2", ConnectorDataType.Number));
 
             if (centerNode)
             {
