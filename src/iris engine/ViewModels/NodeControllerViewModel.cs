@@ -271,7 +271,8 @@ namespace iris_engine.ViewModels
                 // Also only allocation from one node to another, never one node back to the same node.
                 //
                 connectionOk = sourceConnector.ParentNode != destConnector.ParentNode &&
-                                 sourceConnector.Type != destConnector.Type;
+                                 sourceConnector.Type != destConnector.Type&&
+                                sourceConnector.DataType == destConnector.DataType;
 
                 if (connectionOk)
                 {
