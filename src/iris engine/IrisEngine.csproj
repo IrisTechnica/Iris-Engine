@@ -44,30 +44,6 @@
     <ApplicationIcon>Resources\ir.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CoreNodeModelsWpf, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.0.9.0\lib\net45\CoreNodeModelsWpf.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DSCoreNodesUI, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.0.9.0\lib\net45\DSCoreNodesUI.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DynamoCore, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\DynamoCore.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DynamoCoreWpf, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.0.9.0\lib\net45\DynamoCoreWpf.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DynamoShapeManager, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\DynamoShapeManager.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DynamoUtilities, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\DynamoUtilities.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -92,38 +68,6 @@
       <HintPath>..\packages\MetroRadiance.Core.2.1.0\lib\net46\MetroRadiance.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ProtoCore, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\ProtoCore.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ProtoGeometry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\ProtoGeometry.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ProtoInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\ProtoInterface.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -141,10 +85,6 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\System.Windows.Interactivity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -167,6 +107,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\FastCanvas.cs" />
+    <Compile Include="Controls\NodeController.xaml.cs">
+      <DependentUpon>NodeController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NodeController_Partial.cs" />
+    <Compile Include="Converters\ScaleToPercentConverter.cs" />
+    <Compile Include="Data\MouseHandlingMode.cs" />
     <Compile Include="Data\NodeData.cs" />
     <Compile Include="Data\NodeDataType.cs" />
     <Compile Include="Data\Node.cs" />
@@ -178,9 +125,13 @@
     <Compile Include="Data\ProjectItems.cs" />
     <Compile Include="Data\ProjectItemsConnection.cs" />
     <Compile Include="Data\Scene.cs" />
+    <Compile Include="Indicators\ConnectionBadIndicator.cs" />
+    <Compile Include="Indicators\ConnectionOkIndicator.cs" />
     <Compile Include="Managers\ConfigManager.cs" />
     <Compile Include="Managers\PackageManager.cs" />
+    <Compile Include="Shapes\CurvedArrow.cs" />
     <Compile Include="Util\Json.cs" />
+    <Compile Include="ViewModels\NodeControllerViewModel.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +164,14 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\NodeController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\SharedVisualTemplates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -237,6 +196,31 @@
       <Project>{1fc9924d-3834-4a0b-a0d9-83d77c2a0344}</Project>
       <Name>AvalonDock.Themes.IrisIDE</Name>
     </ProjectReference>
+    <ProjectReference Include="..\nodecontroller\adornedcontrol\AdornedControl.csproj">
+      <Project>{94b81cb7-f8a6-44bc-bd71-e927f701e0d8}</Project>
+      <Name>AdornedControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\nodecontroller\NetworkModel\AdvancedNetworkModel.csproj">
+      <Project>{669475da-8f89-4657-b917-0b0c126bcd1d}</Project>
+      <Name>AdvancedNetworkModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\nodecontroller\networkui\NetworkUI.csproj">
+      <Project>{b7ca1480-c144-40ac-ab97-a626f800d5b4}</Project>
+      <Name>NetworkUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\nodecontroller\utils\Utils.csproj">
+      <Project>{e7d6707b-d6ef-4fa8-9374-dc3b7d3cdfd6}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\nodecontroller\zoomandpan\ZoomAndPan.csproj">
+      <Project>{468adede-6f5e-40c0-99c9-c6dac4fac934}</Project>
+      <Name>ZoomAndPan</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\block_16.png" />
+    <Resource Include="Resources\scissors.png" />
+    <Resource Include="Resources\tick_16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
