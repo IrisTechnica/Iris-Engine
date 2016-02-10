@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IrisEngine", "iris engine\IrisEngine.csproj", "{43C639B3-8FA5-4D43-8F89-3A554AD50B4D}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -24,8 +24,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkUI", "nodecontroller\networkui\NetworkUI.csproj", "{B7CA1480-C144-40AC-AB97-A626F800D5B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdornedControl", "nodecontroller\adornedcontrol\AdornedControl.csproj", "{94B81CB7-F8A6-44BC-BD71-E927F701E0D8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedSample", "nodecontroller\advancedsample\AdvancedSample.csproj", "{2AA2E559-5417-40ED-A739-D98049C8A68A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedNetworkModel", "nodecontroller\NetworkModel\AdvancedNetworkModel.csproj", "{669475DA-8F89-4657-B917-0B0C126BCD1D}"
 EndProject
@@ -63,10 +61,6 @@ Global
 		{94B81CB7-F8A6-44BC-BD71-E927F701E0D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94B81CB7-F8A6-44BC-BD71-E927F701E0D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94B81CB7-F8A6-44BC-BD71-E927F701E0D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2AA2E559-5417-40ED-A739-D98049C8A68A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2AA2E559-5417-40ED-A739-D98049C8A68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2AA2E559-5417-40ED-A739-D98049C8A68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2AA2E559-5417-40ED-A739-D98049C8A68A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{669475DA-8F89-4657-B917-0B0C126BCD1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{669475DA-8F89-4657-B917-0B0C126BCD1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{669475DA-8F89-4657-B917-0B0C126BCD1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -82,7 +76,6 @@ Global
 		{E7D6707B-D6EF-4FA8-9374-DC3B7D3CDFD6} = {15BE44D2-C92B-472B-A231-F1BF6FE53B3C}
 		{B7CA1480-C144-40AC-AB97-A626F800D5B4} = {15BE44D2-C92B-472B-A231-F1BF6FE53B3C}
 		{94B81CB7-F8A6-44BC-BD71-E927F701E0D8} = {15BE44D2-C92B-472B-A231-F1BF6FE53B3C}
-		{2AA2E559-5417-40ED-A739-D98049C8A68A} = {15BE44D2-C92B-472B-A231-F1BF6FE53B3C}
 		{669475DA-8F89-4657-B917-0B0C126BCD1D} = {15BE44D2-C92B-472B-A231-F1BF6FE53B3C}
 	EndGlobalSection
 EndGlobal
