@@ -10,6 +10,7 @@ namespace NetworkModel {
         String,
         Matrix,
         Boolean,
-        Function
+        Function,
+        Group,
     }
 }

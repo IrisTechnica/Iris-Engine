@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace iris_engine.Data {
-    class Scene {
-        public List<Node> NodeConnection;
+namespace iris_engine.Data.Node {
+    class NodeBooleanArray {
+        public List<Boolean> Data { get; set; }
     }
 }
