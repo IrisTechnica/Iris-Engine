@@ -10,6 +10,7 @@ namespace iris_engine.Data
     class ProjectItemDesc
     {
         private string _name;
+        private CompileActionType _compiletype;
         private ProjectItemDataType _type;
 
         public string Name
@@ -22,6 +23,16 @@ namespace iris_engine.Data
             set
             {
                 _name = value;
+            }
+        }
+
+
+        internal CompileActionType CompileType {
+            get {
+                return _compiletype;
+            }
+            set {
+                _compiletype = value;
             }
         }
 

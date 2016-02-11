@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace iris_engine.Data.Node {
-    class NodeBooleanArray : NodeBase {
-        public List<Boolean> Data { get; set; }
+    class NodeStringArray : NodeBase{
+        public List<string> Data { get; set; }
     }
 }

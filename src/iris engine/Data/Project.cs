@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
+using iris_engine.Util;
 
 namespace iris_engine.Data
 {
@@ -59,6 +60,27 @@ namespace iris_engine.Data
 
             var sql = new SQLiteConnection(query);
 
+            var map = Json.Load(this._filePath, false);
+
+            this._name = map["Owner"];
+            
+             
+            return true;
+        }
+
+        public bool Write(string path) {
+            if ( Path.GetFileName(this._filePath) == "" )
+                return false;
+            if ( !WriteJson() )
+                return false;
+            return true;
+        }
+
+        private bool WriteJson( ) {
+
+
+
+            //Json.Store()
             return true;
         }
     }

@@ -113,10 +113,12 @@
     </Compile>
     <Compile Include="Controls\NodeController_Partial.cs" />
     <Compile Include="Converters\ScaleToPercentConverter.cs" />
+    <Compile Include="Data\CompileActionType.cs" />
     <Compile Include="Data\MouseHandlingMode.cs" />
     <Compile Include="Data\Node\NodeBase.cs" />
     <Compile Include="Data\Node\NodeBooleanArray.cs" />
     <Compile Include="Data\Node\NodeFloatArray.cs" />
+    <Compile Include="Data\Node\NodeStringArray.cs" />
     <Compile Include="Data\Project.cs" />
     <Compile Include="Data\ProjectItemDesc.cs" />
     <Compile Include="Data\ProjectItemDataType.cs" />
@@ -128,6 +130,7 @@
     <Compile Include="Managers\PackageManager.cs" />
     <Compile Include="Shapes\CurvedArrow.cs" />
     <Compile Include="Util\Json.cs" />
+    <Compile Include="Util\Xml.cs" />
     <Compile Include="ViewModels\NodeControllerViewModel.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
   </ItemGroup>

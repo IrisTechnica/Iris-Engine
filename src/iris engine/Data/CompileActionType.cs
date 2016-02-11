@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace iris_engine.Data.Node {
-    class NodeBooleanArray : NodeBase {
-        public List<Boolean> Data { get; set; }
+namespace iris_engine.Data {
+    enum CompileActionType {
+        None,
+        Copy,
+        Archive
     }
 }
