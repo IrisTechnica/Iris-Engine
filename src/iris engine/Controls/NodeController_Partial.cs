@@ -10,7 +10,8 @@ using System.Windows.Controls;
 using ZoomAndPan;
 using NetworkModel;
 using System.Collections;
-
+using System.Windows.Shapes;
+using System.Windows.Media;
 
 namespace iris_engine.Controls
 {
@@ -320,12 +321,12 @@ namespace iris_engine.Controls
         /// </summary>
         private Rect DetermineAreaOfNodes(IList nodes)
         {
-            NodeViewModel firstNode = (NodeViewModel)nodes[0];
+            AbstractNodeViewModel firstNode = (AbstractNodeViewModel)nodes[0];
             Rect actualContentRect = new Rect(firstNode.X, firstNode.Y, firstNode.Size.Width, firstNode.Size.Height);
 
             for (int i = 1; i < nodes.Count; ++i)
             {
-                NodeViewModel node = (NodeViewModel)nodes[i];
+                AbstractNodeViewModel node = (AbstractNodeViewModel)nodes[i];
                 Rect nodeRect = new Rect(node.X, node.Y, node.Size.Width, node.Size.Height);
                 actualContentRect = Rect.Union(actualContentRect, nodeRect);
             }
@@ -483,5 +484,6 @@ namespace iris_engine.Controls
         {
             prevZoomRectSet = false;
         }
+
     }
 }

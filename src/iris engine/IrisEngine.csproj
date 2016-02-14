@@ -85,6 +85,14 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.4\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -95,11 +103,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\NodeProperties\ConstantNodeProperties.xaml.cs">
+      <DependentUpon>ConstantNodeProperties.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FastCanvas.cs" />
     <Compile Include="Controls\NodeController.xaml.cs">
       <DependentUpon>NodeController.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\NodeController_Partial.cs" />
+    <Compile Include="Controls\NodeProperties.xaml.cs">
+      <DependentUpon>NodeProperties.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NodeProperties\NotSelectedNodeProperties.xaml.cs">
+      <DependentUpon>NotSelectedNodeProperties.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\ScaleToPercentConverter.cs" />
     <Compile Include="Data\CompileActionType.cs" />
     <Compile Include="Data\MouseHandlingMode.cs" />
@@ -122,6 +139,8 @@
     <Compile Include="Util\Json.cs" />
     <Compile Include="Util\Xml.cs" />
     <Compile Include="ViewModels\NodeControllerViewModel.cs" />
+    <Compile Include="ViewModels\NodePropertiesViewModel.cs" />
+    <Compile Include="ViewModels\NodeProperties\ConstantNodePropertiesViewModel.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -154,7 +173,19 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\NodeProperties\ConstantNodeProperties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\NodeController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NodeProperties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NodeProperties\NotSelectedNodeProperties.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

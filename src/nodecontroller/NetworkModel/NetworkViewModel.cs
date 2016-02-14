@@ -18,7 +18,7 @@ namespace NetworkModel
         /// <summary>
         /// The collection of nodes in the network.
         /// </summary>
-        private ImpObservableCollection<NodeViewModel> nodes = null;
+        private ImpObservableCollection<AbstractNodeViewModel> nodes = null;
 
         /// <summary>
         /// The collection of connections in the network.
@@ -30,13 +30,13 @@ namespace NetworkModel
         /// <summary>
         /// The collection of nodes in the network.
         /// </summary>
-        public ImpObservableCollection<NodeViewModel> Nodes
+        public ImpObservableCollection<AbstractNodeViewModel> Nodes
         {
             get
             {
                 if (nodes == null)
                 {
-                    nodes = new ImpObservableCollection<NodeViewModel>();
+                    nodes = new ImpObservableCollection<AbstractNodeViewModel>();
                 }
 
                 return nodes;

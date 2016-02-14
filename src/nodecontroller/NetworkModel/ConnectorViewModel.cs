@@ -11,7 +11,7 @@ namespace NetworkModel
     /// <summary>
     /// Defines a connector (aka connection point) that can be attached to a node and is used to connect the node to another node.
     /// </summary>
-    public sealed class ConnectorViewModel : AbstractModelBase
+    public class ConnectorViewModel : AbstractModelBase
     {
         #region Internal Data Members
 
@@ -28,7 +28,7 @@ namespace NetworkModel
 
         #endregion Internal Data Members
 
-        public ConnectorViewModel(string name,ConnectorDataType datatype)
+        public ConnectorViewModel(string name,Type datatype)
         {
             this.Name = name;
             this.Type = ConnectorType.Undefined;
@@ -55,7 +55,7 @@ namespace NetworkModel
         //
         // ノードのデータタイプ識別用
         //
-        public ConnectorDataType DataType
+        public Type DataType
         {
             get;
             internal set;
@@ -114,7 +114,7 @@ namespace NetworkModel
         /// <summary>
         /// The parent node that the connector is attached to, or null if the connector is not attached to any node.
         /// </summary>
-        public NodeViewModel ParentNode
+        public AbstractNodeViewModel ParentNode
         {
             get;
             internal set;
@@ -159,6 +159,9 @@ namespace NetworkModel
             {
                 connection.ConnectionChanged += new EventHandler<EventArgs>(connection_ConnectionChanged);
             }
+
+            // Update Calculation
+            this.ParentNode.Calculate();
 
             if ((AttachedConnections.Count - e.Items.Count) == 0)
             {

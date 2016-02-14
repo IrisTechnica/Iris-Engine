@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace Utils
 {
@@ -35,9 +37,44 @@ namespace Utils
             }
         }
 
+        #region Event Methods
+
+        protected virtual void Raise([CallerMemberName] string propertyName = null)
+        {
+            this.Raise(this.PropertyChanged, propertyName);
+        }
+
+        protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (object.Equals(storage, value)) return false;
+
+            storage = value;
+            this.OnPropertyChanged(propertyName);
+
+            return true;
+        }
+
+        #endregion
+
+
+        private PropertyChangedEventArgs factory(string name)
+        {
+            PropertyChangedEventArgs e;
+            if (cached.TryGetValue(name, out e))
+                return e;
+            e = new PropertyChangedEventArgs(name);
+            cached[name] = e;
+            return e;
+        }
+
         /// <summary>
         /// Event raised to indicate that a property value has changed.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Chached PropertyChangedEventArgs
+        /// </summary>
+        private readonly Dictionary<string, PropertyChangedEventArgs> cached = new Dictionary<string, PropertyChangedEventArgs>(512);
     }
 }

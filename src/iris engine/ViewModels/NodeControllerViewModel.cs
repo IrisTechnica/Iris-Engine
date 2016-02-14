@@ -66,8 +66,11 @@ namespace iris_engine.ViewModels
 
         public NodeControllerViewModel()
         {
-            // Add some test data to the view-model.
-            PopulateWithTestData();
+            //// Add some test data to the view-model.
+            //PopulateWithTestData();
+
+            /// Create NetworlViewModel
+            this.Network = new NetworkViewModel();
         }
 
         /// <summary>
@@ -427,7 +430,7 @@ namespace iris_engine.ViewModels
         /// Delete the node from the view-model.
         /// Also deletes any connections to or from the node.
         /// </summary>
-        public void DeleteNode(NodeViewModel node)
+        public void DeleteNode(AbstractNodeViewModel node)
         {
             //
             // Remove all connections attached to the node.
@@ -443,18 +446,29 @@ namespace iris_engine.ViewModels
         /// <summary>
         /// Create a node and add it to the view-model.
         /// </summary>
-        public NodeViewModel CreateNode(string name, Point nodeLocation, bool centerNode)
+        public AbstractNodeViewModel CreateNode<NodeType>(Point nodeLocation, bool centerNode)
+            where NodeType : AbstractNodeViewModel
         {
-            var node = new NodeViewModel(name);
+            Type Type = typeof(NodeType);
+            AbstractNodeViewModel node = null;
+            try
+            {
+                node = (AbstractNodeViewModel)Activator.CreateInstance(Type);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return node;
+            }
             node.X = nodeLocation.X;
             node.Y = nodeLocation.Y;
 
-            node.InputConnectors.Add(new ConnectorViewModel("In1",ConnectorDataType.Boolean));
-            node.InputConnectors.Add(new ConnectorViewModel("In2", ConnectorDataType.Number));
-            node.OutputConnectors.Add(new ConnectorViewModel("Out1", ConnectorDataType.Boolean));
-            node.OutputConnectors.Add(new ConnectorViewModel("Out2", ConnectorDataType.Number));
-            node.OutputConnectors.Add(new ConnectorViewModel("Out1", ConnectorDataType.Boolean));
-            node.OutputConnectors.Add(new ConnectorViewModel("Out2", ConnectorDataType.Number));
+            //node.InputConnectors.Add(new ConnectorViewModel("In1",typeof(int)));
+            //node.InputConnectors.Add(new ConnectorViewModel("In2", typeof(int)));
+            //node.OutputConnectors.Add(new ConnectorViewModel("Out1", typeof(int)));
+            //node.OutputConnectors.Add(new ConnectorViewModel("Out2", typeof(int)));
+            //node.OutputConnectors.Add(new ConnectorViewModel("Out1", typeof(int)));
+            //node.OutputConnectors.Add(new ConnectorViewModel("Out2", typeof(int)));
 
             if (centerNode)
             {
@@ -511,37 +525,39 @@ namespace iris_engine.ViewModels
             }
 
 
-        #region Private Methods
+        //Following The Test Code
 
-        /// <summary>
-        /// A function to conveniently populate the view-model with test data.
-        /// </summary>
-        private void PopulateWithTestData()
-        {
-            //
-            // Create a network, the root of the view-model.
-            //
-            this.Network = new NetworkViewModel();
+        //#region Private Methods
 
-            //
-            // Create some nodes and add them to the view-model.
-            //
-            NodeViewModel node1 = CreateNode("Node1", new Point(100, 60), false);
-            NodeViewModel node2 = CreateNode("Node2", new Point(350, 80), false);
+        ///// <summary>
+        ///// A function to conveniently populate the view-model with test data.
+        ///// </summary>
+        //private void PopulateWithTestData()
+        //{
+        //    //
+        //    // Create a network, the root of the view-model.
+        //    //
+        //    this.Network = new NetworkViewModel();
 
-            //
-            // Create a connection between the nodes.
-            //
-            ConnectionViewModel connection = new ConnectionViewModel();
-            connection.SourceConnector = node1.OutputConnectors[0];
-            connection.DestConnector = node2.InputConnectors[0];
+        //    //
+        //    // Create some nodes and add them to the view-model.
+        //    //
+        //    AbstractNodeViewModel node1 = CreateNode("Node1", new Point(100, 60), false);
+        //    AbstractNodeViewModel node2 = CreateNode("Node2", new Point(350, 80), false);
 
-            //
-            // Add the connection to the view-model.
-            //
-            this.Network.Connections.Add(connection);
-        }
+        //    //
+        //    // Create a connection between the nodes.
+        //    //
+        //    ConnectionViewModel connection = new ConnectionViewModel();
+        //    connection.SourceConnector = node1.OutputConnectors[0];
+        //    connection.DestConnector = node2.InputConnectors[0];
 
-        #endregion Private Methods
+        //    //
+        //    // Add the connection to the view-model.
+        //    //
+        //    this.Network.Connections.Add(connection);
+        //}
+
+        //#endregion Private Methods
     }
 }

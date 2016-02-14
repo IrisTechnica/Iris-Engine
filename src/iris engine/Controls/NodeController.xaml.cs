@@ -23,6 +23,7 @@ namespace iris_engine.Controls
     /// </summary>
     public partial class NodeController : UserControl
     {
+
         public NodeController()
         {
             InitializeComponent();
@@ -41,7 +42,6 @@ namespace iris_engine.Controls
 
         private void NodeController_Loaded(object sender, RoutedEventArgs e)
         {
-
         }
 
         /// <summary>
@@ -118,20 +118,29 @@ namespace iris_engine.Controls
             this.ViewModel.DeleteSelectedNodes();
         }
 
+        #region Create New Node Methods
+
         /// <summary>
         /// Event raised to create a new node.
         /// </summary>
-        private void CreateNode_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void CreateConstantNode_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            CreateNode();
+            CreateNode<ConstantNodeViewModel>();
         }
+
+        private void CreateAddNode_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CreateNode<AddNodeViewModel>();
+        }
+
+        #endregion
 
         /// <summary>
         /// Event raised to delete a node.
         /// </summary>
         private void DeleteNode_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            var node = (NodeViewModel)e.Parameter;
+            var node = (AbstractNodeViewModel)e.Parameter;
             this.ViewModel.DeleteNode(node);
         }
 
@@ -147,10 +156,11 @@ namespace iris_engine.Controls
         /// <summary>
         /// Creates a new node in the network at the current mouse location.
         /// </summary>
-        private void CreateNode()
+        private void CreateNode<T>()
+            where T : AbstractNodeViewModel
         {
             var newNodePosition = Mouse.GetPosition(networkControl);
-            this.ViewModel.CreateNode("New Node!", newNodePosition, true);
+            this.ViewModel.CreateNode<T>(newNodePosition, true);
         }
 
         /// <summary>
@@ -163,8 +173,9 @@ namespace iris_engine.Controls
             // has changed.  Push the size of the node through to the view-model.
             //
             var element = (FrameworkElement)sender;
-            var node = (NodeViewModel)element.DataContext;
+            var node = (AbstractNodeViewModel)element.DataContext;
             node.Size = new Size(element.ActualWidth, element.ActualHeight);
         }
+
     }
 }

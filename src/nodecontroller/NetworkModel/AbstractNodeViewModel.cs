@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections.ObjectModel;
 using Utils;
 using System.Windows;
+using Data;
 
 namespace NetworkModel
 {
@@ -12,7 +13,7 @@ namespace NetworkModel
     /// Defines a node in the view-model.
     /// Nodes are connected to other nodes through attached connectors (aka anchor/connection points).
     /// </summary>
-    public sealed class NodeViewModel : AbstractModelBase
+    public abstract class AbstractNodeViewModel : AbstractModelBase
     {
         #region Private Data Members
 
@@ -20,6 +21,11 @@ namespace NetworkModel
         /// The name of the node.
         /// </summary>
         private string name = string.Empty;
+
+        /// <summary>
+        /// The actual name of the node
+        /// </summary>
+        private string internalName = string.Empty;
 
         /// <summary>
         /// The X coordinate for the position of the node.
@@ -64,14 +70,33 @@ namespace NetworkModel
 
         #endregion Private Data Members
 
-        public NodeViewModel()
+        public AbstractNodeViewModel()
         {
+
         }
 
-        public NodeViewModel(string name)
+        public AbstractNodeViewModel(string name)
         {
             this.name = name;
+            this.internalName = name;
         }
+
+        /// <summary>
+        /// The actual name of the node
+        /// </summary>
+        public string InternalName
+        {
+            get
+            {
+                return internalName;
+            }
+
+            set
+            {
+                internalName = value;
+            }
+        }
+
 
         /// <summary>
         /// The name of the node.
@@ -84,14 +109,7 @@ namespace NetworkModel
             }
             set
             {
-                if (name == value)
-                {
-                    return;
-                }
-
-                name = value;
-
-                OnPropertyChanged("Name");
+                this.SetProperty(ref name, value);
             }
         }
 
@@ -270,16 +288,25 @@ namespace NetworkModel
             }
             set
             {
-                if (isSelected == value)
+                this.SetProperty(ref isSelected, value);
+                if(isSelected)SelectedNode.GetInstance().Value = this;
+                else
                 {
-                    return;
+                    if (SelectedNode.GetInstance()?.Value == this)
+                        SelectedNode.GetInstance().Value = null;
                 }
-
-                isSelected = value;
-
-                OnPropertyChanged("IsSelected");
             }
         }
+
+        #region Abstract Methods
+
+        /// <summary>
+        /// Calculate in to out stream data
+        /// </summary>
+        public abstract void Calculate();
+
+        #endregion
+
 
         #region Private Methods
 
