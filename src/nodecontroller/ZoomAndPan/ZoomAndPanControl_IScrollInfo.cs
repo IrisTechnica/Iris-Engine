@@ -304,41 +304,45 @@ namespace ZoomAndPan
                     double horizOffset = 0;
                     double vertOffset = 0;
 
-                    if (transformedRect.Left < viewportRect.Left)
-                    {
-                        //
-                        // Want to move viewport left.
-                        //
-                        horizOffset = transformedRect.Left - viewportRect.Left;
-                    }
-                    else if (transformedRect.Right > viewportRect.Right)
-                    {
-                        //
-                        // Want to move viewport right.
-                        //
-                        horizOffset = transformedRect.Right - viewportRect.Right;
-                    }
+                    /// ビューを移動する初期処理、なぜか下側に移動するのでどうにかする
+                    /// TODO: ビューを中央に設定すること
+                    
+                    //if (transformedRect.Left < viewportRect.Left)
+                    //{
+                    //    //
+                    //    // Want to move viewport left.
+                    //    //
+                    //    horizOffset = transformedRect.Left - viewportRect.Left;
+                    //}
+                    //else if (transformedRect.Right > viewportRect.Right)
+                    //{
+                    //    //
+                    //    // Want to move viewport right.
+                    //    //
+                    //    horizOffset = transformedRect.Right - viewportRect.Right;
+                    //}
 
-                    if (transformedRect.Top < viewportRect.Top)
-                    {
-                        //
-                        // Want to move viewport up.
-                        //
-                        vertOffset = transformedRect.Top - viewportRect.Top;
-                    }
-                    else if (transformedRect.Bottom > viewportRect.Bottom)
-                    {
-                        //
-                        // Want to move viewport down.
-                        //
-                        vertOffset = transformedRect.Bottom - viewportRect.Bottom;
-                    }
+                    //if (transformedRect.Top < viewportRect.Top)
+                    //{
+                    //    //
+                    //    // Want to move viewport up.
+                    //    //
+                    //    vertOffset = transformedRect.Top - viewportRect.Top;
+                    //}
+                    //else if (transformedRect.Bottom > viewportRect.Bottom)
+                    //{
+                    //    //
+                    //    // Want to move viewport down.
+                    //    //
+                    //    vertOffset = transformedRect.Bottom - viewportRect.Bottom;
+                    //}
 
                     SnapContentOffsetTo(new Point(ContentOffsetX + horizOffset, ContentOffsetY + vertOffset));
                 }
             }
             return rectangle;
         }
+
 
     }
 }
