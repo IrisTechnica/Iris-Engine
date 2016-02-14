@@ -135,6 +135,9 @@
     <Compile Include="Indicators\ConnectionOkIndicator.cs" />
     <Compile Include="Managers\ConfigManager.cs" />
     <Compile Include="Managers\PackageManager.cs" />
+    <Compile Include="NetWork\NetWork.cs" />
+    <Compile Include="NetWork\UDPRecv.cs" />
+    <Compile Include="NetWork\UDPSend.cs" />
     <Compile Include="Shapes\CurvedArrow.cs" />
     <Compile Include="Util\Json.cs" />
     <Compile Include="Util\Xml.cs" />
