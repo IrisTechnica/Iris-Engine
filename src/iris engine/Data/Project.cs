@@ -1,37 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
-using System.Data.SQLite;
 using System.IO;
-using iris_engine.Util;
+using System.Xml;
+using System.Windows;
 
-namespace iris_engine.Data
-{
-    class Project
-    {
-        private string _name;
+namespace iris_engine.Data {
+
+    [System.Xml.Serialization.XmlRoot("root")]
+    public class Project {
+
         private string _filePath;
-
-        private int _testObject;
-
-        private IList<int> _idList;
-
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-
-            set
-            {
-                _name = value;
-            }
-        }
-
         public string FilePath
         {
             get
@@ -41,47 +19,44 @@ namespace iris_engine.Data
 
         }
 
-        public bool Load(string path)
-        {
+        Tree tree;
+
+        [System.Xml.Serialization.XmlElement("Header")]
+        public ProjectHeader _ProjectHeader { get; set; }
+
+        public ProjectHeader Header { get { return this._ProjectHeader; } set { this._ProjectHeader = value; } }
+        //public List<Project>
+        public Project( ) {
+            this.tree = new Tree();
+        }
+        public bool Load(string path) {
             this._filePath = path;
-            if (Path.GetFileName(this._filePath) == "")
-                return false;
-
-            if(!LoadDataBase())return false;
-
+            try {
+                System.IO.FileStream fs = new System.IO.FileStream(path, System.IO.FileMode.Open);
+                System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(Project));
+                Project xml = (Project)serializer.Deserialize(fs);
+                this._ProjectHeader = xml._ProjectHeader;
+                this.tree.Add(this._ProjectHeader);
+                fs.Close();
+            } catch ( FileNotFoundException e ) {
+                MessageBox.Show(e.FileName + "が見つかりません。", "ファイル読み込みエラー");
+            }
             return true;
         }
-
-        private bool LoadDataBase()
-        {
-            var temporary_name = Path.GetFileNameWithoutExtension(this._filePath);
-            var current_directory = Path.GetDirectoryName(this._filePath);
-            var query = "Data Source=" + Path.Combine(current_directory, temporary_name + ".db");
-
-            var sql = new SQLiteConnection(query);
-
-            var map = Json.Load(this._filePath, false);
-
-            this._name = map["Owner"];
+        public bool Store(string path) {
             
-             
+            System.IO.FileStream stream = new System.IO.FileStream(path, System.IO.FileMode.Create);
+            System.IO.StreamWriter writer = new System.IO.StreamWriter(stream, System.Text.Encoding.UTF8);
+
+            //シリアライズ
+            System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(Project));
+            serializer.Serialize(writer, this);
+
+            writer.Flush();
+            writer.Close();
+
             return true;
         }
-
-        public bool Write(string path) {
-            if ( Path.GetFileName(this._filePath) == "" )
-                return false;
-            if ( !WriteJson() )
-                return false;
-            return true;
-        }
-
-        private bool WriteJson( ) {
-
-
-
-            //Json.Store()
-            return true;
-        }
+        
     }
 }

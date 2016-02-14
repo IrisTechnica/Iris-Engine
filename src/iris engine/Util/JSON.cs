@@ -118,6 +118,7 @@ namespace iris_engine.Util
             var writer = new StreamWriter(path);
             writer.Write(new StreamReader(stream).ReadToEnd());
 
+            stream.Close();
             return true;
         }
     }

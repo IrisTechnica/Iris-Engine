@@ -71,18 +71,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Core.1.0.99.0\lib\net46\System.Data.SQLite.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.SQLite.EF6, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.99.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq, Version=1.0.99.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.99.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
@@ -120,10 +108,12 @@
     <Compile Include="Data\Node\NodeFloatArray.cs" />
     <Compile Include="Data\Node\NodeStringArray.cs" />
     <Compile Include="Data\Project.cs" />
+    <Compile Include="Data\ProjectHeader.cs" />
     <Compile Include="Data\ProjectItemDesc.cs" />
     <Compile Include="Data\ProjectItemDataType.cs" />
     <Compile Include="Data\ProjectItems.cs" />
     <Compile Include="Data\ProjectItemsConnection.cs" />
+    <Compile Include="Data\Tree.cs" />
     <Compile Include="Indicators\ConnectionBadIndicator.cs" />
     <Compile Include="Indicators\ConnectionOkIndicator.cs" />
     <Compile Include="Managers\ConfigManager.cs" />
