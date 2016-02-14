@@ -72,8 +72,7 @@ namespace NetworkUI
 
             this.Focus();
 
-            if (e.ChangedButton == MouseButton.Left &&
-                (Keyboard.Modifiers & ModifierKeys.Control) != 0)
+            if (e.ChangedButton == MouseButton.Left)
             {
                 //
                 //  Clear selection immediately when starting drag selection.

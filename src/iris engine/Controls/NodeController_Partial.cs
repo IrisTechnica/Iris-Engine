@@ -73,7 +73,7 @@ namespace iris_engine.Controls
                 // Shift + left- or right-down initiates zooming mode.
                 mouseHandlingMode = MouseHandlingMode.Zooming;
             }
-            else if (mouseButtonDown == MouseButton.Left &&
+            else if (mouseButtonDown == MouseButton.Middle &&
                      (Keyboard.Modifiers & ModifierKeys.Control) == 0)
             {
                 //
