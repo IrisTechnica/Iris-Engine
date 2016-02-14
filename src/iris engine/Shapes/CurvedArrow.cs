@@ -107,28 +107,39 @@ namespace iris_engine.Shapes
             }
         }
 
+        private Point CalcBezier(Point start,Point cp1, Point cp2, Point end, Single t)
+        {
+            return new Point
+            {
+                X = (1 - t) * (1 - t) * (1 - t) * start.X + 3 * (1 - t) * (1 - t) * t * cp1.X + 3 * (1 - t) * t * t * cp2.X + t * t * t * end.X,
+                Y = (1 - t) * (1 - t) * (1 - t) * start.Y + 3 * (1 - t) * (1 - t) * t * cp1.Y + 3 * (1 - t) * t * t * cp2.Y + t * t * t * end.Y
+            };
+        }
+
         /// <summary>
         /// Generate the geometry for the three optional arrow symbols at the start, middle and end of the arrow.
         /// </summary>
         private void GenerateArrowHeadGeometry(GeometryGroup geometryGroup)
         {
-            Point startPoint = Points[0];
+            Point lastPoint = Points[Points.Count - 1];
 
-            Point penultimatePoint = Points[Points.Count - 2];
-            Point arrowHeadTip = Points[Points.Count - 1];
+            // ベジェの中間点をごり押しで求める
+            Point penultimatePoint = CalcBezier(Points[0],Points[1],Points[2],Points[3],0.4f);
+            Point arrowHeadTip = CalcBezier(Points[0], Points[1], Points[2], Points[3], 0.5f);
             Vector startDir = arrowHeadTip - penultimatePoint;
             startDir.Normalize();
             Point basePoint = arrowHeadTip - (startDir * ArrowHeadLength);
             Vector crossDir = new Vector(-startDir.Y, startDir.X);
+
 
             Point[] arrowHeadPoints = new Point[3];
             arrowHeadPoints[0] = arrowHeadTip;
             arrowHeadPoints[1] = basePoint - (crossDir * (ArrowHeadWidth / 2));
             arrowHeadPoints[2] = basePoint + (crossDir * (ArrowHeadWidth / 2));
 
-            //
-            // Build geometry for the arrow head.
-            //
+
+            //Build geometry for the arrow head.
+
             PathFigure arrowHeadFig = new PathFigure();
             arrowHeadFig.IsClosed = true;
             arrowHeadFig.IsFilled = true;
@@ -136,10 +147,14 @@ namespace iris_engine.Shapes
             arrowHeadFig.Segments.Add(new LineSegment(arrowHeadPoints[1], true));
             arrowHeadFig.Segments.Add(new LineSegment(arrowHeadPoints[2], true));
 
+            EllipseGeometry head = new EllipseGeometry(lastPoint, ArrowHeadWidth * 0.5 * 0.6, ArrowHeadWidth * 0.5 * 0.6);
+
             PathGeometry pathGeometry = new PathGeometry();
             pathGeometry.Figures.Add(arrowHeadFig);
 
             geometryGroup.Children.Add(pathGeometry);
+
+            geometryGroup.Children.Add(head);
         }
 
         /// <summary>
