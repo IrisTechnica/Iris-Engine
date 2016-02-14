@@ -12,7 +12,7 @@
     <!-- The border brush for nodes. -->
     <SolidColorBrush
         x:Key="nodeBorderBrush"
-        Color="Black"
+        Color="{DynamicResource ForegroundColorKey}"
         />
 
     <!-- The fill brush for nodes. -->
@@ -31,7 +31,7 @@
     <!-- The brush for connections. -->
     <SolidColorBrush
         x:Key="connectionBrush"
-        Color="Black"
+        Color="{DynamicResource AccentColorKey}"
         />
     
     <!-- The brush for connectors. -->
