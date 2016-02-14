@@ -170,12 +170,12 @@
         Color="#FFDFCEDF"/>
 
     <SolidColorBrush x:Key="AvalonDock_ThemeVS2012_BaseColor31" 
-        Color="#FFE8A6"/>
+        Color="{DynamicResource ThemeColorKey}"/>
 
     <!--<SolidColorBrush x:Key="AvalonDock_ThemeVS2012_BaseColor32"
                      Color="Transparent"/>-->
 
     <SolidColorBrush x:Key="AvalonDock_ThemeVS2012_BaseColor33"
-        Color="#FF763D77"/>
+        Color="{DynamicResource ThemeColorKey}"/>
 
 </ResourceDictionary>

@@ -54,7 +54,7 @@
     <!--<SolidColorBrush x:Key="TabSplitterColorBrush" Color="{DynamicResource TabSplitterColor}"/>-->
 
     <SolidColorBrush x:Key="DragUnselectedBrush" Color="{DynamicResource ForegroundColorKey}"/>
-    <SolidColorBrush x:Key="DragSelectedBrush" Color="{DynamicResource AccentColorKey}"/>
+    <SolidColorBrush x:Key="DragSelectedBrush" Color="{DynamicResource ForegroundColorKey}"/>
 
     <!--<SolidColorBrush x:Key="AlphaControlBorderColorBrush" Color="{DynamicResource AlphaControlBorderColor}" />-->
     <!--<SolidColorBrush x:Key="AlphaAccentMostHighlightColorBrush" Color="{DynamicResource AlphaAccentMostHighlightColor}" />-->
