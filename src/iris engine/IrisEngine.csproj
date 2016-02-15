@@ -70,6 +70,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
@@ -120,10 +121,6 @@
     <Compile Include="Converters\ScaleToPercentConverter.cs" />
     <Compile Include="Data\CompileActionType.cs" />
     <Compile Include="Data\MouseHandlingMode.cs" />
-    <Compile Include="Data\Node\NodeBase.cs" />
-    <Compile Include="Data\Node\NodeBooleanArray.cs" />
-    <Compile Include="Data\Node\NodeFloatArray.cs" />
-    <Compile Include="Data\Node\NodeStringArray.cs" />
     <Compile Include="Data\Project.cs" />
     <Compile Include="Data\ProjectHeader.cs" />
     <Compile Include="Data\ProjectItemDesc.cs" />
@@ -139,6 +136,11 @@
     <Compile Include="NetWork\UDPRecv.cs" />
     <Compile Include="NetWork\UDPSend.cs" />
     <Compile Include="Shapes\CurvedArrow.cs" />
+    <Compile Include="Shortcut.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Shortcut.settings</DependentUpon>
+    </Compile>
     <Compile Include="Util\Json.cs" />
     <Compile Include="Util\Xml.cs" />
     <Compile Include="ViewModels\NodeControllerViewModel.cs" />
@@ -174,6 +176,10 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Shortcut.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Shortcut.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\NodeProperties\ConstantNodeProperties.xaml">

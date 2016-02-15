@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
+
 namespace iris_engine.ViewModels
 {
     internal class WindowViewModel : ViewModel
@@ -160,15 +161,13 @@ namespace iris_engine.ViewModels
 
             var top = new MenuItem();
             top.Header = "ファイル(_F)";
-
+            
             var new_project = new MenuItem();
             new_project.Header = "新規プロジェクト";
-            new_project.InputGestureText = "Ctrl+N";
+            new_project.InputGestureText = iris_engine.Shortcut.Default.New_Project;
             new_project.CommandBindings.Add(new CommandBinding(ApplicationCommands.New));
             top.Items.Add(new_project);
-
             Menus.Add(top);
-
         }
 
         #endregion
