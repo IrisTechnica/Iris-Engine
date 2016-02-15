@@ -23,7 +23,7 @@
 		<viewModels:WindowViewModel />
 	</Window.DataContext>
 
-	<Grid>
+    <Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />

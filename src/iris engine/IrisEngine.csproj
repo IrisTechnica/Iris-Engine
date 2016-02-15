@@ -135,6 +135,7 @@
     <Compile Include="NetWork\NetWork.cs" />
     <Compile Include="NetWork\UDPRecv.cs" />
     <Compile Include="NetWork\UDPSend.cs" />
+    <Compile Include="Shortcut.cs" />
     <Compile Include="Shapes\CurvedArrow.cs" />
     <Compile Include="Shortcut.Designer.cs">
       <AutoGen>True</AutoGen>

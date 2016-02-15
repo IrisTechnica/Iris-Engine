@@ -34,5 +34,41 @@ namespace iris_engine {
                 this["New_Project"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+N")]
+        public string New_File {
+            get {
+                return ((string)(this["New_File"]));
+            }
+            set {
+                this["New_File"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+Shift+O")]
+        public string Open_Project {
+            get {
+                return ((string)(this["Open_Project"]));
+            }
+            set {
+                this["Open_Project"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+O")]
+        public string Open_File {
+            get {
+                return ((string)(this["Open_File"]));
+            }
+            set {
+                this["Open_File"] = value;
+            }
+        }
     }
 }

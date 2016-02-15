@@ -156,18 +156,113 @@ namespace iris_engine.ViewModels
         public ObservableCollection<MenuItem> Menus { get; private set; }
         private void MakeMenus()
         {
+
             // Makes some dummy menus to test with.
             Menus = new ObservableCollection<MenuItem>();
-
-            var top = new MenuItem();
-            top.Header = "ファイル(_F)";
             
-            var new_project = new MenuItem();
-            new_project.Header = "新規プロジェクト";
-            new_project.InputGestureText = iris_engine.Shortcut.Default.New_Project;
-            new_project.CommandBindings.Add(new CommandBinding(ApplicationCommands.New));
-            top.Items.Add(new_project);
-            Menus.Add(top);
+            var File = new MenuItem();
+            File.Header = "ファイル(_F)";
+            { 
+                var NewFile = new MenuItem();
+                NewFile.Header = "新規作成";
+                { 
+                    var new_file = new MenuItem();
+                    new_file.Header = "新規ファイル";
+                    new_file.InputGestureText = iris_engine.Shortcut.Default.New_File;
+                    new_file.CommandBindings.Add(new CommandBinding(ApplicationCommands.New));
+
+                    var new_project = new MenuItem();
+                    new_project.Header = "新規プロジェクト";
+                    new_project.InputGestureText = iris_engine.Shortcut.Default.New_Project;
+                    new_project.CommandBindings.Add(new CommandBinding(ApplicationCommands.New));
+
+                    NewFile.Items.Add(new_file);
+                    NewFile.Items.Add(new_project);
+                }
+
+                var OpenFile = new MenuItem();
+                OpenFile.Header = "開く";
+                {
+                    var open_file = new MenuItem();
+                    open_file.Header = "ファイルを開く";
+                    open_file.InputGestureText = iris_engine.Shortcut.Default.Open_File;
+                    open_file.CommandBindings.Add(new CommandBinding(ApplicationCommands.Open));
+
+                    var open_project = new MenuItem();
+                    open_project.Header = "プロジェクトを開く";
+                    open_project.InputGestureText = iris_engine.Shortcut.Default.Open_Project;
+                    open_project.CommandBindings.Add(new CommandBinding(ApplicationCommands.Open));
+                    
+                    OpenFile.Items.Add(open_file);
+                    OpenFile.Items.Add(open_project);
+                }
+                
+                File.Items.Add(NewFile);
+                File.Items.Add(OpenFile);
+            }
+            Menus.Add(File);
+
+
+            var Edit = new MenuItem();
+            Edit.Header = "編集(_E)";
+            {
+
+            }
+            Menus.Add(Edit);
+
+
+            var View = new MenuItem();
+            View.Header = "表示(_V)";
+            {
+
+            }
+            Menus.Add(View);
+
+
+            var Project = new MenuItem();
+            Project.Header = "プロジェクト(_P)";
+            {
+                //プロジェクトの設定等のウィンドウを出す
+            }
+            Menus.Add(Project);
+            
+            var Build = new MenuItem();
+            Build.Header = "ビルド(_B)";
+            {
+
+            }
+            Menus.Add(Build);
+
+            var Debug = new MenuItem();
+            Debug.Header = "デバッグ(_D)";
+            {
+
+            }
+            Menus.Add(Debug);
+
+            //外部ツール等に繋げるかもしれないのでとりあえず
+            /*
+            var Tool = new MenuItem();
+            Tool.Header = "ツール(_T)";
+            {
+
+            }
+            Menus.Add(Tool);
+            */
+
+            var NetWork = new MenuItem();
+            NetWork.Header = "ネットワーク(_N)";
+            {
+                //接続先一覧
+                //
+                //
+                //
+                //
+                //
+            }
+            Menus.Add(NetWork);
+
+
         }
 
         #endregion
