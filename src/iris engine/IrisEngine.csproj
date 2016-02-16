@@ -103,6 +103,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\Commands.cs" />
     <Compile Include="Controls\NodeProperties\ConstantNodeProperties.xaml.cs">
       <DependentUpon>ConstantNodeProperties.xaml</DependentUpon>
     </Compile>
@@ -124,10 +125,6 @@
     <Compile Include="Data\CompileActionType.cs" />
     <Compile Include="Data\MouseHandlingMode.cs" />
     <Compile Include="Data\NodesSolver.cs" />
-    <Compile Include="Data\Node\NodeBase.cs" />
-    <Compile Include="Data\Node\NodeBooleanArray.cs" />
-    <Compile Include="Data\Node\NodeFloatArray.cs" />
-    <Compile Include="Data\Node\NodeStringArray.cs" />
     <Compile Include="Data\Project.cs" />
     <Compile Include="Data\ProjectHeader.cs" />
     <Compile Include="Data\ProjectItemDesc.cs" />
@@ -141,7 +138,7 @@
     <Compile Include="Indicators\ConnectionBadIndicator.cs" />
     <Compile Include="Indicators\ConnectionOkIndicator.cs" />
     <Compile Include="Managers\ConfigManager.cs" />
-    <Compile Include="Managers\PackageManager.cs" />
+    <Compile Include="Managers\ProjectManager.cs" />
     <Compile Include="NetWork\NetWork.cs" />
     <Compile Include="NetWork\NetWorkUDPBroadcast.cs" />
     <Compile Include="NetWork\NetWorkUDPConnector.cs" />

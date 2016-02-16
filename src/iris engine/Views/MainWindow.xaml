@@ -61,9 +61,7 @@
 			</Grid>
 		</Border>
 
-		<Menu Grid.Row="1" Background="Transparent"
-			  ItemsSource="{Binding Menus}">
-		</Menu>
+		<Menu Grid.Row="1" Background="Transparent">
 
             <MenuItem Header="編集(_E)">
                 <MenuItem Header="今後実装予定" />
