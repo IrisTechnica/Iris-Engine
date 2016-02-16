@@ -12,8 +12,8 @@
 					  xmlns:viewModels="clr-namespace:iris_engine.ViewModels"
 					  xmlns:view="clr-namespace:iris_engine.Views"
 					  xmlns:local="clr-namespace:iris_engine.Controls"
-                      xmlns:command ="clr-namespace:iris_engine.Commands"
-                      xmlns:debug ="clr-namespace:iris_engine.Debug"
+					  xmlns:command ="clr-namespace:iris_engine.Commands"
+					  xmlns:debug ="clr-namespace:iris_engine.Debug"
 					  mc:Ignorable="d"
 					  FontFamily="Segoe UI"
 					  Background="{DynamicResource ThemeBrushKey}"
@@ -63,39 +63,39 @@
 
 		<Menu Grid.Row="1" Background="Transparent">
 
-            <MenuItem Header="編集(_E)">
-                <MenuItem Header="今後実装予定" />
-            </MenuItem>
+			<MenuItem Header="編集(_E)">
+				<MenuItem Header="今後実装予定" />
+			</MenuItem>
 
-            <MenuItem Header="表示(_V)">
-                <MenuItem Header="随時追加予定" />
-                <MenuItem Header="ネットワークウィンドウ" Name="Command_View_NetWork" Command="command:Commands.View_NetWork" InputGestureText="Shift+N"/>
-            </MenuItem>
-            
-            <MenuItem Header="プロジェクト(_P)">
-                <MenuItem Header="今後実装予定" />
-            </MenuItem>
-            
-            <MenuItem Header="ビルド(_B)">
-                <MenuItem Header="今後実装予定" />
-            </MenuItem>
+			<MenuItem Header="表示(_V)">
+				<MenuItem Header="随時追加予定" />
+				<MenuItem Header="ネットワークウィンドウ" Name="Command_View_NetWork" Command="command:Commands.View_NetWork" InputGestureText="Shift+N"/>
+			</MenuItem>
+			
+			<MenuItem Header="プロジェクト(_P)">
+				<MenuItem Header="今後実装予定" />
+			</MenuItem>
+			
+			<MenuItem Header="ビルド(_B)">
+				<MenuItem Header="今後実装予定" />
+			</MenuItem>
 
-            <MenuItem Header="デバッグ(_D)">
-                <MenuItem Header="今後実装予定" />
-            </MenuItem>
+			<MenuItem Header="デバッグ(_D)">
+				<MenuItem Header="今後実装予定" />
+			</MenuItem>
 
-            <MenuItem Header="ツール(_T)">
-                <MenuItem Header="今後実装予定" />
-            </MenuItem>
+			<MenuItem Header="ツール(_T)">
+				<MenuItem Header="今後実装予定" />
+			</MenuItem>
 
-            <MenuItem Header="ネットワーク(_V)">
-                <MenuItem Header="今後実装予定" />
-            </MenuItem>
-        </Menu>
+			<MenuItem Header="ネットワーク(_V)">
+				<MenuItem Header="今後実装予定" />
+			</MenuItem>
+		</Menu>
 
-        
-        
-        <ScrollViewer Grid.Row="2"
+		
+		
+		<ScrollViewer Grid.Row="2"
 					  HorizontalScrollBarVisibility="Disabled"
 					  VerticalScrollBarVisibility="Disabled">
 			<Grid>
@@ -113,17 +113,17 @@
 									</dock:LayoutDocument>
 									<!-- ドキュメント2 -->
 									<dock:LayoutDocument Title="Document2">
-                                        <local:RadicalProgressBar/>
-                                    </dock:LayoutDocument>
+										<local:RadicalProgressBar/>
+									</dock:LayoutDocument>
 								</dock:LayoutDocumentPane>
 								<dock:LayoutAnchorablePane DockWidth="150">
 									<!-- ツールウィンドウ1 -->
 									<dock:LayoutAnchorable Title="ToolWindow1">
 										<local:NodeProperties/>
 									</dock:LayoutAnchorable>
-                                    <dock:LayoutAnchorable Title ="NetWork">
-                                        <debug:NetWorkView/>
-                                    </dock:LayoutAnchorable>
+									<dock:LayoutAnchorable Title ="NetWork">
+										<debug:NetWorkView/>
+									</dock:LayoutAnchorable>
 								</dock:LayoutAnchorablePane>
 							</dock:LayoutPanel>
 							<dock:LayoutAnchorablePane DockHeight="100">

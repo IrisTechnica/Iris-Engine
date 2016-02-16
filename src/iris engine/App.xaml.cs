@@ -14,6 +14,14 @@ namespace iris_engine
     /// </summary>
     public partial class App
     {
+        private SplashScreen splash = null;
+
+        public App() : base()
+        {
+            splash = new SplashScreen("resources/splash.png");
+            splash.Show(false);
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -24,6 +32,19 @@ namespace iris_engine
         #region 二重起動チェック
 
         private static System.Threading.Mutex mutex;
+
+        public SplashScreen Splash
+        {
+            get
+            {
+                return splash;
+            }
+
+            set
+            {
+                splash = value;
+            }
+        }
 
         private void AppStartup(object sender, StartupEventArgs e)
         {

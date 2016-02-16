@@ -103,6 +103,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Serializer\IPortableSettingsSerializer.cs" />
+    <Compile Include="Serializer\PortableSettingBinarySerializer.cs" />
+    <Compile Include="Serializer\PortableSettingsJsonSerializer.cs" />
     <Compile Include="Controls\Commands.cs" />
     <Compile Include="Controls\NodeProperties\ConstantNodeProperties.xaml.cs">
       <DependentUpon>ConstantNodeProperties.xaml</DependentUpon>
@@ -144,6 +147,7 @@
     <Compile Include="NetWork\NetWorkUDPConnector.cs" />
     <Compile Include="NetWork\UDPRecv.cs" />
     <Compile Include="NetWork\UDPSend.cs" />
+    <Compile Include="Serializer\PortableSettingsXmlSerializer.cs" />
     <Compile Include="Shapes\CurvedArrow.cs" />
     <Compile Include="Util\Json.cs" />
     <Compile Include="Util\Xml.cs" />
@@ -262,6 +266,9 @@
     <Resource Include="Resources\block_16.png" />
     <Resource Include="Resources\scissors.png" />
     <Resource Include="Resources\tick_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\splash.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

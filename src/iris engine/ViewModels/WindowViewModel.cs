@@ -277,7 +277,8 @@ namespace iris_engine.ViewModels
             this.Title = "Iris Engine";
 
             ThemeService.Current.ChangeTheme(Theme.Light);
-            ThemeService.Current.ChangeAccent(Accent.FromColor(Color.FromRgb(120, 220, 225)));
+            //ThemeService.Current.ChangeAccent(Accent.FromColor(Color.FromRgb(120, 220, 225)));
+            ThemeService.Current.ChangeAccent(Accent.FromColor(Color.FromRgb(199, 165, 204)));
 
             MakeMenus();
             
