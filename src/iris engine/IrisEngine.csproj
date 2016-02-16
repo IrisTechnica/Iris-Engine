@@ -104,6 +104,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\Commands.cs" />
     <Compile Include="Controls\NodeProperties\ConstantNodeProperties.xaml.cs">
       <DependentUpon>ConstantNodeProperties.xaml</DependentUpon>
     </Compile>
@@ -128,20 +129,19 @@
     <Compile Include="Data\ProjectItems.cs" />
     <Compile Include="Data\ProjectItemsConnection.cs" />
     <Compile Include="Data\Tree.cs" />
+    <Compile Include="Debug\NetWork\NetWorkView.xaml.cs">
+      <DependentUpon>NetWorkView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Indicators\ConnectionBadIndicator.cs" />
     <Compile Include="Indicators\ConnectionOkIndicator.cs" />
     <Compile Include="Managers\ConfigManager.cs" />
     <Compile Include="Managers\PackageManager.cs" />
     <Compile Include="NetWork\NetWork.cs" />
+    <Compile Include="NetWork\NetWorkUDPBroadcast.cs" />
+    <Compile Include="NetWork\NetWorkUDPConnector.cs" />
     <Compile Include="NetWork\UDPRecv.cs" />
     <Compile Include="NetWork\UDPSend.cs" />
-    <Compile Include="Shortcut.cs" />
     <Compile Include="Shapes\CurvedArrow.cs" />
-    <Compile Include="Shortcut.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Shortcut.settings</DependentUpon>
-    </Compile>
     <Compile Include="Util\Json.cs" />
     <Compile Include="Util\Xml.cs" />
     <Compile Include="ViewModels\NodeControllerViewModel.cs" />
@@ -170,17 +170,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Shortcut.settings">
-      <Generator>PublicSettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Shortcut.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\NodeProperties\ConstantNodeProperties.xaml">
@@ -196,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\NodeProperties\NotSelectedNodeProperties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Debug\NetWork\NetWorkView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,6 +255,7 @@
     <Resource Include="Resources\scissors.png" />
     <Resource Include="Resources\tick_16.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
