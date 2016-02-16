@@ -63,6 +63,19 @@
 
 		<Menu Grid.Row="1" Background="Transparent">
 
+            <MenuItem Header="ファイル(_F)">
+                <MenuItem Header="新規作成">
+                    <MenuItem Header="新規ファイル" Name="Command_New_File" Command="command:Commands.New_File" InputGestureText="Ctrl+N"/>
+                    <MenuItem Header="新規プロジェクト" Name="Command_New_Project" Command="command:Commands.New_Project"  InputGestureText ="Ctrl+Shift+N"/>
+                </MenuItem>
+                <MenuItem Header="開く">
+                    <MenuItem Header="ファイルを開く" Name="Command_Open_File"  InputGestureText="Ctrl+O"/>
+                    <MenuItem Header="プロジェクトを開く" Name="Command_Open_Project" InputGestureText ="Ctrl+Shift+O"/>
+                </MenuItem>
+                <MenuItem Header="上書き保存" Name="Command_Save"  InputGestureText="Ctrl+S"/>
+                <MenuItem Header="名前をつけて保存" Name="Command_Save_As" InputGestureText ="Ctrl+Shift+S"/>
+                <MenuItem Header="終了" Name="Command_Exit" Command="ApplicationCommands.Close" />
+            </MenuItem>
             <MenuItem Header="編集(_E)">
                 <MenuItem Header="今後実装予定" />
             </MenuItem>
