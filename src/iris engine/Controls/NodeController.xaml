@@ -8,6 +8,7 @@
 			 xmlns:ZoomAndPan="clr-namespace:ZoomAndPan;assembly=ZoomAndPan"
 			 xmlns:ac="clr-namespace:AdornedControl;assembly=AdornedControl"
 			 xmlns:diagnostics="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+			 xmlns:dock="http://schemas.xceed.com/wpf/xaml/avalondock"
 			 xmlns:local="clr-namespace:iris_engine.Controls"
 			 xmlns:conv="clr-namespace:iris_engine.Converters"
 			 xmlns:idc="clr-namespace:iris_engine.Indicators"
@@ -39,6 +40,8 @@
 			<RoutedUICommand x:Key="Commands.DeleteSelectedNodes" />
 			<RoutedUICommand x:Key="Commands.CreateConstantNode" />
 			<RoutedUICommand x:Key="Commands.CreateAddNode" />
+			<RoutedUICommand x:Key="Commands.CreateMulNode" />
+			<RoutedUICommand x:Key="Commands.CreateDivNode" />
 			<RoutedUICommand x:Key="Commands.DeleteNode" />
 			<RoutedUICommand x:Key="Commands.DeleteConnection" />
 			<RoutedUICommand x:Key="Commands.ZoomOut" />
@@ -483,6 +486,14 @@
 			Executed="CreateAddNode_Executed"
 			/>
 		<CommandBinding 
+			Command="{StaticResource Commands.CreateMulNode}" 
+			Executed="CreateMulNode_Executed"
+			/>
+		<CommandBinding 
+			Command="{StaticResource Commands.CreateDivNode}" 
+			Executed="CreateDivNode_Executed"
+			/>
+		<CommandBinding 
 			Command="{StaticResource Commands.DeleteNode}" 
 			Executed="DeleteNode_Executed" 
 			/>
@@ -536,7 +547,15 @@
 					Header="Add"
 					Command="{StaticResource Commands.CreateAddNode}"
 					ToolTip="Add Two Value"/>
-			</MenuItem>
+                <MenuItem
+					Header="Mul"
+					Command="{StaticResource Commands.CreateMulNode}"
+					ToolTip="Mul Two Value"/>
+                <MenuItem
+					Header="Div"
+					Command="{StaticResource Commands.CreateDivNode}"
+					ToolTip="Div Two Value"/>
+            </MenuItem>
 
 			<Separator />
 

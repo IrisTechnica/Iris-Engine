@@ -79,16 +79,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\DivNodeViewModel.cs" />
+    <Compile Include="NodeCalculationType.cs" />
+    <Compile Include="Nodes\Numeric\MulNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\AddNodeViewModel.cs" />
     <Compile Include="ConnectionViewModel.cs" />
-    <Compile Include="ConnectorViewModel.cs" />
+    <Compile Include="Connectors\ConnectorViewModel.cs" />
     <Compile Include="ConnectorType.cs" />
-    <Compile Include="ConstantNodeViewModel.cs" />
-    <Compile Include="FloatConnectorViewModel.cs" />
+    <Compile Include="Nodes\Numeric\ConstantNodeViewModel.cs" />
+    <Compile Include="Connectors\FloatConnectorViewModel.cs" />
     <Compile Include="NetworkViewModel.cs" />
-    <Compile Include="AbstractNodeViewModel.cs" />
+    <Compile Include="Nodes\AbstractNodeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectedNode.cs" />
+    <Compile Include="Connectors\StringConnectorViewModel.cs" />
+    <Compile Include="Nodes\String\StringNodeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\utils\Utils.csproj">

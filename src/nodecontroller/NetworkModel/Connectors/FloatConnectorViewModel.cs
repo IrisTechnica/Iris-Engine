@@ -9,8 +9,6 @@ namespace NetworkModel
     {
         #region Private Data Members
 
-        private float entity = 0;
-
         #endregion
 
         #region Public Methods
@@ -19,10 +17,13 @@ namespace NetworkModel
         {
         }
 
-        public float Entity
+        public new float Entity
         {
-            get { return entity; }
-            set { entity = value; }
+            get {
+                if (entity == null) entity = new float();
+                return (float)Convert.ChangeType(entity,typeof(float));
+            }
+            set { this.SetProperty(ref entity, value); }
         }
 
         #endregion

@@ -7,6 +7,7 @@ using NetworkModel;
 using System.Windows;
 using System.Diagnostics;
 using iris_engine.Indicators;
+using iris_engine.Data;
 
 namespace iris_engine.ViewModels
 {
@@ -22,6 +23,8 @@ namespace iris_engine.ViewModels
         /// It is the main part of the view-model.
         /// </summary>
         public NetworkViewModel network = null;
+
+        private NodesSolver solver = null;
 
         ///
         /// The current scale at which the content is being viewed.
@@ -214,6 +217,16 @@ namespace iris_engine.ViewModels
             }
         }
 
+        public NodesSolver Solver
+        {
+            get
+            {
+                if (solver == null) solver = new NodesSolver();
+                return solver;
+            }
+
+        }
+
         /// <summary>
         /// Called when the user has started to drag out a connector, thus creating a new connection.
         /// </summary>
@@ -373,6 +386,14 @@ namespace iris_engine.ViewModels
             {
                 newConnection.SourceConnector = connectorDraggedOver;
             }
+
+            Solver.DetectEndOfNode(newConnection.DestConnector.ParentNode);
+            Solver.Solve();
+        }
+
+        private void DecideLastedNode(AbstractNodeViewModel node)
+        {
+
         }
 
         /// <summary>
@@ -509,11 +530,28 @@ namespace iris_engine.ViewModels
             }
 
             //
+            // Add the event of update entity
+            //
+            foreach(var connector in node.InputConnectors)
+                connector.PropertyChanged += Node_EntityChanged;
+            foreach (var connector in node.OutputConnectors)
+                connector.PropertyChanged += Node_EntityChanged;
+
+            //
             // Add the node to the view-model.
             //
             this.Network.Nodes.Add(node);
 
             return node;
+        }
+
+        private void Node_EntityChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            var connector = (ConnectorViewModel)sender;
+            if(e.PropertyName == nameof(connector.Entity))
+            {
+                Solver.Solve();
+            }
         }
 
         /// <summary>

@@ -9,18 +9,21 @@ namespace iris_engine.ViewModels
 {
     public class ConstantNodePropertiesViewModel : NodePropertiesViewModel
     {
-        public float? Entity
+        public float Entity
         {
             get
             {
-                return GetAs<ConstantNodeViewModel>()?.Outputs.ConstantValue.Entity; 
+                var viewmodel = GetAs<ConstantNodeViewModel>();
+                if (viewmodel != null)
+                    return viewmodel.Outputs.ConstantValue.Entity;
+                return 0;
             }
             set
             {
                 var viewmodel = GetAs<ConstantNodeViewModel>();
                 if(viewmodel != null)
                 {
-                    viewmodel.Outputs.ConstantValue.Entity = value.GetValueOrDefault();
+                    viewmodel.Outputs.ConstantValue.Entity = value;
                     Raise();
                 }
             }

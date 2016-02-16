@@ -182,7 +182,7 @@ namespace NetworkUI
                 this.ReleaseMouseCapture();
 
                 isDragging = false;
-
+                    
                 isLeftMouseDown = false;
 
             }

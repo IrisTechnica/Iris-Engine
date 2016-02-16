@@ -64,6 +64,11 @@ namespace NetworkModel
         private ImpObservableCollection<ConnectorViewModel> outputConnectors = null;
 
         /// <summary>
+        /// Node Calculation Type, use on solve connected node's data
+        /// </summary>
+        private NodeCalculationType solverType = NodeCalculationType.Unknown;
+
+        /// <summary>
         /// Set to 'true' when the node is selected.
         /// </summary>
         private bool isSelected = false;
@@ -75,10 +80,11 @@ namespace NetworkModel
 
         }
 
-        public AbstractNodeViewModel(string name)
+        public AbstractNodeViewModel(string name,NodeCalculationType solverType = NodeCalculationType.Static)
         {
             this.name = name;
             this.internalName = name;
+            this.SolverType = solverType;
         }
 
         /// <summary>
@@ -295,6 +301,19 @@ namespace NetworkModel
                     if (SelectedNode.GetInstance()?.Value == this)
                         SelectedNode.GetInstance().Value = null;
                 }
+            }
+        }
+
+        public NodeCalculationType SolverType
+        {
+            get
+            {
+                return solverType;
+            }
+
+            internal set
+            {
+                solverType = value;
             }
         }
 
