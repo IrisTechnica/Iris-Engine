@@ -70,6 +70,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
@@ -103,6 +104,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\Commands.cs" />
     <Compile Include="Controls\NodeProperties\ConstantNodeProperties.xaml.cs">
       <DependentUpon>ConstantNodeProperties.xaml</DependentUpon>
     </Compile>
@@ -123,11 +125,14 @@
     <Compile Include="Converters\ScaleToPercentConverter.cs" />
     <Compile Include="Data\CompileActionType.cs" />
     <Compile Include="Data\MouseHandlingMode.cs" />
+<<<<<<< HEAD
+=======
     <Compile Include="Data\NodesSolver.cs" />
     <Compile Include="Data\Node\NodeBase.cs" />
     <Compile Include="Data\Node\NodeBooleanArray.cs" />
     <Compile Include="Data\Node\NodeFloatArray.cs" />
     <Compile Include="Data\Node\NodeStringArray.cs" />
+>>>>>>> feature/angeart
     <Compile Include="Data\Project.cs" />
     <Compile Include="Data\ProjectHeader.cs" />
     <Compile Include="Data\ProjectItemDesc.cs" />
@@ -141,12 +146,16 @@
     <Compile Include="Indicators\ConnectionBadIndicator.cs" />
     <Compile Include="Indicators\ConnectionOkIndicator.cs" />
     <Compile Include="Managers\ConfigManager.cs" />
+<<<<<<< HEAD
     <Compile Include="Managers\PackageManager.cs" />
     <Compile Include="NetWork\NetWork.cs" />
     <Compile Include="NetWork\NetWorkUDPBroadcast.cs" />
     <Compile Include="NetWork\NetWorkUDPConnector.cs" />
     <Compile Include="NetWork\UDPRecv.cs" />
     <Compile Include="NetWork\UDPSend.cs" />
+=======
+    <Compile Include="Managers\ProjectManager.cs" />
+>>>>>>> feature/angeart
     <Compile Include="Shapes\CurvedArrow.cs" />
     <Compile Include="Util\Json.cs" />
     <Compile Include="Util\Xml.cs" />
@@ -204,11 +213,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Debug\NetWork\NetWorkView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+=======
     <Page Include="Controls\RadicalSlider.xaml">
+>>>>>>> feature/angeart
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -266,6 +275,7 @@
     <Resource Include="Resources\scissors.png" />
     <Resource Include="Resources\tick_16.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

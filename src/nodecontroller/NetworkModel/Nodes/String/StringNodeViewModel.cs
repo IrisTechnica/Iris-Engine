@@ -2,29 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
+using System.Threading.Tasks;
 
 namespace NetworkModel
 {
-    public class ConstantNodeViewModel : AbstractNodeViewModel
+    class StringNodeViewModel : AbstractNodeViewModel
     {
         #region Internal Classes [None Internal constraints]
 
         public class InternalOutputs
         {
-            private FloatConnectorViewModel constantValue;
+            private StringConnectorViewModel stringValue;
 
-            public FloatConnectorViewModel ConstantValue
+            public StringConnectorViewModel StringValue
             {
                 get
                 {
-                    if (constantValue == null) constantValue = new FloatConnectorViewModel("Value");
-                    return constantValue;
+                    if (stringValue == null) stringValue = new StringConnectorViewModel("Text");
+                    return stringValue;
                 }
 
                 set
                 {
-                    constantValue = value;
+                    stringValue = value;
                 }
             }
         }
@@ -34,6 +34,19 @@ namespace NetworkModel
         #region Private Data Members
 
         private InternalOutputs outputs = new InternalOutputs();
+
+        #endregion
+
+        #region Private Methods
+
+        private void Initialize()
+        {
+            this.OutputConnectors.Add(outputs.StringValue);
+        }
+
+        #endregion
+
+        #region Public Properties
 
         public InternalOutputs Outputs
         {
@@ -52,7 +65,7 @@ namespace NetworkModel
 
         #region Public Methods
 
-        public ConstantNodeViewModel() : base("Constant")
+        public StringNodeViewModel() : base("String")
         {
             Initialize();
         }
@@ -61,15 +74,10 @@ namespace NetworkModel
         public override void Calculate()
         {
             // donot calculate
-            Console.WriteLine("constant value : " + outputs.ConstantValue.Entity.ToString());
+            Console.WriteLine("string value : " + outputs.StringValue.Entity);
         }
 
         #endregion
-
-        private void Initialize()
-        {
-            this.OutputConnectors.Add(outputs.ConstantValue);
-        }
 
     }
 }

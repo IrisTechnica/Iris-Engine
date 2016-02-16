@@ -8,9 +8,9 @@ namespace NetworkModel
     public class AddNodeViewModel : AbstractNodeViewModel
     {
 
-        #region Internal Classes
+        #region Internal Classes [None Internal constraints]
 
-        internal class InternalInputs
+        public class InternalInputs
         {
             private FloatConnectorViewModel add1;
             private FloatConnectorViewModel add2;
@@ -44,7 +44,7 @@ namespace NetworkModel
             }
         }
 
-        internal class InternalOutputs
+        public class InternalOutputs
         {
             private FloatConnectorViewModel addValue;
 
@@ -72,20 +72,6 @@ namespace NetworkModel
 
         #endregion
 
-        #region Public Methods
-
-        public AddNodeViewModel() : base("Add")
-        {
-            Initialize();
-        }
-
-        public override void Calculate()
-        {
-            outputs.AddValue.Entity = inputs.Add1.Entity + inputs.Add2.Entity;
-        }
-
-        #endregion
-
         #region Private Methods
 
         private void Initialize()
@@ -97,5 +83,49 @@ namespace NetworkModel
 
         #endregion
 
+        #region Public Properties
+
+        public InternalInputs Inputs
+        {
+            get
+            {
+                return inputs;
+            }
+
+            set
+            {
+                inputs = value;
+            }
+        }
+
+        public InternalOutputs Outputs
+        {
+            get
+            {
+                return outputs;
+            }
+
+            set
+            {
+                outputs = value;
+            }
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        public AddNodeViewModel() : base("Add")
+        {
+            Initialize();
+        }
+
+        public override void Calculate()
+        {
+            outputs.AddValue.NoRaiseEntity = inputs.Add1.Entity + inputs.Add2.Entity;
+            Console.WriteLine("add {0} + {1} to {2}", inputs.Add1.Entity, inputs.Add2.Entity, outputs.AddValue.Entity);
+        }
+
+        #endregion
     }
 }

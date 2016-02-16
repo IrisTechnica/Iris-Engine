@@ -21,35 +21,34 @@
 					  IsRestoringWindowPlacement="True"
 					  UseLayoutRounding="True"
 					  Title="MainWindow" Height="720" Width="1280">
-    <Window.DataContext>
-        <viewModels:WindowViewModel />
-    </Window.DataContext>
-    
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="23" />
-        </Grid.RowDefinitions>
+	<Window.DataContext>
+		<viewModels:WindowViewModel />
+	</Window.DataContext>
 
-        <Border Grid.Row="0"
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="23" />
+		</Grid.RowDefinitions>
+
+		<Border Grid.Row="0"
 				controls:MetroWindow.IsCaptionBar="True">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <controls:CaptionIcon Grid.Column="0">
-                    <Rectangle Width="32" Height="32">
-                        <Rectangle.Fill>
-                            <ImageBrush ImageSource="/iris engine;component/Resources/ir.png"/>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                </controls:CaptionIcon>
-                <TextBlock Grid.Column="1"
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+				<controls:CaptionIcon Grid.Column="0">
+					<Rectangle Width="32" Height="32">
+						<Rectangle.Fill>
+							<ImageBrush ImageSource="/iris engine;component/Resources/ir.png"/>
+						</Rectangle.Fill>
+					</Rectangle>
+				</controls:CaptionIcon>
+				<TextBlock Grid.Column="1"
 						   Text="{Binding Title}"
 						   TextTrimming="CharacterEllipsis"
 						   Foreground="{DynamicResource ForegroundBrushKey}"
@@ -57,26 +56,14 @@
 						   FontSize="18"
 						   Margin="3,0,0,0"
 						   VerticalAlignment="Center" />
-                <controls:SystemButtons Grid.Column="2"
+				<controls:SystemButtons Grid.Column="2"
 										VerticalAlignment="Top" />
-            </Grid>
-        </Border>
+			</Grid>
+		</Border>
 
-        <!-- 今後ショートカットキーを外部がら設定出来るようにする -->
-        <Menu Grid.Row="1" Background="Transparent" >
-            <MenuItem Header="ファイル(_F)">
-                <MenuItem Header="新規作成">
-                    <MenuItem Header="新規ファイル" Name="Command_New_File" Command="command:Commands.New_File" InputGestureText="Ctrl+N"/>
-                    <MenuItem Header="新規プロジェクト" Name="Command_New_Project" Command="command:Commands.New_Project"  InputGestureText ="Ctrl+Shift+N"/>
-                </MenuItem>
-                <MenuItem Header="開く">
-                    <MenuItem Header="ファイルを開く" Name="Command_Open_File"  InputGestureText="Ctrl+O"/>
-                    <MenuItem Header="プロジェクトを開く" Name="Command_Open_Project" InputGestureText ="Ctrl+Shift+O"/>
-                </MenuItem>
-                <MenuItem Header="上書き保存" Name="Command_Save"  InputGestureText="Ctrl+S"/>
-                <MenuItem Header="名前をつけて保存" Name="Command_Save_As" InputGestureText ="Ctrl+Shift+S"/>
-                <MenuItem Header="終了" Name="Command_Exit" Command="ApplicationCommands.Close" />
-            </MenuItem>
+		<Menu Grid.Row="1" Background="Transparent"
+			  ItemsSource="{Binding Menus}">
+		</Menu>
 
             <MenuItem Header="編集(_E)">
                 <MenuItem Header="今後実装予定" />
@@ -113,57 +100,57 @@
         <ScrollViewer Grid.Row="2"
 					  HorizontalScrollBarVisibility="Disabled"
 					  VerticalScrollBarVisibility="Disabled">
-            <Grid>
-                <dock:DockingManager x:Name="_dockingManager">
-                    <dock:DockingManager.Theme>
-                        <themes:DarkTheme/>
-                    </dock:DockingManager.Theme>
-                    <dock:LayoutRoot>
-                        <dock:LayoutPanel Orientation="Vertical">
-                            <dock:LayoutPanel Orientation="Horizontal">
-                                <dock:LayoutDocumentPane>
-                                    <!-- ドキュメント1 -->
-                                    <dock:LayoutDocument Title="Document1">
-                                        <local:NodeController/>
+			<Grid>
+				<dock:DockingManager x:Name="_dockingManager">
+					<dock:DockingManager.Theme>
+						<themes:DarkTheme/>
+					</dock:DockingManager.Theme>
+					<dock:LayoutRoot>
+						<dock:LayoutPanel Orientation="Vertical">
+							<dock:LayoutPanel Orientation="Horizontal">
+								<dock:LayoutDocumentPane>
+									<!-- ドキュメント1 -->
+									<dock:LayoutDocument Title="Document1">
+										<local:NodeController/>
+									</dock:LayoutDocument>
+									<!-- ドキュメント2 -->
+									<dock:LayoutDocument Title="Document2">
+                                        <local:RadicalProgressBar/>
                                     </dock:LayoutDocument>
-                                    <!-- ドキュメント2 -->
-                                    <dock:LayoutDocument Title="Document2">
-                                        <TextBox/>
-                                    </dock:LayoutDocument>
-                                </dock:LayoutDocumentPane>
-                                <dock:LayoutAnchorablePane DockWidth="150">
-                                    <!-- ツールウィンドウ1 -->
-                                    <dock:LayoutAnchorable Title="ToolWindow1">
-                                        <local:NodeProperties/>
-                                    </dock:LayoutAnchorable>
+								</dock:LayoutDocumentPane>
+								<dock:LayoutAnchorablePane DockWidth="150">
+									<!-- ツールウィンドウ1 -->
+									<dock:LayoutAnchorable Title="ToolWindow1">
+										<local:NodeProperties/>
+									</dock:LayoutAnchorable>
                                     <dock:LayoutAnchorable Title ="NetWork">
                                         <debug:NetWorkView/>
                                     </dock:LayoutAnchorable>
-                                </dock:LayoutAnchorablePane>
-                            </dock:LayoutPanel>
-                            <dock:LayoutAnchorablePane DockHeight="100">
-                                <!-- ツールウィンドウ2 -->
-                                <dock:LayoutAnchorable Title="ToolWindow2">
-                                    <TextBox/>
-                                </dock:LayoutAnchorable>
-                                <!-- ツールウィンドウ3 -->
-                                <dock:LayoutAnchorable Title="ToolWindow3">
-                                    <Button Content="Button3"/>
-                                </dock:LayoutAnchorable>
-                            </dock:LayoutAnchorablePane>
-                        </dock:LayoutPanel>
-                    </dock:LayoutRoot>
-                </dock:DockingManager>
-            </Grid>
-        </ScrollViewer>
+								</dock:LayoutAnchorablePane>
+							</dock:LayoutPanel>
+							<dock:LayoutAnchorablePane DockHeight="100">
+								<!-- ツールウィンドウ2 -->
+								<dock:LayoutAnchorable Title="ToolWindow2">
+									<TextBox/>
+								</dock:LayoutAnchorable>
+								<!-- ツールウィンドウ3 -->
+								<dock:LayoutAnchorable Title="ToolWindow3">
+									<Button Content="Button3"/>
+								</dock:LayoutAnchorable>
+							</dock:LayoutAnchorablePane>
+						</dock:LayoutPanel>
+					</dock:LayoutRoot>
+				</dock:DockingManager>
+			</Grid>
+		</ScrollViewer>
 
-        <Grid Grid.Row="3"
+		<Grid Grid.Row="3"
 			  Background="{DynamicResource AccentBrushKey}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <controls:ResizeGrip Grid.Column="1" />
-        </Grid>
-    </Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+			<controls:ResizeGrip Grid.Column="1" />
+		</Grid>
+	</Grid>
 </controls:MetroWindow>

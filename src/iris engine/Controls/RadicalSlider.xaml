@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="iris_engine.Controls.RadicalProgressBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:iris_engine.Controls"
+             xmlns:ViewModels="clr-namespace:iris_engine.ViewModels"
+             mc:Ignorable="d"
+             Foreground="{DynamicResource ForegroundBrushKey}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <ViewModels:RadicalSliderViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+    </UserControl.Resources>
+    <Grid
+        Background="{DynamicResource ThemeBrushKey}">
+        <Path x:Name="pathArc"
+            Width="200" Height="200"
+            Stroke="{DynamicResource AccentBrushKey}" StrokeThickness="{Binding StrokeThickness}">
+            <Path.Data>
+                <PathGeometry x:Name="pathGeometryArc">
+                    <PathFigure x:Name="pathFigureArc" StartPoint="105,5">
+                        <ArcSegment Point="195, 105"
+                        Size="95, 95"
+                        IsLargeArc="False"
+                        SweepDirection="Clockwise" 
+                        RotationAngle="0"/>
+                        </PathFigure>
+                        </PathGeometry>
+            </Path.Data>
+            </Path>
+        <Path x:Name="pathCircleBackground"
+            Width="200" Height="200"
+            Stroke="#aaffffff" StrokeThickness="{Binding StrokeThickness}">
+            <Path.Data>
+                <PathGeometry x:Name="pathGeometryCircle">
+                    <PathFigure x:Name="pathFigureCircle" StartPoint="105,5">
+                        <ArcSegment Point="195, 105"
+                    Size="95, 95"
+                    IsLargeArc="True"
+                    SweepDirection="Counterclockwise" 
+                    RotationAngle="0"/>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <StackPanel
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center">
+            <TextBlock
+                Text="{Binding Value}"
+                FontSize="56"
+                TextAlignment="Center" Margin="-5"
+                />
+            <WrapPanel HorizontalAlignment="Center">
+                <TextBlock Foreground="{DynamicResource AccentBrushKey}" Text="{Binding MinValue}"/>
+                <TextBlock Foreground="{DynamicResource AccentBrushKey}" Text="to" Margin="5,0"/>
+                <TextBlock Foreground="{DynamicResource AccentBrushKey}"  Text="{Binding MaxValue}"/>
+            </WrapPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

@@ -133,6 +133,16 @@ namespace iris_engine.Controls
             CreateNode<AddNodeViewModel>();
         }
 
+        private void CreateMulNode_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CreateNode<MulNodeViewModel>();
+        }
+
+        private void CreateDivNode_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CreateNode<DivNodeViewModel>();
+        }
+
         #endregion
 
         /// <summary>
