@@ -13,9 +13,8 @@ namespace iris_engine.NetWork {
 
         }
         public override void Update( ) {
-            this.ClientList.Clear();
             string str = "List";//仮
-            byte[] data = System.Text.Encoding.UTF8.GetBytes(str);
+            byte[] data = Encoding.UTF8.GetBytes(str);
             this.Send(data);
         }
         //データを受信した時
@@ -32,14 +31,14 @@ namespace iris_engine.NetWork {
                 Console.WriteLine("受信エラー({0}/{1})",
                     ex.Message, ex.ErrorCode);
                 return;
-            } catch ( ObjectDisposedException ex ) {
-                //すでに閉じている時は終了
+            } catch {
                 Console.WriteLine("Socketは閉じられています。");
                 return;
+                //すでに閉じている時は終了
             }
 
             //データを文字列に変換する
-            string rcvMsg = System.Text.Encoding.UTF8.GetString(rcvBytes);
+            string rcvMsg = Encoding.UTF8.GetString(rcvBytes);
             if(rcvMsg == "Client" ) {
                 ClientList.Add(remoteEP);
             }

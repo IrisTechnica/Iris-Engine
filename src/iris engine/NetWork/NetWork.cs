@@ -18,17 +18,18 @@ namespace iris_engine.NetWork {
         
         private List<NetWorkUDPConnector> connector;     //
 
-        //private NetWorkUDPBroadcast Client;
+        private NetWorkUDPBroadcast Client;
+        
         public NetWork( ) {
 
         }
         public bool Init( ) {
             ////リスト作成用ブロードキャストの作成
-            //this.Client = new NetWorkUDPBroadcast();
-            //this.Client.Create(IPAddress.Broadcast.ToString(), 50000,true,true);
-            //
-            //this.Client.StartRecv();
-            //this.Client.Update();
+            this.Client = new NetWorkUDPBroadcast();
+            this.Client.Create(IPAddress.Broadcast.ToString(), 50000,true,true);
+            
+            this.Client.StartRecv();
+            this.Client.Update();
 
 
             return true;
