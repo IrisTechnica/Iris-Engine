@@ -81,8 +81,8 @@
 									</dock:LayoutDocument>
 									<!-- ドキュメント2 -->
 									<dock:LayoutDocument Title="Document2">
-										<TextBox/>
-									</dock:LayoutDocument>
+                                        <local:RadicalProgressBar/>
+                                    </dock:LayoutDocument>
 								</dock:LayoutDocumentPane>
 								<dock:LayoutAnchorablePane DockWidth="150">
 									<!-- ツールウィンドウ1 -->

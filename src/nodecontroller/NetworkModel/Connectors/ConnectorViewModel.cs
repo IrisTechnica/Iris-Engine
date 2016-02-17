@@ -26,6 +26,8 @@ namespace NetworkModel
         /// </summary>
         private Point hotspot;
 
+        protected Object entity = null;
+
         #endregion Internal Data Members
 
         public ConnectorViewModel(string name,Type datatype)
@@ -143,6 +145,25 @@ namespace NetworkModel
             }
         }
 
+        public object Entity
+        {
+            get
+            {
+                return entity;
+            }
+
+            set
+            {
+                this.SetProperty(ref entity, value);
+            }
+        }
+
+        // Exclusive Property for donot raise PropertyChenged event 
+        public object NoRaiseEntity
+        {
+            set { entity = value; }
+        }
+
         /// <summary>
         /// Event raised when the connector hotspot has been updated.
         /// </summary>
@@ -160,8 +181,8 @@ namespace NetworkModel
                 connection.ConnectionChanged += new EventHandler<EventArgs>(connection_ConnectionChanged);
             }
 
-            // Update Calculation
-            this.ParentNode.Calculate();
+            // Update Solve
+            
 
             if ((AttachedConnections.Count - e.Items.Count) == 0)
             {

@@ -117,9 +117,13 @@
     <Compile Include="Controls\NodeProperties\NotSelectedNodeProperties.xaml.cs">
       <DependentUpon>NotSelectedNodeProperties.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RadicalSlider.xaml.cs">
+      <DependentUpon>RadicalSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\ScaleToPercentConverter.cs" />
     <Compile Include="Data\CompileActionType.cs" />
     <Compile Include="Data\MouseHandlingMode.cs" />
+    <Compile Include="Data\NodesSolver.cs" />
     <Compile Include="Data\Node\NodeBase.cs" />
     <Compile Include="Data\Node\NodeBooleanArray.cs" />
     <Compile Include="Data\Node\NodeFloatArray.cs" />
@@ -134,13 +138,14 @@
     <Compile Include="Indicators\ConnectionBadIndicator.cs" />
     <Compile Include="Indicators\ConnectionOkIndicator.cs" />
     <Compile Include="Managers\ConfigManager.cs" />
-    <Compile Include="Managers\PackageManager.cs" />
+    <Compile Include="Managers\ProjectManager.cs" />
     <Compile Include="Shapes\CurvedArrow.cs" />
     <Compile Include="Util\Json.cs" />
     <Compile Include="Util\Xml.cs" />
     <Compile Include="ViewModels\NodeControllerViewModel.cs" />
     <Compile Include="ViewModels\NodePropertiesViewModel.cs" />
     <Compile Include="ViewModels\NodeProperties\ConstantNodePropertiesViewModel.cs" />
+    <Compile Include="ViewModels\RadicalSliderViewModel.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\NodeProperties\NotSelectedNodeProperties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\RadicalSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

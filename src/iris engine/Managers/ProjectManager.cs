@@ -7,16 +7,16 @@ using iris_engine.Data;
 
 namespace iris_engine.Managers
 {
-    class PackageManager
+    class ProjectManager
     {
-        private static PackageManager _instance = new PackageManager();
+        private static ProjectManager _instance = new ProjectManager();
 
-        public static PackageManager GetInstance()
+        public static ProjectManager GetInstance()
         {
             return _instance;
         }
 
-        private PackageManager()
+        private ProjectManager()
         {
 
         }

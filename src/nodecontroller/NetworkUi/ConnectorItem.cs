@@ -173,6 +173,19 @@ namespace NetworkUI
                     this.ParentNodeItem.RightMouseDownSelectionLogic();
                 }
             }
+
+            // Force complete on other button down while dragging
+            if(isDragging)
+            {
+                RaiseEvent(new ConnectorItemDragCompletedEventArgs(ConnectorDragCompletedEvent, this));
+
+                this.ReleaseMouseCapture();
+
+                isDragging = false;
+                    
+                isLeftMouseDown = false;
+
+            }
         }
 
         /// <summary>
