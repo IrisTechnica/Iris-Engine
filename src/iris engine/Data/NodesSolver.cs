@@ -24,41 +24,55 @@ namespace iris_engine.Data
         /// Recursive Solve single node calculation
         /// </summary>
         /// <param name="node"></param>
-        private void UnitSolve(AbstractNodeViewModel node,ConnectorViewModel invokerConnector = null)
+        /// <returns>Is success solved</returns>
+        private bool UnitSolve(AbstractNodeViewModel node,ConnectorViewModel invokerConnector = null)
         {
-            if(node.InputConnectors.Count != 0)
             {
-                foreach(var connector in node.InputConnectors)
+                bool isSuccessed = false;
+
+                if (node.InputConnectors.Count != 0)
                 {
-                    // Exist input connectors, so check whether this attached to any node
-                    if(connector.AttachedConnections.Count != 0)
+                    foreach (var connector in node.InputConnectors)
                     {
-                        // Attached input
-
-                        // Attached num check
-                        if(connector.AttachedConnections.Count > 1)
+                        // Exist input connectors, so check whether this attached to any node
+                        if (connector.AttachedConnections.Count != 0)
                         {
-                            // Usually not reached point
-                            throw new NotImplementedException("now input connection must has single attached.");
-                        }
-                        //So call the self recursively in terms of get this node's destination of the node
-                        foreach(var connection in connector.AttachedConnections)
-                        {
-                            AbstractNodeViewModel outputNode = null;
-                            if (connection.DestConnector.Type == ConnectorType.Output)
-                                outputNode = connection.DestConnector.ParentNode;
-                            else
-                                outputNode = connection.SourceConnector.ParentNode;
+                            // Attached input
 
-                            UnitSolve(outputNode, connector);
-                        }
+                            // Attached num check
+                            if (connector.AttachedConnections.Count > 1)
+                            {
+                                // Usually not reached point
+                                throw new NotImplementedException("now input connection must has single attached.");
+                            }
+                            //So call the self recursively in terms of get this node's destination of the node
+                            foreach (var connection in connector.AttachedConnections)
+                            {
+                                AbstractNodeViewModel outputNode = null;
+                                if (connection.DestConnector.Type == ConnectorType.Output)
+                                    outputNode = connection.DestConnector.ParentNode;
+                                else
+                                    outputNode = connection.SourceConnector.ParentNode;
 
+                                isSuccessed = UnitSolve(outputNode, connector);
+                            }
+
+                        }
                     }
                 }
+
+                /// If could not solved of just before node, cancel solve
+                if (!isSuccessed) return false;
             }
 
             /// Execute Calculation
             node.Calculate();
+
+            /// Check node is be able to solve of static 
+            if(node.SolverType != NodeCalculationType.Dynamic)
+            {
+                return false;
+            }
 
             /// Propagate data to invoker
             foreach(var connector in node.OutputConnectors)
@@ -83,6 +97,8 @@ namespace iris_engine.Data
                     }
                 }
             }
+
+            return true;
 
 
         }

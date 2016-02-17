@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="iris_engine.Debug.NetWorkView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:iris_engine.Debug"
+             mc:Ignorable="d" Height="250" Width="150">
+    <Grid>
+        <ComboBox x:Name="AddressCombo" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" Width="130" SelectionChanged="AddressCombo_SelectionChanged" Height="21"/>
+        <TextBox x:Name="AddressBox" HorizontalAlignment="Left" Height="22" Margin="10,58,0,0" TextWrapping="Wrap" Text="127.0.0.1" VerticalAlignment="Top" Width="61"/>
+        <Button x:Name="AddAddressButton" Content="Add" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Width="132" RenderTransformOrigin="0.416,2.649" Click="AddAddressButton_Click" Height="21"/>
+        <Button x:Name="AddressRemove_Button" Content="Remove" HorizontalAlignment="Left" Margin="10,83,0,0" VerticalAlignment="Top" Width="132" Click="AddressRemove_Button_Click" Height="21"/>
+        <Label x:Name="label1" Content="コネクトリスト" HorizontalAlignment="Left" Margin="10,3,0,0" RenderTransformOrigin="0.51,1.631" Width="130" Height="24" VerticalAlignment="Top"/>
+        <TextBox x:Name="CommandBox" HorizontalAlignment="Left" Height="23" Margin="10,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+        <Button x:Name="SendCommandbutton" Content="Send Command" HorizontalAlignment="Left" Margin="10,183,0,0" VerticalAlignment="Top" Width="130" Click="SendCommandbutton_Click"/>
+        <TextBox x:Name="PortBox" HorizontalAlignment="Left" Height="23" Margin="76,58,0,0" TextWrapping="Wrap" Text="50000" VerticalAlignment="Top" Width="64"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="10,218,0,0" VerticalAlignment="Top" Width="130" Click="button_Click"/>
+
+    </Grid>
+</UserControl>
