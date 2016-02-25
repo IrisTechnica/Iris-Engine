@@ -14,43 +14,49 @@ namespace iris_engine.NetWork {
     /// <summary>
     /// ネットワーク管理クラス 
     /// </summary>
-    public class NetWork {
-        
-        private List<NetWorkUDPConnector> connector;     //
+    public sealed class NetWork {
+        private static NetWork _network = new NetWork();
 
-        private NetWorkUDPBroadcast Client;
+        private static NetWorkUDPConnector UDPSocket;
         
+        public static NetWork GetInstance( ) {
+            return _network;
+        }
         public NetWork( ) {
 
         }
+        ~NetWork( ) {
+            this.Close();
+        }
         public bool Init( ) {
-            ////リスト作成用ブロードキャストの作成
-            this.Client = new NetWorkUDPBroadcast();
-            this.Client.Create(IPAddress.Broadcast.ToString(), 50000,true,true);
-            
-            this.Client.StartRecv();
-            this.Client.Update();
-
-
+            if ( UDPSocket != null )
+                UDPSocket.Close();
+            UDPSocket = null;
             return true;
         }
 
-        public bool Connect(string ip,string port) {
-
+        public bool Connect(string ip,string port,string recvport) {
+            if ( UDPSocket != null )
+                return false;
+            UDPSocket = new NetWorkUDPConnector();
+            UDPSocket.Create(ip, port, recvport);
             return true;
         }
         
-        //ネットワークの状態を更新する
-        private void Update( ) {
-
-        }
         public bool Close( ) {
-
-            foreach(var v in connector ) {
-                v.Close();
-            }
-
+            if(UDPSocket != null)
+                UDPSocket.Close();
+            UDPSocket = null;
             return true;
+        }
+        public bool Send(byte[] data) {
+            if ( UDPSocket == null )
+                return false;
+            UDPSocket.AddSendQue(data);
+            return true;
+        }
+        public List<byte[]> Recv( ) {
+            return UDPSocket.GetRecvQue();
         }
     }
 }

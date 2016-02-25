@@ -1,126 +1,184 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Sockets;
 using System.Net;
+using System.Net.Sockets;
+using System.Threading;
 
 namespace iris_engine.NetWork {
     public class NetWorkUDPConnector {
+        //スレッド回り
+        private Mutex sendThreadMutex;
+        private Thread sendThread;
+        private bool closeSendThreadFlg;
+        private Mutex recvThreadMutex;
 
-        private string IpString = "";
-        private int Port;
-        private System.Net.IPAddress Address;
-        protected System.Net.Sockets.UdpClient socket;
-        private System.Net.IPEndPoint IPEP;
+        private UdpClient recvSocket;
+        private UdpClient sendSocket;
+        private IPEndPoint sendIP;
+
+        protected List<byte[]> sendQue;
+        protected List<byte[]> recvQue;
+
+        public delegate bool RecvData(byte[] data);
 
         public NetWorkUDPConnector( ) {
-            this.Address = null;
-            this.socket = null;
-            this.IPEP = null;
-        }
+            this.sendSocket = null;
+            this.recvSocket = null;
 
-        public bool Create(string ip, int port, bool createSocket = true,bool Broudcast = false) {
-            if (
-                this.socket != null
-                || this.Address != null
-                || !CheckIPAddress(ip)
+            this.sendQue = new List<byte[]>();
+            this.recvQue = new List<byte[]>();
+            this.sendThreadMutex = new Mutex();
+            this.recvThreadMutex = new Mutex();
+        }
+        ~NetWorkUDPConnector( ) {
+            this.Close();
+        }
+        public bool Create(string ip, int port, int serverport) {
+            if ( !CheckIPAddress(ip)
                 || !CheckPort(port) ) {
                 return false;
             }
-
-            this.IpString = ip;
-            this.Port = port;
-            if ( createSocket )
-                return true;
-            if ( Broudcast )
-                return CreateBroudcastSocket();
-            return CreateSocket();
+            return CreateSocket(ip, port, serverport);
         }
-        public bool Create(string ip, string port, bool createSocket = true) {
+        public bool Create(string ip, string port, string serverport) {
             try {
-                return this.Create(ip, int.Parse(port), createSocket);
+                return this.Create(ip, int.Parse(port), int.Parse(serverport));
             } catch {
                 return false;
             }
         }
-        private bool CreateBroudcastSocket( ) {
-            this.socket = new UdpClient(this.Port);
-            this.socket.EnableBroadcast = true;
-            this.socket.Connect(new IPEndPoint(IPAddress.Broadcast, this.Port ));
-            this.socket.Close();
-            return true;
-        }
-        public bool CreateSocket( ) {
+
+        public bool CreateSocket(string ip, int port, int recvport) {
             try {
-                this.IPEP =
-                    new System.Net.IPEndPoint(this.Address, this.Port);
-                this.socket =
-                    new System.Net.Sockets.UdpClient(this.IPEP);
+                //ソケットの生成
+                CreateRecvUDPSocket(recvport);
+                CreateSendUDPSocket(ip, port);
 
             } catch {
                 return false;
             }
             return true;
         }
+
+        public bool CreateSendUDPSocket(string ip, int port) {
+            if ( this.sendSocket != null )
+                return false;
+            try {
+                this.sendIP = new IPEndPoint(IPAddress.Parse(ip), port);
+                this.sendSocket = new System.Net.Sockets.UdpClient();
+
+                //送信用スレッドの生成
+                this.closeSendThreadFlg = false;
+                this.sendThread = new Thread(SendThread);
+                this.sendThread.Start();
+            } catch {
+                return false;
+            }
+            return true;
+        }
+        public bool CreateRecvUDPSocket(int port) {
+            if ( this.recvSocket != null )
+                return false;
+            try {
+                this.recvSocket = new System.Net.Sockets.UdpClient(port);
+                this.recvSocket.DontFragment = true;
+                this.recvSocket.EnableBroadcast = true;
+                
+                //非同期受信
+                this.recvSocket.BeginReceive(ReceiveCallback, this.recvSocket);
+            } catch {
+                return false;
+            }
+            return true;
+        }
+
         public void Close( ) {
-            this.socket.Close();
+            this.closeSendThreadFlg = true;
+            this.sendThreadMutex.WaitOne();
+            this.CloseSendSocket();
+            this.sendThreadMutex.ReleaseMutex();
+            this.recvThreadMutex.WaitOne();
+            this.CloseRecvSocket();
+            this.recvThreadMutex.ReleaseMutex();
+        }
+        public void CloseSendSocket( ) {
+            if ( this.sendSocket != null ) {
+                this.sendSocket.Close();
+            }
+            this.sendSocket = null;
+        }
+        public void CloseRecvSocket( ) {
+            if ( this.recvSocket != null ) {
+                this.recvSocket.Close();
+            }
+            this.recvSocket = null;
         }
 
-        public bool StartRecv( ) {
-            try { 
-                this.socket.BeginReceive(ReceiveCallback, this.socket);
-            } catch {
-                return false;
-            }
-            return true;
+
+        public void SendThread( ) {
+            do {
+                if ( this.sendQue.Count != 0 ) {
+                    this.sendThreadMutex.WaitOne();
+                    //すべて送信した後キューの中身をクリア
+                    foreach ( var v in this.sendQue ) {
+                        this.Send(v);
+                    }
+                    this.sendQue.Clear();
+                    this.sendThreadMutex.ReleaseMutex();
+                }
+            } while ( !this.closeSendThreadFlg );
         }
         public bool Send(byte[] data) {
-            if ( this.socket == null )
+            if ( this.sendSocket == null )
                 return false;
             try {
-                this.socket.Send(data, data.Length);
-            }catch {
+                this.sendSocket.Send(data, data.Length, this.sendIP);
+            } catch {
                 return false;
             }
             return true;
         }
-
-        virtual public void Update( ) {
-
+        public bool AddSendQue(byte[] data) {
+            this.sendThreadMutex.WaitOne();
+            this.sendQue.Add(data);
+            this.sendThreadMutex.ReleaseMutex();
+            return true;
         }
-        //データを受信した時
-        virtual public void ReceiveCallback(IAsyncResult ar) {
-            System.Net.Sockets.UdpClient udp =
-        (System.Net.Sockets.UdpClient)ar.AsyncState;
+        
 
-            //非同期受信を終了する
-            System.Net.IPEndPoint remoteEP = null;
-            byte[] rcvBytes;
-            try {
-                rcvBytes = udp.EndReceive(ar, ref remoteEP);
-            } catch ( System.Net.Sockets.SocketException ex ) {
-                Console.WriteLine("受信エラー({0}/{1})",
-                    ex.Message, ex.ErrorCode);
-                return;
-            } catch ( ObjectDisposedException ex ) {
-                //すでに閉じている時は終了
-                Console.WriteLine("Socketは閉じられています。");
-                return;
+        /// <summary>
+        /// 同期受信を行い受信データを返す
+        /// </summary>
+        /// <returns></returns>
+        public void RecvAndAddQue( ) {
+            if ( this.recvSocket.Available > 0 ) {
+                IPEndPoint remoteEP = null;
+                byte[] recvdata = this.recvSocket.Receive(ref remoteEP);
+                this.AddRecvQue(recvdata);
             }
+        }
 
-            //データを文字列に変換する
-            string rcvMsg = System.Text.Encoding.UTF8.GetString(rcvBytes);
-
-        //    //受信したデータと送信者の情報をRichTextBoxに表示する
-        //    string displayMsg=string.Format("[{0} ({1})] > {2}",
-        //remoteEP.Address, remoteEP.Port, rcvMsg);
-        //    RichTextBox1.BeginInvoke(
-        //        new Action<string>(ShowReceivedString), displayMsg);
-
-            //再びデータ受信を開始する
-            udp.BeginReceive(ReceiveCallback, udp);
+        private void ReceiveCallback(IAsyncResult AR) {
+            // ソケット受信
+            System.Net.IPEndPoint ipAny = new System.Net.IPEndPoint(System.Net.IPAddress.Any, 0);
+            Byte[] dat = recvSocket.EndReceive(AR, ref ipAny);
+            AddRecvQue(dat);
+            // ソケット非同期受信(System.AsyncCallback)
+            recvSocket.BeginReceive(ReceiveCallback, recvSocket);
+        }
+    
+        public bool AddRecvQue(byte[] data) {
+            this.recvThreadMutex.WaitOne();
+            this.recvQue.Add(data);
+            this.recvThreadMutex.ReleaseMutex();
+            return true;
+        }
+        public List<byte[]> GetRecvQue( ) {
+            this.recvThreadMutex.WaitOne();
+            var data = this.recvQue;
+            this.recvQue = new List<byte[]>();
+            this.recvThreadMutex.ReleaseMutex();
+            return data;
         }
 
         //入力チェック
@@ -131,15 +189,11 @@ namespace iris_engine.NetWork {
             return true;
         }
         private bool CheckIPAddress(string ip) {
-
             int count = ip.Length - ip.Replace(".".ToString(), "").Length;
-
             if ( count != 3 ) {
                 return false;
             }
-
             string[] ipSplitData = ip.Split('.');
-
             foreach ( string data in ipSplitData ) {
                 try {
                     int.Parse(data);
@@ -152,6 +206,18 @@ namespace iris_engine.NetWork {
                 }
             }
             return true;
+        }
+        private string getIPAddress( ) {
+            string ipaddress = "";
+            IPHostEntry ipentry = Dns.GetHostEntry(Dns.GetHostName());
+
+            foreach ( IPAddress ip in ipentry.AddressList ) {
+                if ( ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork ) {
+                    ipaddress = ip.ToString();
+                    break;
+                }
+            }
+            return ipaddress;
         }
     }
 }
