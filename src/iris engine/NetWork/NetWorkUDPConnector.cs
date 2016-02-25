@@ -7,10 +7,8 @@ using System.Threading;
 namespace iris_engine.NetWork {
     public class NetWorkUDPConnector {
         //スレッド回り
-        private Mutex sendThreadMutex;
         private Thread sendThread;
         private bool closeSendThreadFlg;
-        private Mutex recvThreadMutex;
 
         private UdpClient recvSocket;
         private UdpClient sendSocket;
@@ -27,8 +25,6 @@ namespace iris_engine.NetWork {
 
             this.sendQue = new List<byte[]>();
             this.recvQue = new List<byte[]>();
-            this.sendThreadMutex = new Mutex();
-            this.recvThreadMutex = new Mutex();
         }
         ~NetWorkUDPConnector( ) {
             this.Close();
@@ -94,12 +90,8 @@ namespace iris_engine.NetWork {
 
         public void Close( ) {
             this.closeSendThreadFlg = true;
-            this.sendThreadMutex.WaitOne();
             this.CloseSendSocket();
-            this.sendThreadMutex.ReleaseMutex();
-            this.recvThreadMutex.WaitOne();
             this.CloseRecvSocket();
-            this.recvThreadMutex.ReleaseMutex();
         }
         public void CloseSendSocket( ) {
             if ( this.sendSocket != null ) {
@@ -118,13 +110,13 @@ namespace iris_engine.NetWork {
         public void SendThread( ) {
             do {
                 if ( this.sendQue.Count != 0 ) {
-                    this.sendThreadMutex.WaitOne();
-                    //すべて送信した後キューの中身をクリア
-                    foreach ( var v in this.sendQue ) {
-                        this.Send(v);
+                    lock ( this.sendQue ) {
+                        //すべて送信した後キューの中身をクリア
+                        foreach ( var v in this.sendQue ) {
+                            this.Send(v);
+                        }
+                        this.sendQue.Clear();
                     }
-                    this.sendQue.Clear();
-                    this.sendThreadMutex.ReleaseMutex();
                 }
             } while ( !this.closeSendThreadFlg );
         }
@@ -139,9 +131,9 @@ namespace iris_engine.NetWork {
             return true;
         }
         public bool AddSendQue(byte[] data) {
-            this.sendThreadMutex.WaitOne();
-            this.sendQue.Add(data);
-            this.sendThreadMutex.ReleaseMutex();
+            lock( this.sendQue ) {
+                this.sendQue.Add(data);
+            }
             return true;
         }
         
@@ -168,16 +160,17 @@ namespace iris_engine.NetWork {
         }
     
         public bool AddRecvQue(byte[] data) {
-            this.recvThreadMutex.WaitOne();
-            this.recvQue.Add(data);
-            this.recvThreadMutex.ReleaseMutex();
+            lock ( this.recvQue ) {
+                this.recvQue.Add(data);
+            }
             return true;
         }
         public List<byte[]> GetRecvQue( ) {
-            this.recvThreadMutex.WaitOne();
-            var data = this.recvQue;
-            this.recvQue = new List<byte[]>();
-            this.recvThreadMutex.ReleaseMutex();
+            List<byte[]> data = null;
+            lock( this.recvQue ) { 
+                data = this.recvQue;
+                this.recvQue = new List<byte[]>();
+            }
             return data;
         }
 
