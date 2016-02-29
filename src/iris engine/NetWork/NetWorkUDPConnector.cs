@@ -8,7 +8,8 @@ namespace iris_engine.NetWork {
     public class NetWorkUDPConnector {
         //スレッド回り
         private Thread sendThread;
-        private bool closeSendThreadFlg;
+        protected volatile bool closeSendThreadFlg;
+        protected volatile bool closeRecvThreadFlg;
 
         private UdpClient recvSocket;
         private UdpClient sendSocket;
@@ -16,8 +17,6 @@ namespace iris_engine.NetWork {
 
         protected List<byte[]> sendQue;
         protected List<byte[]> recvQue;
-
-        public delegate bool RecvData(byte[] data);
 
         public NetWorkUDPConnector( ) {
             this.sendSocket = null;
@@ -57,8 +56,6 @@ namespace iris_engine.NetWork {
         }
 
         public bool CreateSendUDPSocket(string ip, int port) {
-            if ( this.sendSocket != null )
-                return false;
             try {
                 this.sendIP = new IPEndPoint(IPAddress.Parse(ip), port);
                 this.sendSocket = new System.Net.Sockets.UdpClient();
@@ -73,13 +70,12 @@ namespace iris_engine.NetWork {
             return true;
         }
         public bool CreateRecvUDPSocket(int port) {
-            if ( this.recvSocket != null )
-                return false;
             try {
                 this.recvSocket = new System.Net.Sockets.UdpClient(port);
                 this.recvSocket.DontFragment = true;
                 this.recvSocket.EnableBroadcast = true;
-                
+                this.closeRecvThreadFlg = false;
+
                 //非同期受信
                 this.recvSocket.BeginReceive(ReceiveCallback, this.recvSocket);
             } catch {
@@ -89,23 +85,17 @@ namespace iris_engine.NetWork {
         }
 
         public void Close( ) {
-            this.closeSendThreadFlg = true;
             this.CloseSendSocket();
             this.CloseRecvSocket();
         }
         public void CloseSendSocket( ) {
-            if ( this.sendSocket != null ) {
-                this.sendSocket.Close();
-            }
-            this.sendSocket = null;
+            this.closeSendThreadFlg = true;
+            this.sendSocket.Close();
         }
         public void CloseRecvSocket( ) {
-            if ( this.recvSocket != null ) {
-                this.recvSocket.Close();
-            }
-            this.recvSocket = null;
+            this.closeRecvThreadFlg = true;
+            this.recvSocket.Close();
         }
-
 
         public void SendThread( ) {
             do {
@@ -113,7 +103,9 @@ namespace iris_engine.NetWork {
                     lock ( this.sendQue ) {
                         //すべて送信した後キューの中身をクリア
                         foreach ( var v in this.sendQue ) {
-                            this.Send(v);
+                            if ( !this.Send(v) ) {
+                                return;
+                            }
                         }
                         this.sendQue.Clear();
                     }
@@ -131,12 +123,12 @@ namespace iris_engine.NetWork {
             return true;
         }
         public bool AddSendQue(byte[] data) {
-            lock( this.sendQue ) {
+            lock ( this.sendQue ) {
                 this.sendQue.Add(data);
             }
             return true;
         }
-        
+
 
         /// <summary>
         /// 同期受信を行い受信データを返す
@@ -151,6 +143,9 @@ namespace iris_engine.NetWork {
         }
 
         private void ReceiveCallback(IAsyncResult AR) {
+            if ( this.closeRecvThreadFlg ) {
+                return;
+            }
             // ソケット受信
             System.Net.IPEndPoint ipAny = new System.Net.IPEndPoint(System.Net.IPAddress.Any, 0);
             Byte[] dat = recvSocket.EndReceive(AR, ref ipAny);
@@ -158,7 +153,7 @@ namespace iris_engine.NetWork {
             // ソケット非同期受信(System.AsyncCallback)
             recvSocket.BeginReceive(ReceiveCallback, recvSocket);
         }
-    
+
         public bool AddRecvQue(byte[] data) {
             lock ( this.recvQue ) {
                 this.recvQue.Add(data);
@@ -167,7 +162,7 @@ namespace iris_engine.NetWork {
         }
         public List<byte[]> GetRecvQue( ) {
             List<byte[]> data = null;
-            lock( this.recvQue ) { 
+            lock ( this.recvQue ) {
                 data = this.recvQue;
                 this.recvQue = new List<byte[]>();
             }

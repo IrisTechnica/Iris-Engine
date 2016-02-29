@@ -27,5 +27,9 @@ namespace iris_engine.Views {
             if (App == null || App.Splash == null) return;
             await new Task(() => App.Splash.Close(new TimeSpan(0,0,0,10)));
         }
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
+            this.network.Close();
+        }
     }
 }

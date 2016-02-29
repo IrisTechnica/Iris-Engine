@@ -19,8 +19,8 @@
         <TextBox x:Name="ServerPortBox" HorizontalAlignment="Left" Height="23" Margin="8,115,0,0" TextWrapping="Wrap" Text="20001" VerticalAlignment="Top" Width="129"/>
         <Button x:Name="ServerConnectButton" Content="Server Start" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top" Width="127" Height="22"/>
         <Button x:Name="RecvCloseButton" Content="Server Close" HorizontalAlignment="Left" Margin="8,173,0,0" VerticalAlignment="Top" Width="129" Height="22"/>
-        <TextBox x:Name="CommandBox" HorizontalAlignment="Left" Height="23" Margin="10,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-        <Button x:Name="SendCommandButton" Content="Send Command" HorizontalAlignment="Left" Margin="10,262,0,0" VerticalAlignment="Top" Width="130" Click="SendCommandbutton_Click" Height="22"/>
+        <TextBox x:Name="CommandBox" HorizontalAlignment="Left" Height="23" Margin="8,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+        <Button x:Name="SendCommandButton" Content="Send Command" HorizontalAlignment="Left" Margin="8,231,0,0" VerticalAlignment="Top" Width="130" Click="SendCommandbutton_Click" Height="22"/>
         <!--<Button x:Name="LogButton" Content="Log" HorizontalAlignment="Left" Margin="10,218,0,0" VerticalAlignment="Top" Width="130"/>-->
 
     </Grid>
