@@ -13,14 +13,14 @@ namespace iris_engine.ViewModels
         {
             get
             {
-                var viewmodel = GetAs<ConstantNodeViewModel>();
+                var viewmodel = GetAs<ConstantFloatNodeViewModel>();
                 if (viewmodel != null)
                     return viewmodel.Outputs.ConstantValue.Entity;
                 return 0;
             }
             set
             {
-                var viewmodel = GetAs<ConstantNodeViewModel>();
+                var viewmodel = GetAs<ConstantFloatNodeViewModel>();
                 if(viewmodel != null)
                 {
                     viewmodel.Outputs.ConstantValue.Entity = value;

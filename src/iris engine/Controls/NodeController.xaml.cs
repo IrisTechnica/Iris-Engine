@@ -125,22 +125,32 @@ namespace iris_engine.Controls
         /// </summary>
         private void CreateConstantNode_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            CreateNode<ConstantNodeViewModel>();
+            CreateNode<ConstantFloatNodeViewModel>();
+        }
+
+        private void CreateUVNode_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CreateNode<UVNodeViewModel>();
         }
 
         private void CreateAddNode_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            CreateNode<AddNodeViewModel>();
+            CreateNode<AddFloatNodeViewModel>();
         }
 
         private void CreateMulNode_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            CreateNode<MulNodeViewModel>();
+            CreateNode<MulFloatNodeViewModel>();
         }
 
         private void CreateDivNode_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            CreateNode<DivNodeViewModel>();
+            CreateNode<DivFloatNodeViewModel>();
+        }
+
+        private void CreatePrintNode_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CreateNode<PrintStringNodeViewModel>();
         }
 
         #endregion

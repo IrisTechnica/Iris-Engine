@@ -30,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -39,6 +40,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\ir.ico</ApplicationIcon>
@@ -72,6 +74,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -102,6 +105,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\OnStartupSingletonInitializeAttribute.cs" />
+    <Compile Include="Controls\LogController.xaml.cs">
+      <DependentUpon>LogController.xaml</DependentUpon>
     </Compile>
     <Compile Include="Serializer\IPortableSettingsSerializer.cs" />
     <Compile Include="Serializer\PortableSettingBinarySerializer.cs" />
@@ -149,8 +156,11 @@
     <Compile Include="NetWork\UDPSend.cs" />
     <Compile Include="Serializer\PortableSettingsXmlSerializer.cs" />
     <Compile Include="Shapes\CurvedArrow.cs" />
+    <Compile Include="Statistics\ProcessorInfomation.cs" />
     <Compile Include="Util\Json.cs" />
+    <Compile Include="Util\OnStartupSingletonInitializeAttributeSolver.cs" />
     <Compile Include="Util\Xml.cs" />
+    <Compile Include="ViewModels\LogControllerViewModel.cs" />
     <Compile Include="ViewModels\NodeControllerViewModel.cs" />
     <Compile Include="ViewModels\NodePropertiesViewModel.cs" />
     <Compile Include="ViewModels\NodeProperties\ConstantNodePropertiesViewModel.cs" />
@@ -189,6 +199,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\LogController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\NodeProperties\ConstantNodeProperties.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

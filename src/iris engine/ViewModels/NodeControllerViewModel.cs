@@ -69,12 +69,13 @@ namespace iris_engine.ViewModels
 
         public NodeControllerViewModel()
         {
-            //// Add some test data to the view-model.
-            //PopulateWithTestData();
-
             /// Create NetworlViewModel
             this.Network = new NetworkViewModel();
-        }
+
+             //// Add some test data to the view-model.
+            PopulateWithTestData();
+
+       }
 
         /// <summary>
         /// This is the network that is displayed in the window.
@@ -532,11 +533,10 @@ namespace iris_engine.ViewModels
             //
             // Add the event of update entity
             //
-            foreach(var connector in node.InputConnectors)
+            foreach (var connector in node.InputConnectors)
                 connector.PropertyChanged += Node_EntityChanged;
             foreach (var connector in node.OutputConnectors)
                 connector.PropertyChanged += Node_EntityChanged;
-
             //
             // Add the node to the view-model.
             //
@@ -565,37 +565,38 @@ namespace iris_engine.ViewModels
 
         //Following The Test Code
 
-        //#region Private Methods
+        #region Private Methods
 
-        ///// <summary>
-        ///// A function to conveniently populate the view-model with test data.
-        ///// </summary>
-        //private void PopulateWithTestData()
-        //{
-        //    //
-        //    // Create a network, the root of the view-model.
-        //    //
-        //    this.Network = new NetworkViewModel();
+        /// <summary>
+        /// A function to conveniently populate the view-model with test data.
+        /// </summary>
+        private void PopulateWithTestData()
+        {
+            //
+            // Create a network, the root of the view-model.
+            //
+            this.Network = new NetworkViewModel();
 
-        //    //
-        //    // Create some nodes and add them to the view-model.
-        //    //
-        //    AbstractNodeViewModel node1 = CreateNode("Node1", new Point(100, 60), false);
-        //    AbstractNodeViewModel node2 = CreateNode("Node2", new Point(350, 80), false);
+            //
+            // Create some nodes and add them to the view-model.
+            //
+            AbstractNodeViewModel testInXamlEditor = CreateNode<PrintStringNodeViewModel>(new Point(350, 280), false);
+            AbstractNodeViewModel node1 = CreateNode<ConstantFloatNodeViewModel>(new Point(100, 60), false);
+            AbstractNodeViewModel node2 = CreateNode<AddFloatNodeViewModel>(new Point(350, 80), false);
 
-        //    //
-        //    // Create a connection between the nodes.
-        //    //
-        //    ConnectionViewModel connection = new ConnectionViewModel();
-        //    connection.SourceConnector = node1.OutputConnectors[0];
-        //    connection.DestConnector = node2.InputConnectors[0];
+            //
+            // Create a connection between the nodes.
+            //
+            ConnectionViewModel connection = new ConnectionViewModel();
+            connection.SourceConnector = node1.OutputConnectors[0];
+            connection.DestConnector = node2.InputConnectors[0];
 
-        //    //
-        //    // Add the connection to the view-model.
-        //    //
-        //    this.Network.Connections.Add(connection);
-        //}
+            //
+            // Add the connection to the view-model.
+            //
+            this.Network.Connections.Add(connection);
+        }
 
-        //#endregion Private Methods
+        #endregion Private Methods
     }
 }

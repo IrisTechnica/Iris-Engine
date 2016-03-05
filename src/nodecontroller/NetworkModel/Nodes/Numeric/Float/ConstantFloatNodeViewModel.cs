@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace NetworkModel
 {
-    public class ConstantNodeViewModel : AbstractNodeViewModel
+    public class ConstantFloatNodeViewModel : AbstractNodeViewModel
     {
         #region Internal Classes [None Internal constraints]
 
@@ -42,6 +42,9 @@ namespace NetworkModel
         private void Initialize()
         {
             this.OutputConnectors.Add(outputs.ConstantValue);
+            // ヘッダなしのコネクタにする
+            // コネクタを追加した後で設定すること
+            this.SingleConnectorType = true;
         }
 
         #endregion
@@ -65,7 +68,7 @@ namespace NetworkModel
 
         #region Public Methods
 
-        public ConstantNodeViewModel() : base("Constant")
+        public ConstantFloatNodeViewModel() : base("Constant", typeof(float))
         {
             Initialize();
         }

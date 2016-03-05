@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NetworkModel
 {
-    public class FloatConnectorViewModel : ConnectorViewModel
+    public class ByteConnectorViewModel : ConnectorViewModel
     {
         #region Private Data Members
 
@@ -13,15 +13,15 @@ namespace NetworkModel
 
         #region Public Methods
 
-        public FloatConnectorViewModel(string name) : base(name, typeof(float), EntityGroupTypes.Enumerable)
+        public ByteConnectorViewModel(string name) : base(name, typeof(byte), EntityGroupTypes.Enumerable)
         {
         }
 
-        public new float Entity
+        public new byte Entity
         {
             get {
-                if (entity == null) entity = new float();
-                return (float)Convert.ChangeType(entity,typeof(float));
+                if (entity == null) entity = new byte();
+                return (byte)Convert.ChangeType(entity,typeof(byte));
             }
             set { this.SetProperty(ref entity, value); }
         }

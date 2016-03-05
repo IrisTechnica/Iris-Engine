@@ -28,7 +28,7 @@ namespace iris_engine.Data
         private bool UnitSolve(AbstractNodeViewModel node,ConnectorViewModel invokerConnector = null)
         {
             {
-                bool isSuccessed = false;
+                bool isSuccessed = true;
 
                 if (node.InputConnectors.Count != 0)
                 {
@@ -62,17 +62,17 @@ namespace iris_engine.Data
                 }
 
                 /// If could not solved of just before node, cancel solve
-                if (!isSuccessed) return false;
+                //if (!isSuccessed) return false;
             }
 
             /// Execute Calculation
             node.Calculate();
 
             /// Check node is be able to solve of static 
-            if(node.SolverType != NodeCalculationType.Dynamic)
-            {
-                return false;
-            }
+            //if(node.SolverType != NodeCalculationType.Dynamic)
+            //{
+            //    return false;
+            //}
 
             /// Propagate data to invoker
             foreach(var connector in node.OutputConnectors)

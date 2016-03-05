@@ -11,13 +11,13 @@
     
     <SolidColorBrush
         x:Key="selectionBorderColor"
-        Color="Blue"
+        Color="Gray"
         />
     
     <SolidColorBrush
         x:Key="selectionBorderBackgroundColor"
-        Color="Blue"
-        Opacity="0.25"
+        Color="LightGray"
+        Opacity="0.5"
         />
 
     <!-- Default style and control-template for 'NodeItem'. -->
@@ -181,6 +181,16 @@
     <Style 
         TargetType="{x:Type local:NetworkView}"
         >
+        <Style.Resources>
+            <SolidColorBrush
+                x:Key="gridBackBrushKey"
+                Color="#aaaaaa"
+                />
+            <SolidColorBrush
+                x:Key="gridFrontBrushKey"
+                Color="#888888"
+                />
+        </Style.Resources>
         
         <!-- The visual template. -->
         <Setter 
@@ -197,6 +207,15 @@
                         >
                         <Grid>
 
+                            <Canvas
+                                x:Name="PART_GridCanvas"
+                                Visibility="Visible"
+                                IsHitTestVisible="False"
+                                Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"
+                                Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}"
+                                >
+                            </Canvas>
+                            
                             <!-- Control that presents the nodes. -->
                             <local:NodeItemsControl
                                 x:Name="PART_NodeItemsControl"
@@ -223,6 +242,7 @@
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                             </ItemsControl>
+
                             
                             <!--
                             This Canvas and Border are used as a very simple way to render a drag selection rectangle.
@@ -233,9 +253,9 @@
                                 >
                                 <Border 
                                     x:Name="PART_DragSelectionBorder"
-                                    BorderBrush="Blue"
+                                    BorderBrush="Gray"
                                     BorderThickness="1"
-                                    Background="LightBlue"
+                                    Background="LightGray"
                                     CornerRadius="1"
                                     Opacity="0.5"
                                     />

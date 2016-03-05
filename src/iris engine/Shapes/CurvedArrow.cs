@@ -154,7 +154,7 @@ namespace iris_engine.Shapes
 
             geometryGroup.Children.Add(pathGeometry);
 
-            geometryGroup.Children.Add(head);
+            //geometryGroup.Children.Add(head);
         }
 
         /// <summary>

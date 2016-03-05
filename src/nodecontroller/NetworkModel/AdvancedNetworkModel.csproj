@@ -43,6 +43,7 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,6 +54,7 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore">
@@ -79,14 +81,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Nodes\Numeric\DivNodeViewModel.cs" />
+    <Compile Include="Connectors\ByteConnectorViewModel.cs" />
+    <Compile Include="Connectors\EventConnectorViewModel.cs" />
+    <Compile Include="Connectors\FunctionConnectorViewModel.cs" />
+    <Compile Include="Connectors\MemoryConnectorViewModels.cs" />
+    <Compile Include="EntityGroupTypes.cs" />
+    <Compile Include="EventData.cs" />
+    <Compile Include="Nodes\Function\PrintStringNodeViewModel.cs" />
+    <Compile Include="Nodes\Image\UVNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Float\DivFloatNodeViewModel.cs" />
     <Compile Include="NodeCalculationType.cs" />
-    <Compile Include="Nodes\Numeric\MulNodeViewModel.cs" />
-    <Compile Include="Nodes\Numeric\AddNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Float\MulFloatNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Float\AddFloatNodeViewModel.cs" />
     <Compile Include="ConnectionViewModel.cs" />
     <Compile Include="Connectors\ConnectorViewModel.cs" />
     <Compile Include="ConnectorType.cs" />
-    <Compile Include="Nodes\Numeric\ConstantNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Float\ConstantFloatNodeViewModel.cs" />
     <Compile Include="Connectors\FloatConnectorViewModel.cs" />
     <Compile Include="NetworkViewModel.cs" />
     <Compile Include="Nodes\AbstractNodeViewModel.cs" />
@@ -117,6 +127,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Nodes\Array\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

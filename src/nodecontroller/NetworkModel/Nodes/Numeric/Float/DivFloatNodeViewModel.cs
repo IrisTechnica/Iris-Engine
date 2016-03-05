@@ -6,60 +6,59 @@ using System.Threading.Tasks;
 
 namespace NetworkModel
 {
-    public class MulNodeViewModel : AbstractNodeViewModel
+    public class DivFloatNodeViewModel : AbstractNodeViewModel
     {
-
         #region Internal Classes [None Internal constraints]
 
         public class InternalInputs
         {
-            private FloatConnectorViewModel mul1;
-            private FloatConnectorViewModel mul2;
+            private FloatConnectorViewModel div1;
+            private FloatConnectorViewModel div2;
 
-            public FloatConnectorViewModel Mul1
+            public FloatConnectorViewModel Div1
             {
                 get
                 {
-                    if (mul1 == null) mul1 = new FloatConnectorViewModel("Mul 1");
-                    return mul1;
+                    if (div1 == null) div1 = new FloatConnectorViewModel("Div 1");
+                    return div1;
                 }
 
                 set
                 {
-                    mul1 = value;
+                    div1 = value;
                 }
             }
 
-            public FloatConnectorViewModel Mul2
+            public FloatConnectorViewModel Div2
             {
                 get
                 {
-                    if (mul2 == null) mul2 = new FloatConnectorViewModel("Mul 2");
-                    return mul2;
+                    if (div2 == null) div2 = new FloatConnectorViewModel("Div 2");
+                    return div2;
                 }
 
                 set
                 {
-                    mul2 = value;
+                    div2 = value;
                 }
             }
         }
 
         public class InternalOutputs
         {
-            private FloatConnectorViewModel mulValue;
+            private FloatConnectorViewModel divValue;
 
-            public FloatConnectorViewModel MulValue
+            public FloatConnectorViewModel DivValue
             {
                 get
                 {
-                    if (mulValue == null) mulValue = new FloatConnectorViewModel("Value");
-                    return mulValue;
+                    if (divValue == null) divValue = new FloatConnectorViewModel("Value");
+                    return divValue;
                 }
 
                 set
                 {
-                    mulValue = value;
+                    divValue = value;
                 }
             }
         }
@@ -77,9 +76,9 @@ namespace NetworkModel
 
         private void Initialize()
         {
-            this.InputConnectors.Add(inputs.Mul1);
-            this.InputConnectors.Add(inputs.Mul2);
-            this.OutputConnectors.Add(outputs.MulValue);
+            this.InputConnectors.Add(inputs.Div1);
+            this.InputConnectors.Add(inputs.Div2);
+            this.OutputConnectors.Add(outputs.DivValue);
         }
 
         #endregion
@@ -116,15 +115,23 @@ namespace NetworkModel
 
         #region Public Methods
 
-        public MulNodeViewModel() : base("Mul")
+        public DivFloatNodeViewModel() : base("Div",typeof(float))
         {
             Initialize();
         }
 
         public override void Calculate()
         {
-            outputs.MulValue.NoRaiseEntity = inputs.Mul1.Entity * inputs.Mul2.Entity;
-            Console.WriteLine("mul {0} * {1} to {2}", inputs.Mul1.Entity, inputs.Mul2.Entity, outputs.MulValue.Entity);
+            try
+            {
+                outputs.DivValue.NoRaiseEntity = inputs.Div1.Entity / inputs.Div2.Entity;
+                if (Single.IsNaN(outputs.DivValue.Entity))throw new DivideByZeroException();
+            }catch(Exception)
+            {
+                outputs.DivValue.NoRaiseEntity = 0;
+                Console.WriteLine("Warning ## Zero Divide!!");
+            }
+            Console.WriteLine("div {0} / {1} to {2}", inputs.Div1.Entity, inputs.Div2.Entity, outputs.DivValue.Entity);
         }
 
         #endregion

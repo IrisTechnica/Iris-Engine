@@ -2,63 +2,64 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace NetworkModel
 {
-    public class AddNodeViewModel : AbstractNodeViewModel
+    public class MulFloatNodeViewModel : AbstractNodeViewModel
     {
 
         #region Internal Classes [None Internal constraints]
 
         public class InternalInputs
         {
-            private FloatConnectorViewModel add1;
-            private FloatConnectorViewModel add2;
+            private FloatConnectorViewModel mul1;
+            private FloatConnectorViewModel mul2;
 
-            public FloatConnectorViewModel Add1
+            public FloatConnectorViewModel Mul1
             {
                 get
                 {
-                    if (add1 == null) add1 = new FloatConnectorViewModel("Add 1");
-                    return add1;
+                    if (mul1 == null) mul1 = new FloatConnectorViewModel("Mul 1");
+                    return mul1;
                 }
 
                 set
                 {
-                    add1 = value;
+                    mul1 = value;
                 }
             }
 
-            public FloatConnectorViewModel Add2
+            public FloatConnectorViewModel Mul2
             {
                 get
                 {
-                    if (add2 == null) add2 = new FloatConnectorViewModel("Add 2");
-                    return add2;
+                    if (mul2 == null) mul2 = new FloatConnectorViewModel("Mul 2");
+                    return mul2;
                 }
 
                 set
                 {
-                    add2 = value;
+                    mul2 = value;
                 }
             }
         }
 
         public class InternalOutputs
         {
-            private FloatConnectorViewModel addValue;
+            private FloatConnectorViewModel mulValue;
 
-            public FloatConnectorViewModel AddValue
+            public FloatConnectorViewModel MulValue
             {
                 get
                 {
-                    if (addValue == null) addValue = new FloatConnectorViewModel("Value");
-                    return addValue;
+                    if (mulValue == null) mulValue = new FloatConnectorViewModel("Value");
+                    return mulValue;
                 }
 
                 set
                 {
-                    addValue = value;
+                    mulValue = value;
                 }
             }
         }
@@ -76,9 +77,9 @@ namespace NetworkModel
 
         private void Initialize()
         {
-            this.InputConnectors.Add(inputs.Add1);
-            this.InputConnectors.Add(inputs.Add2);
-            this.OutputConnectors.Add(outputs.AddValue);
+            this.InputConnectors.Add(inputs.Mul1);
+            this.InputConnectors.Add(inputs.Mul2);
+            this.OutputConnectors.Add(outputs.MulValue);
         }
 
         #endregion
@@ -115,15 +116,15 @@ namespace NetworkModel
 
         #region Public Methods
 
-        public AddNodeViewModel() : base("Add")
+        public MulFloatNodeViewModel() : base("Mul",typeof(float))
         {
             Initialize();
         }
 
         public override void Calculate()
         {
-            outputs.AddValue.NoRaiseEntity = inputs.Add1.Entity + inputs.Add2.Entity;
-            Console.WriteLine("add {0} + {1} to {2}", inputs.Add1.Entity, inputs.Add2.Entity, outputs.AddValue.Entity);
+            outputs.MulValue.NoRaiseEntity = inputs.Mul1.Entity * inputs.Mul2.Entity;
+            Console.WriteLine("mul {0} * {1} to {2}", inputs.Mul1.Entity, inputs.Mul2.Entity, outputs.MulValue.Entity);
         }
 
         #endregion

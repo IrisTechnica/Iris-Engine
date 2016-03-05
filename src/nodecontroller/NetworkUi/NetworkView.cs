@@ -1028,6 +1028,14 @@ namespace NetworkUI
             {
                 throw new ApplicationException("Failed to find 'PART_dragSelectionBorder' in the visual tree for 'NetworkView'.");
             }
+
+            this.gridCanvas = (FrameworkElement)this.Template.FindName("PART_GridCanvas", this);
+            if(this.gridCanvas == null)
+            {
+                throw new ApplicationException("Failed to find 'PART_GridCanvas' in the visual tree for 'NetworkView'.");
+            }
+
+            this.gridCanvas.Loaded += this.BuildGrid;
         }
 
         /// <summary>

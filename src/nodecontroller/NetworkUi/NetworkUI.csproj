@@ -84,6 +84,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NetworkView_GridCanvas.cs" />
     <Compile Include="NetworkView_NodeDragging.cs" />
     <Compile Include="NetworkView_ConnectionDragging.cs" />
     <Compile Include="NetworkView_DragSelection.cs" />

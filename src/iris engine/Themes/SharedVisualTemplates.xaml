@@ -12,7 +12,7 @@
     <!-- The border brush for nodes. -->
     <SolidColorBrush
         x:Key="nodeBorderBrush"
-        Color="{DynamicResource ForegroundColorKey}"
+        Color="{DynamicResource AccentColorKey}"
         />
 
     <!-- The fill brush for nodes. -->
@@ -82,12 +82,22 @@
             </Grid.ColumnDefinitions>
 
             <!-- The 'ConnectorItem' or anchor point for the connector. -->
-            <NetworkUI:ConnectorItem 
+
+            <Grid
                 Grid.Column="0"
-                Width="15"
-                Height="15"
-                Cursor="Hand"                    
-                />
+                Width="12"
+                Height="8"
+                Cursor="Hand"
+                >
+
+                <NetworkUI:ConnectorItem/>
+                <Rectangle
+                    Visibility="{Binding IsConnectionAttached, Converter={StaticResource booleanToVisibilityConverter}}"
+                    Fill="{StaticResource connectionBrush}"
+                    IsHitTestVisible="False"
+                    />
+            </Grid>
+
 
             <!-- The name of the connector. -->            
             <TextBlock
@@ -95,6 +105,7 @@
                 Margin="5,0,0,0"
                 Text="{Binding Name}"
                 VerticalAlignment="Center"
+                Visibility="{Binding ConnectorNameVisibility,Converter={StaticResource BooleanToVisibilityConverter}}"
                 />
         </Grid>
     </DataTemplate>
@@ -120,22 +131,22 @@
                 Text="{Binding Name}"
                 VerticalAlignment="Center"
                 Margin="0,0,5,0"
+                Visibility="{Binding ConnectorNameVisibility,Converter={StaticResource BooleanToVisibilityConverter}}"
                 />
 
             <Grid
                 Grid.Column="1"
-                Width="15"
-                Height="15"
+                Width="12"
+                Height="8"
                 Cursor="Hand"
                 >
 
                 <!-- The 'ConnectorItem' or anchor point for the connector. -->
-                <NetworkUI:ConnectorItem />
+                <NetworkUI:ConnectorItem/>
                     
                 <!-- Show a black dot at the start of the arrow when connected. -->
-                <Ellipse
+                <Rectangle
                     Visibility="{Binding IsConnectionAttached, Converter={StaticResource booleanToVisibilityConverter}}"
-                    Margin="3"
                     Fill="{StaticResource connectionBrush}"
                     IsHitTestVisible="False"
                     />

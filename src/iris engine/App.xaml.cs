@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using MetroRadiance.UI;
+using iris_engine.Util;
 
 namespace iris_engine
 {
@@ -19,7 +20,9 @@ namespace iris_engine
         public App() : base()
         {
             splash = new SplashScreen("resources/splash.png");
-            splash.Show(false);
+            splash.Show(false,true);
+
+            OnStartupSingletonInitializeAttributeSolver.GetInstance().Run();
         }
 
         protected override void OnStartup(StartupEventArgs e)

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Utils;
-using System.Diagnostics;
 using System.Windows;
+using Utils;
 
 namespace NetworkModel
 {
@@ -28,13 +25,16 @@ namespace NetworkModel
 
         protected Object entity = null;
 
+        private bool connectorNameVisibility = true;
+
         #endregion Internal Data Members
 
-        public ConnectorViewModel(string name,Type datatype)
+        public ConnectorViewModel(string name, Type datatype, EntityGroupTypes groupType)
         {
             this.Name = name;
             this.Type = ConnectorType.Undefined;
             this.DataType = datatype;
+            this.GroupType = groupType;
         }
 
         /// <summary>
@@ -54,6 +54,13 @@ namespace NetworkModel
             get;
             internal set;
         }
+
+        public EntityGroupTypes GroupType
+        {
+            get;
+            set;
+        }
+
         //
         // ノードのデータタイプ識別用
         //
@@ -158,10 +165,23 @@ namespace NetworkModel
             }
         }
 
-        // Exclusive Property for donot raise PropertyChenged event 
+        // Exclusive Property for donot raise PropertyChenged event
         public object NoRaiseEntity
         {
             set { entity = value; }
+        }
+
+        public bool ConnectorNameVisibility
+        {
+            get
+            {
+                return connectorNameVisibility;
+            }
+
+            set
+            {
+                connectorNameVisibility = value;
+            }
         }
 
         /// <summary>

@@ -131,22 +131,21 @@
 								</dock:LayoutDocumentPane>
 								<dock:LayoutAnchorablePane DockWidth="150">
 									<!-- ツールウィンドウ1 -->
-									<dock:LayoutAnchorable Title="ToolWindow1">
+									<dock:LayoutAnchorable Title="プロパティ">
 										<local:NodeProperties/>
 									</dock:LayoutAnchorable>
-                                    <dock:LayoutAnchorable Title ="NetWork">
+                                    <dock:LayoutAnchorable Title ="ネットワーク">
                                         <debug:NetWorkView/>
                                     </dock:LayoutAnchorable>
 								</dock:LayoutAnchorablePane>
 							</dock:LayoutPanel>
 							<dock:LayoutAnchorablePane DockHeight="100">
 								<!-- ツールウィンドウ2 -->
-								<dock:LayoutAnchorable Title="ToolWindow2">
-									<TextBox/>
-								</dock:LayoutAnchorable>
+								<dock:LayoutAnchorable Title="ログ">
+                                    <!--<local:LogController/>-->
+                                </dock:LayoutAnchorable>
 								<!-- ツールウィンドウ3 -->
 								<dock:LayoutAnchorable Title="ToolWindow3">
-									<Button Content="Button3"/>
 								</dock:LayoutAnchorable>
 							</dock:LayoutAnchorablePane>
 						</dock:LayoutPanel>

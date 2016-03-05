@@ -2,63 +2,63 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace NetworkModel
 {
-    public class DivNodeViewModel : AbstractNodeViewModel
+    public class AddFloatNodeViewModel : AbstractNodeViewModel
     {
+
         #region Internal Classes [None Internal constraints]
 
         public class InternalInputs
         {
-            private FloatConnectorViewModel div1;
-            private FloatConnectorViewModel div2;
+            private FloatConnectorViewModel add1;
+            private FloatConnectorViewModel add2;
 
-            public FloatConnectorViewModel Div1
+            public FloatConnectorViewModel Add1
             {
                 get
                 {
-                    if (div1 == null) div1 = new FloatConnectorViewModel("Div 1");
-                    return div1;
+                    if (add1 == null) add1 = new FloatConnectorViewModel("Add 1");
+                    return add1;
                 }
 
                 set
                 {
-                    div1 = value;
+                    add1 = value;
                 }
             }
 
-            public FloatConnectorViewModel Div2
+            public FloatConnectorViewModel Add2
             {
                 get
                 {
-                    if (div2 == null) div2 = new FloatConnectorViewModel("Div 2");
-                    return div2;
+                    if (add2 == null) add2 = new FloatConnectorViewModel("Add 2");
+                    return add2;
                 }
 
                 set
                 {
-                    div2 = value;
+                    add2 = value;
                 }
             }
         }
 
         public class InternalOutputs
         {
-            private FloatConnectorViewModel divValue;
+            private FloatConnectorViewModel addValue;
 
-            public FloatConnectorViewModel DivValue
+            public FloatConnectorViewModel AddValue
             {
                 get
                 {
-                    if (divValue == null) divValue = new FloatConnectorViewModel("Value");
-                    return divValue;
+                    if (addValue == null) addValue = new FloatConnectorViewModel("Value");
+                    return addValue;
                 }
 
                 set
                 {
-                    divValue = value;
+                    addValue = value;
                 }
             }
         }
@@ -76,9 +76,9 @@ namespace NetworkModel
 
         private void Initialize()
         {
-            this.InputConnectors.Add(inputs.Div1);
-            this.InputConnectors.Add(inputs.Div2);
-            this.OutputConnectors.Add(outputs.DivValue);
+            this.InputConnectors.Add(inputs.Add1);
+            this.InputConnectors.Add(inputs.Add2);
+            this.OutputConnectors.Add(outputs.AddValue);
         }
 
         #endregion
@@ -115,23 +115,15 @@ namespace NetworkModel
 
         #region Public Methods
 
-        public DivNodeViewModel() : base("Div")
+        public AddFloatNodeViewModel() : base("Add",typeof(float))
         {
             Initialize();
         }
 
         public override void Calculate()
         {
-            try
-            {
-                outputs.DivValue.NoRaiseEntity = inputs.Div1.Entity / inputs.Div2.Entity;
-                if (Single.IsNaN(outputs.DivValue.Entity))throw new DivideByZeroException();
-            }catch(Exception)
-            {
-                outputs.DivValue.NoRaiseEntity = 0;
-                Console.WriteLine("Warning ## Zero Divide!!");
-            }
-            Console.WriteLine("div {0} / {1} to {2}", inputs.Div1.Entity, inputs.Div2.Entity, outputs.DivValue.Entity);
+            outputs.AddValue.NoRaiseEntity = inputs.Add1.Entity + inputs.Add2.Entity;
+            Console.WriteLine("add {0} + {1} to {2}", inputs.Add1.Entity, inputs.Add2.Entity, outputs.AddValue.Entity);
         }
 
         #endregion

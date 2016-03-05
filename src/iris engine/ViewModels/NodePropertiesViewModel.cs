@@ -80,7 +80,7 @@ namespace iris_engine.ViewModels
 
         public bool IsConstantNode
         {
-            get { return GetAs<ConstantNodeViewModel>() != null; }
+            get { return GetAs<ConstantFloatNodeViewModel>() != null; }
         }
 
         #endregion

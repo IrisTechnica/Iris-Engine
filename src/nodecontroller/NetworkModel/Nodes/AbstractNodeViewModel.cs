@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using Utils;
 using System.Windows;
 using Data;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace NetworkModel
 {
@@ -73,6 +75,16 @@ namespace NetworkModel
         /// </summary>
         private bool isSelected = false;
 
+        private WriteableBitmap bitmap = null;
+
+        private bool hasImage = false;
+
+        private Decimal connectorIdProvider = 0;
+
+        private Type stereoType = null;
+
+        private bool singleConnectorType = false;
+
         #endregion Private Data Members
 
         public AbstractNodeViewModel()
@@ -80,11 +92,12 @@ namespace NetworkModel
 
         }
 
-        public AbstractNodeViewModel(string name,NodeCalculationType solverType = NodeCalculationType.Static)
+        public AbstractNodeViewModel(string name,Type stereoType = null, NodeCalculationType solverType = NodeCalculationType.Static)
         {
             this.name = name;
             this.internalName = name;
             this.SolverType = solverType;
+            this.StereoType = stereoType;
         }
 
         /// <summary>
@@ -102,7 +115,6 @@ namespace NetworkModel
                 internalName = value;
             }
         }
-
 
         /// <summary>
         /// The name of the node.
@@ -260,6 +272,19 @@ namespace NetworkModel
             }
         }
 
+        public WriteableBitmap Bitmap
+        {
+            get
+            {
+                if (bitmap == null) bitmap = new WriteableBitmap(128,128,96,96,PixelFormats.Bgra32,null);
+                return bitmap;
+            }
+            set
+            {
+                SetProperty(ref bitmap, value);
+            }
+        }
+
         /// <summary>
         /// A helper property that retrieves a list (a new list each time) of all connections attached to the node. 
         /// </summary>
@@ -314,6 +339,66 @@ namespace NetworkModel
             internal set
             {
                 solverType = value;
+            }
+        }
+
+        public bool HasImage
+        {
+            get
+            {
+                return hasImage;
+            }
+
+            set
+            {
+                hasImage = value;
+            }
+        }
+
+        public Type StereoType
+        {
+            get
+            {
+                return stereoType;
+            }
+
+            set
+            {
+                stereoType = value;
+            }
+        }
+
+        public string StereoTypeName
+        {
+            get
+            {
+                if (StereoType == null) return "";
+                return "<" + StereoType.Name + ">";
+            }
+        }
+
+        public bool HasStereoType
+        {
+            get
+            {
+                return StereoType != null;
+            }
+        }
+
+        public bool SingleConnectorType
+        {
+            get
+            {
+                return singleConnectorType;
+            }
+
+            set
+            {
+                singleConnectorType = value;
+                foreach(ConnectorViewModel connector in InputConnectors)
+                    connector.ConnectorNameVisibility = !singleConnectorType;
+                foreach (ConnectorViewModel connector in OutputConnectors)
+                    connector.ConnectorNameVisibility = !singleConnectorType;
             }
         }
 

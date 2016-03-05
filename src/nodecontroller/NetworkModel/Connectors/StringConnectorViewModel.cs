@@ -12,7 +12,7 @@ namespace NetworkModel
 
         #endregion
 
-        public StringConnectorViewModel(string name) : base(name,typeof(string))
+        public StringConnectorViewModel(string name) : base(name,typeof(string), EntityGroupTypes.String)
         {
         }
 
