@@ -558,10 +558,6 @@
 			Command="{StaticResource Commands.DeleteSelectedNodes}" 
 			Executed="DeleteSelectedNodes_Executed" 
 			/>
-		<CommandBinding 
-			Command="{StaticResource Commands.CreateConstantNode}" 
-			Executed="CreateConstantNode_Executed" 
-			/>
         <CommandBinding 
 			Command="{StaticResource Commands.CreateUVNode}" 
 			Executed="CreateUVNode_Executed"
@@ -594,16 +590,16 @@
 			Executed="CreateConstantFloatNode_Executed" 
 			/>
         <CommandBinding 
-			Command="{StaticResource Commands.CreateAddNode}" 
-			Executed="CreateAddNode_Executed"
+			Command="{StaticResource Commands.CreateAddFloatNode}" 
+			Executed="CreateAddFloatNode_Executed"
 			/>
 		<CommandBinding 
-			Command="{StaticResource Commands.CreateMulNode}" 
-			Executed="CreateMulNode_Executed"
+			Command="{StaticResource Commands.CreateMulFloatNode}" 
+			Executed="CreateMulFloatNode_Executed"
 			/>
         <CommandBinding 
-			Command="{StaticResource Commands.CreateDivNode}" 
-			Executed="CreateDivNode_Executed"
+			Command="{StaticResource Commands.CreateDivFloatNode}" 
+			Executed="CreateDivFloatNode_Executed"
 			/>
         <CommandBinding 
 			Command="{StaticResource Commands.CreatePrintNode}" 
@@ -679,19 +675,19 @@
                 <!-- Float -->
 				<MenuItem
 					Header="Constant"
-					Command="{StaticResource Commands.CreateConstantNode}"
+					Command="{StaticResource Commands.CreateConstantFloatNode}"
 					ToolTip="One Ooutput Constant Value"/>
 				<MenuItem
 					Header="Add"
-					Command="{StaticResource Commands.CreateAddNode}"
+					Command="{StaticResource Commands.CreateAddFloatNode}"
 					ToolTip="Add Two Value"/>
 				<MenuItem
 					Header="Mul"
-					Command="{StaticResource Commands.CreateMulNode}"
+					Command="{StaticResource Commands.CreateMulFloatNode}"
 					ToolTip="Mul Two Value"/>
                 <MenuItem
 					Header="Div"
-					Command="{StaticResource Commands.CreateDivNode}"
+					Command="{StaticResource Commands.CreateDivFloatNode}"
 					ToolTip="Div Two Value"/>
                 <MenuItem
 					Header="UV"
