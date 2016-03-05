@@ -119,6 +119,26 @@ namespace Utils
             return null;
         }
 
+        public static ParentT LimitFindVisualParentWithType<ParentT>(FrameworkElement childElement, int limitCount)
+            where ParentT : class
+        {
+            if (limitCount <= 0) return null;
+            FrameworkElement parentElement = (FrameworkElement)VisualTreeHelper.GetParent(childElement);
+            if (parentElement != null)
+            {
+                ParentT parent = parentElement as ParentT;
+                if (parent != null)
+                {
+                    return parent;
+                }
+
+                return LimitFindVisualParentWithType<ParentT>(parentElement, limitCount - 1);
+            }
+
+            return null;
+        }
+
+
         public static ParentT FindVisualParentWithType<ParentT>(FrameworkElement childElement)
             where ParentT : class
         {

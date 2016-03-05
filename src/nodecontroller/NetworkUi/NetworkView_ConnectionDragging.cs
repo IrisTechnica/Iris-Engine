@@ -242,7 +242,7 @@ namespace NetworkUI
             {
                 return false;
             }
-            var connectorItem = WpfUtils.FindVisualParentWithType<ConnectorItem>(hitItem);
+            var connectorItem = WpfUtils.LimitFindVisualParentWithType<ConnectorItem>(hitItem,2);
 			if (connectorItem == null)
             {
                 return false;
