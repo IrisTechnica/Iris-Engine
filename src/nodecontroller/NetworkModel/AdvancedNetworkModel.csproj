@@ -67,6 +67,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -81,14 +82,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorData.cs" />
+    <Compile Include="Connectors\BooleanConnectorViewModel.cs" />
     <Compile Include="Connectors\ByteConnectorViewModel.cs" />
+    <Compile Include="Connectors\ColorConnectorViewModel.cs" />
+    <Compile Include="Connectors\LightConnectorViewModel.cs" />
+    <Compile Include="Connectors\MeshConnectorViewModel.cs" />
+    <Compile Include="Connectors\SoundConnectorViewModel.cs" />
     <Compile Include="Connectors\EventConnectorViewModel.cs" />
     <Compile Include="Connectors\FunctionConnectorViewModel.cs" />
+    <Compile Include="Connectors\IntegerConnectorViewModel.cs" />
+    <Compile Include="Connectors\MatrixConnectorViewModel.cs" />
     <Compile Include="Connectors\MemoryConnectorViewModels.cs" />
+    <Compile Include="Connectors\VectorConnectorViewModel.cs" />
     <Compile Include="EntityGroupTypes.cs" />
     <Compile Include="EventData.cs" />
+    <Compile Include="LightData.cs" />
+    <Compile Include="MeshData.cs" />
+    <Compile Include="Nodes\Color\ConstantColorNodeViewModel.cs" />
+    <Compile Include="Nodes\ConstantLightNodeViewModel.cs" />
     <Compile Include="Nodes\Function\PrintStringNodeViewModel.cs" />
     <Compile Include="Nodes\Image\UVNodeViewModel.cs" />
+    <Compile Include="Nodes\Mesh\ConstantMeshNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Boolean\AndBooleanNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Boolean\ConstantBooleanNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Boolean\NotBooleanNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Boolean\OrBooleanNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Boolean\XorBooleanNodeViewModel.cs" />
     <Compile Include="Nodes\Numeric\Float\DivFloatNodeViewModel.cs" />
     <Compile Include="NodeCalculationType.cs" />
     <Compile Include="Nodes\Numeric\Float\MulFloatNodeViewModel.cs" />
@@ -100,10 +120,16 @@
     <Compile Include="Connectors\FloatConnectorViewModel.cs" />
     <Compile Include="NetworkViewModel.cs" />
     <Compile Include="Nodes\AbstractNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Intger\AddIntegerNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Intger\ConstantIntegerNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Matrix\ConstantMatrixNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Vector\ConstantVectorNodeViewModel.cs" />
+    <Compile Include="Nodes\Sound\ConstantSoundNodeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectedNode.cs" />
     <Compile Include="Connectors\StringConnectorViewModel.cs" />
     <Compile Include="Nodes\String\StringNodeViewModel.cs" />
+    <Compile Include="SoundData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\utils\Utils.csproj">

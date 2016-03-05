@@ -120,30 +120,47 @@ namespace iris_engine.Controls
 
         #region Create New Node Methods
 
-        /// <summary>
-        /// Event raised to create a new node.
-        /// </summary>
-        private void CreateConstantNode_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            CreateNode<ConstantFloatNodeViewModel>();
-        }
-
         private void CreateUVNode_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             CreateNode<UVNodeViewModel>();
         }
+        //--------------Boolean--------------//
+        private void CreateConstantBooleanNode_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CreateNode<ConstantBooleanNodeViewModel>();
+        }
+        private void CreateAndBooleanNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<AndBooleanNodeViewModel>();
+        }
+        private void CreateNotBooleanNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<NotBooleanNodeViewModel>();
+        }
+        private void CreateOrBooleanNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<OrBooleanNodeViewModel>();
+        }
+        private void CreateXorBooleanNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<XorBooleanNodeViewModel>();
+        }
 
-        private void CreateAddNode_Executed(object sender, ExecutedRoutedEventArgs e)
+        //--------------Float--------------//
+        /// <summary>
+        /// Event raised to create a new node.
+        /// </summary>
+        private void CreateConstantFloatNode_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CreateNode<ConstantFloatNodeViewModel>();
+        }
+        private void CreateAddFloatNode_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             CreateNode<AddFloatNodeViewModel>();
         }
 
-        private void CreateMulNode_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void CreateMulFloatNode_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             CreateNode<MulFloatNodeViewModel>();
         }
 
-        private void CreateDivNode_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void CreateDivFloatNode_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             CreateNode<DivFloatNodeViewModel>();
         }
