@@ -581,15 +581,20 @@ namespace iris_engine.ViewModels
             // Create some nodes and add them to the view-model.
             //
             AbstractNodeViewModel testInXamlEditor = CreateNode<PrintStringNodeViewModel>(new Point(350, 280), false);
-            AbstractNodeViewModel node1 = CreateNode<ConstantFloatNodeViewModel>(new Point(100, 60), false);
-            AbstractNodeViewModel node2 = CreateNode<AddFloatNodeViewModel>(new Point(350, 80), false);
+            AbstractNodeViewModel node1 = CreateNode<ConstantIntegerNodeViewModel>(new Point(100, 60), false);
+            AbstractNodeViewModel node2 = CreateNode<ConstantIntegerNodeViewModel>(new Point(100, 90), false);
+            AbstractNodeViewModel node3 = CreateNode<AddIntegerNodeViewModel>(new Point(350, 80), false);
+
+            AbstractNodeViewModel node4 = CreateNode<ConstantFloatNodeViewModel>(new Point(100, 150), false);
+            AbstractNodeViewModel node5 = CreateNode<ConstantFloatNodeViewModel>(new Point(100, 190), false);
+            AbstractNodeViewModel node6 = CreateNode<AddFloatNodeViewModel>(new Point(350, 120), false);
 
             //
             // Create a connection between the nodes.
             //
             ConnectionViewModel connection = new ConnectionViewModel();
             connection.SourceConnector = node1.OutputConnectors[0];
-            connection.DestConnector = node2.InputConnectors[0];
+            connection.DestConnector = node3.InputConnectors[0];
 
             //
             // Add the connection to the view-model.

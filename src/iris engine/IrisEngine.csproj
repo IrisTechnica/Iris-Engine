@@ -150,10 +150,7 @@
     <Compile Include="Managers\ConfigManager.cs" />
     <Compile Include="Managers\ProjectManager.cs" />
     <Compile Include="NetWork\NetWork.cs" />
-    <Compile Include="NetWork\NetWorkUDPBroadcast.cs" />
     <Compile Include="NetWork\NetWorkUDPConnector.cs" />
-    <Compile Include="NetWork\UDPRecv.cs" />
-    <Compile Include="NetWork\UDPSend.cs" />
     <Compile Include="Serializer\PortableSettingsXmlSerializer.cs" />
     <Compile Include="Shapes\CurvedArrow.cs" />
     <Compile Include="Statistics\ProcessorInfomation.cs" />

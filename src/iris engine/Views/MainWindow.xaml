@@ -20,7 +20,7 @@
 					  WindowState="{Binding WindowState}"
 					  IsRestoringWindowPlacement="True"
 					  UseLayoutRounding="True"
-					  Title="MainWindow" Height="720" Width="1280">
+					  Title="MainWindow" Height="720" Width="1280" Closing="MetroWindow_Closing">
 	<Window.DataContext>
 		<viewModels:WindowViewModel />
 	</Window.DataContext>

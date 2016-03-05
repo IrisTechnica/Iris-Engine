@@ -40,11 +40,22 @@
 			<RoutedUICommand x:Key="Commands.DeleteSelectedNodes" />
 			<RoutedUICommand x:Key="Commands.CreateConstantNode" />
 			<RoutedUICommand x:Key="Commands.CreateUVNode" />
-			<RoutedUICommand x:Key="Commands.CreateAddNode" />
-			<RoutedUICommand x:Key="Commands.CreateMulNode" />
-			<RoutedUICommand x:Key="Commands.CreateDivNode" />
-			<RoutedUICommand x:Key="Commands.CreatePrintNode" />
-			<RoutedUICommand x:Key="Commands.DeleteNode" />
+            <!--Boolean-->
+            <RoutedUICommand x:Key="Commands.CreateConstantBooleanNode" />
+            <RoutedUICommand x:Key="Commands.CreateAndBooleanNode" />
+            <RoutedUICommand x:Key="Commands.CreateNotBooleanNode" />
+            <RoutedUICommand x:Key="Commands.CreateOrBooleanNode" />
+            <RoutedUICommand x:Key="Commands.CreateXorBooleanNode" />
+            
+            
+            <!-- Float -->
+			<RoutedUICommand x:Key="Commands.CreateConstantFloatNode" />
+			<RoutedUICommand x:Key="Commands.CreateAddFloatNode" />
+            <RoutedUICommand x:Key="Commands.CreateMulFloatNode" />
+            <RoutedUICommand x:Key="Commands.CreateDivFloatNode" />
+            
+            <RoutedUICommand x:Key="Commands.CreatePrintNode" />
+            <RoutedUICommand x:Key="Commands.DeleteNode" />
 			<RoutedUICommand x:Key="Commands.DeleteConnection" />
 			<RoutedUICommand x:Key="Commands.ZoomOut" />
 			<RoutedUICommand x:Key="Commands.ZoomIn" />
@@ -356,7 +367,7 @@
 								</CombinedGeometry>
 							</Path.Data>
 						</Path>-->
-						<Rectangle
+                        <Rectangle
 							Stroke="{StaticResource nodeBorderBrush}"
 							StrokeThickness="1"
 							Fill="Transparent"
@@ -381,77 +392,81 @@
 								<ColumnDefinition Width="Auto" />
 							</Grid.ColumnDefinitions>
 							<Grid.RowDefinitions>
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
-								<!-- spacer -->
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <!-- spacer -->
 								<RowDefinition Height="2" />
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
 
 							<!-- The name of the node. -->
-							<Rectangle
-								x:Name="NodeHeaderBackground"
-								Margin="0,-2,0,0"
+                            <Rectangle
+                                x:Name="NodeHeaderBackground"
+                                Margin="0,-2,0,0"
 								Grid.Column="0"
 								Grid.ColumnSpan="3"
 								Grid.Row="0"
-								Grid.RowSpan="3"
-								Panel.ZIndex="-1"
-								Fill="{StaticResource AccentBrushKey}"
-								VerticalAlignment="Stretch"/>
+                                Grid.RowSpan="3"
+                                Panel.ZIndex="-1"
+                                Fill="{StaticResource AccentBrushKey}"
+                                VerticalAlignment="Stretch"/>
 
-							<TextBlock
+                            <TextBlock
 								Grid.Column="0"
 								Grid.ColumnSpan="3"
 								Grid.Row="0"
-								Margin="0,0,0,-2"
+                                Margin="0,0,0,-2"
 								Text="{Binding Name}"
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
 								/>
 
-							<TextBlock
+                            <TextBlock
 								Grid.Column="0"
 								Grid.ColumnSpan="3"
 								Grid.Row="1"
-								FontSize="7"
+                                FontSize="7"
 								Text="{Binding StereoTypeName}"
-								Visibility="{Binding HasStereoType,Converter={StaticResource BooleanToVisibilityConverter}}"
+                                Visibility="{Binding HasStereoType,Converter={StaticResource BooleanToVisibilityConverter}}"
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
 								/>
-							<!-- Displays the node's input connectors. -->
+                            <!-- Displays the node's input connectors. -->
 							<ItemsControl
 								Grid.Column="0"
 								Grid.Row="3"
+                                Grid.RowSpan="1"
 								ItemsSource="{Binding InputConnectors}"
 								ItemTemplate="{StaticResource inputConnectorTemplate}"
 								Focusable="False"
-								x:Name="InputConnectors"
+                                x:Name="InputConnectors"
+                                VerticalAlignment="Stretch"
 								/>
 
 							<!-- Displays the node's output connectors. -->
 							<ItemsControl
 								Grid.Column="2"
 								Grid.Row="3"
+                                Grid.RowSpan="1"
 								ItemsSource="{Binding OutputConnectors}"
 								ItemTemplate="{StaticResource outputConnectorTemplate}"
 								Focusable="False"
-								x:Name="OutputConnectors"
+                                x:Name="OutputConnectors"
+                                VerticalAlignment="Stretch"
 								/>
 
 							<Image
-								Grid.Column="0"
-								Grid.ColumnSpan="4"
-								Grid.Row="4"
-								Margin="0,4,0,-3"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="4"
+                                Grid.Row="4"
+                                Margin="0,4,0,-3"
 								Visibility="{Binding HasImage,Converter={StaticResource BooleanToVisibilityConverter}}"
 								Source="{Binding Bitmap}"
 								/>
 						</Grid>
 						
-						
+                        
 					</Grid>
 
 					<ac:AdornedControl.AdornerContent>
@@ -491,17 +506,17 @@
 					</ac:AdornedControl.AdornerContent>
 				</ac:AdornedControl>
 
-				<DataTemplate.Triggers>
-					<DataTrigger Binding="{Binding SingleConnectorType}" Value="True">
-						<Setter TargetName="NodeHeaderBackground" Property="Visibility" Value="Collapsed"/>
-						<Setter TargetName="InputConnectors" Property="Grid.Row" Value="0"/>
-						<Setter TargetName="OutputConnectors" Property="Grid.Row" Value="0"/>
-						<Setter TargetName="InputConnectors" Property="Grid.RowSpan" Value="4"/>
-						<Setter TargetName="OutputConnectors" Property="Grid.RowSpan" Value="4"/>
-						<Setter TargetName="InputConnectors" Property="VerticalAlignment" Value="Center"/>
-						<Setter TargetName="OutputConnectors" Property="VerticalAlignment" Value="Center"/>
-					</DataTrigger>
-				</DataTemplate.Triggers>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding SingleConnectorType}" Value="True">
+                        <Setter TargetName="NodeHeaderBackground" Property="Visibility" Value="Collapsed"/>
+                        <Setter TargetName="InputConnectors" Property="Grid.Row" Value="0"/>
+                        <Setter TargetName="OutputConnectors" Property="Grid.Row" Value="0"/>
+                        <Setter TargetName="InputConnectors" Property="Grid.RowSpan" Value="4"/>
+                        <Setter TargetName="OutputConnectors" Property="Grid.RowSpan" Value="4"/>
+                        <Setter TargetName="InputConnectors" Property="VerticalAlignment" Value="Center"/>
+                        <Setter TargetName="OutputConnectors" Property="VerticalAlignment" Value="Center"/>
+                    </DataTrigger>
+                </DataTemplate.Triggers>
 			</DataTemplate>
 
 		</ResourceDictionary>
@@ -543,31 +558,54 @@
 			Command="{StaticResource Commands.DeleteSelectedNodes}" 
 			Executed="DeleteSelectedNodes_Executed" 
 			/>
-		<CommandBinding 
-			Command="{StaticResource Commands.CreateConstantNode}" 
-			Executed="CreateConstantNode_Executed" 
-			/>
-		<CommandBinding 
+        <CommandBinding 
 			Command="{StaticResource Commands.CreateUVNode}" 
 			Executed="CreateUVNode_Executed"
 			/>
+        <!-- Boolean -->
 		<CommandBinding 
-			Command="{StaticResource Commands.CreateAddNode}" 
-			Executed="CreateAddNode_Executed"
+			Command="{StaticResource Commands.CreateConstantBooleanNode}" 
+			Executed="CreateConstantBooleanNode_Executed" 
+			/>
+        <CommandBinding 
+			Command="{StaticResource Commands.CreateAndBooleanNode}" 
+			Executed="CreateAndBooleanNode_Executed" 
+			/>
+        <CommandBinding 
+			Command="{StaticResource Commands.CreateNotBooleanNode}" 
+			Executed="CreateNotBooleanNode_Executed" 
+			/>
+        <CommandBinding 
+			Command="{StaticResource Commands.CreateOrBooleanNode}" 
+			Executed="CreateOrBooleanNode_Executed" 
+			/>
+        <CommandBinding 
+			Command="{StaticResource Commands.CreateXorBooleanNode}" 
+			Executed="CreateXorBooleanNode_Executed" 
+			/>
+
+        <!-- Float -->
+		<CommandBinding 
+			Command="{StaticResource Commands.CreateConstantFloatNode}" 
+			Executed="CreateConstantFloatNode_Executed" 
+			/>
+        <CommandBinding 
+			Command="{StaticResource Commands.CreateAddFloatNode}" 
+			Executed="CreateAddFloatNode_Executed"
 			/>
 		<CommandBinding 
-			Command="{StaticResource Commands.CreateMulNode}" 
-			Executed="CreateMulNode_Executed"
+			Command="{StaticResource Commands.CreateMulFloatNode}" 
+			Executed="CreateMulFloatNode_Executed"
 			/>
-		<CommandBinding 
-			Command="{StaticResource Commands.CreateDivNode}" 
-			Executed="CreateDivNode_Executed"
+        <CommandBinding 
+			Command="{StaticResource Commands.CreateDivFloatNode}" 
+			Executed="CreateDivFloatNode_Executed"
 			/>
-		<CommandBinding 
+        <CommandBinding 
 			Command="{StaticResource Commands.CreatePrintNode}" 
 			Executed="CreatePrintNode_Executed"
 			/>
-		<CommandBinding 
+        <CommandBinding 
 			Command="{StaticResource Commands.DeleteNode}" 
 			Executed="DeleteNode_Executed" 
 			/>
@@ -613,31 +651,53 @@
 				Header="Create Node"
 				ToolTip="Creates a new node"
 				>
+                <!-- Boolean -->
+                <MenuItem
+					Header="Constant"
+					Command="{StaticResource Commands.CreateConstantBooleanNode}"
+					ToolTip="One Ooutput Constant Value"/>
+                <MenuItem
+					Header="And"
+					Command="{StaticResource Commands.CreateAndBooleanNode}"
+					ToolTip="And Two Value"/>
+                <MenuItem
+					Header="Not"
+					Command="{StaticResource Commands.CreateNotBooleanNode}"
+					ToolTip="Not One Value"/>
+                <MenuItem
+					Header="Or"
+					Command="{StaticResource Commands.CreateOrBooleanNode}"
+					ToolTip="Or Two Value"/>
+                <MenuItem
+					Header="Xor"
+					Command="{StaticResource Commands.CreateXorBooleanNode}"
+					ToolTip="Xor Two Value"/>
+                <!-- Float -->
 				<MenuItem
 					Header="Constant"
-					Command="{StaticResource Commands.CreateConstantNode}"
+					Command="{StaticResource Commands.CreateConstantFloatNode}"
 					ToolTip="One Ooutput Constant Value"/>
 				<MenuItem
 					Header="Add"
-					Command="{StaticResource Commands.CreateAddNode}"
+					Command="{StaticResource Commands.CreateAddFloatNode}"
 					ToolTip="Add Two Value"/>
 				<MenuItem
 					Header="Mul"
-					Command="{StaticResource Commands.CreateMulNode}"
+					Command="{StaticResource Commands.CreateMulFloatNode}"
 					ToolTip="Mul Two Value"/>
-				<MenuItem
+                <MenuItem
 					Header="Div"
-					Command="{StaticResource Commands.CreateDivNode}"
+					Command="{StaticResource Commands.CreateDivFloatNode}"
 					ToolTip="Div Two Value"/>
-				<MenuItem
+                <MenuItem
 					Header="UV"
 					Command="{StaticResource Commands.CreateUVNode}"
 					ToolTip="Get UV"/>
-				<MenuItem
+                <MenuItem
 					Header="Print"
 					Command="{StaticResource Commands.CreatePrintNode}"
 					ToolTip="Print to Console"/>
-			</MenuItem>
+            </MenuItem>
 
 			<Separator />
 
