@@ -38,6 +38,7 @@
 			<!-- UI commands. -->
 
 			<RoutedUICommand x:Key="Commands.DeleteSelectedNodes" />
+			<RoutedUICommand x:Key="Commands.CreateConstantNode" />
 			<RoutedUICommand x:Key="Commands.CreateUVNode" />
             <!--Boolean-->
             <RoutedUICommand x:Key="Commands.CreateConstantBooleanNode" />
@@ -133,7 +134,13 @@
 								Stroke="{StaticResource nodeBorderBrush}"
 								StrokeThickness="0"
 								Fill="{StaticResource connectorBackgroundBrush}"
+                                x:Name="ConnectorBackground"
 								/>
+                            <ControlTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsConnectionAttached}" Value="True">
+                                    <Setter TargetName="ConnectorBackground" Property="Fill" Value="{StaticResource AccentBrushKey}"/>
+                                </DataTrigger>
+                            </ControlTemplate.Triggers>
 						</ControlTemplate>
 					</Setter.Value>
 				</Setter>
@@ -551,6 +558,10 @@
 			Command="{StaticResource Commands.DeleteSelectedNodes}" 
 			Executed="DeleteSelectedNodes_Executed" 
 			/>
+		<CommandBinding 
+			Command="{StaticResource Commands.CreateConstantNode}" 
+			Executed="CreateConstantNode_Executed" 
+			/>
         <CommandBinding 
 			Command="{StaticResource Commands.CreateUVNode}" 
 			Executed="CreateUVNode_Executed"
@@ -583,16 +594,16 @@
 			Executed="CreateConstantFloatNode_Executed" 
 			/>
         <CommandBinding 
-			Command="{StaticResource Commands.CreateAddFloatNode}" 
-			Executed="CreateAddFloatNode_Executed"
+			Command="{StaticResource Commands.CreateAddNode}" 
+			Executed="CreateAddNode_Executed"
 			/>
 		<CommandBinding 
-			Command="{StaticResource Commands.CreateMulFloatNode}" 
-			Executed="CreateMulFloatNode_Executed"
+			Command="{StaticResource Commands.CreateMulNode}" 
+			Executed="CreateMulNode_Executed"
 			/>
         <CommandBinding 
-			Command="{StaticResource Commands.CreateDivFloatNode}" 
-			Executed="CreateDivFloatNode_Executed"
+			Command="{StaticResource Commands.CreateDivNode}" 
+			Executed="CreateDivNode_Executed"
 			/>
         <CommandBinding 
 			Command="{StaticResource Commands.CreatePrintNode}" 
@@ -668,19 +679,19 @@
                 <!-- Float -->
 				<MenuItem
 					Header="Constant"
-					Command="{StaticResource Commands.CreateConstantFloatNode}"
+					Command="{StaticResource Commands.CreateConstantNode}"
 					ToolTip="One Ooutput Constant Value"/>
 				<MenuItem
 					Header="Add"
-					Command="{StaticResource Commands.CreateAddFloatNode}"
+					Command="{StaticResource Commands.CreateAddNode}"
 					ToolTip="Add Two Value"/>
 				<MenuItem
 					Header="Mul"
-					Command="{StaticResource Commands.CreateMulFloatNode}"
+					Command="{StaticResource Commands.CreateMulNode}"
 					ToolTip="Mul Two Value"/>
                 <MenuItem
 					Header="Div"
-					Command="{StaticResource Commands.CreateDivFloatNode}"
+					Command="{StaticResource Commands.CreateDivNode}"
 					ToolTip="Div Two Value"/>
                 <MenuItem
 					Header="UV"

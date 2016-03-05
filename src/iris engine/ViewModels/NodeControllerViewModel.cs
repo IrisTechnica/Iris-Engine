@@ -560,7 +560,7 @@ namespace iris_engine.ViewModels
         public void DeleteConnection(ConnectionViewModel connection)
         {
             this.Network.Connections.Remove(connection);
-            }
+        }
 
 
         //Following The Test Code

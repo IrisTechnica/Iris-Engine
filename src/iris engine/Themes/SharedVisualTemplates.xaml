@@ -91,11 +91,6 @@
                 >
 
                 <NetworkUI:ConnectorItem/>
-                <Rectangle
-                    Visibility="{Binding IsConnectionAttached, Converter={StaticResource booleanToVisibilityConverter}}"
-                    Fill="{StaticResource connectionBrush}"
-                    IsHitTestVisible="False"
-                    />
             </Grid>
 
 
@@ -140,16 +135,9 @@
                 Height="8"
                 Cursor="Hand"
                 >
-
                 <!-- The 'ConnectorItem' or anchor point for the connector. -->
                 <NetworkUI:ConnectorItem/>
-                    
-                <!-- Show a black dot at the start of the arrow when connected. -->
-                <Rectangle
-                    Visibility="{Binding IsConnectionAttached, Converter={StaticResource booleanToVisibilityConverter}}"
-                    Fill="{StaticResource connectionBrush}"
-                    IsHitTestVisible="False"
-                    />
+
             </Grid>
         </Grid>
     </DataTemplate>
