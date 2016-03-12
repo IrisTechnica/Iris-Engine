@@ -100,7 +100,7 @@
     <Compile Include="LightData.cs" />
     <Compile Include="MeshData.cs" />
     <Compile Include="Nodes\Color\ConstantColorNodeViewModel.cs" />
-    <Compile Include="Nodes\ConstantLightNodeViewModel.cs" />
+    <Compile Include="Nodes\Light\ConstantLightNodeViewModel.cs" />
     <Compile Include="Nodes\Function\PrintStringNodeViewModel.cs" />
     <Compile Include="Nodes\Image\UVNodeViewModel.cs" />
     <Compile Include="Nodes\Mesh\ConstantMeshNodeViewModel.cs" />
@@ -108,6 +108,7 @@
     <Compile Include="Nodes\Numeric\Boolean\ConstantBooleanNodeViewModel.cs" />
     <Compile Include="Nodes\Numeric\Boolean\NotBooleanNodeViewModel.cs" />
     <Compile Include="Nodes\Numeric\Boolean\OrBooleanNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Boolean\ViewBooleanNodeViewModel.cs" />
     <Compile Include="Nodes\Numeric\Boolean\XorBooleanNodeViewModel.cs" />
     <Compile Include="Nodes\Numeric\Float\DivFloatNodeViewModel.cs" />
     <Compile Include="NodeCalculationType.cs" />
@@ -122,8 +123,17 @@
     <Compile Include="Nodes\AbstractNodeViewModel.cs" />
     <Compile Include="Nodes\Numeric\Intger\AddIntegerNodeViewModel.cs" />
     <Compile Include="Nodes\Numeric\Intger\ConstantIntegerNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Intger\DivIntegerNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Intger\MulIntegerNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Intger\ResidueIntegerNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Intger\SubIntegerNodeViewModel.cs" />
     <Compile Include="Nodes\Numeric\Matrix\ConstantMatrixNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Matrix\MulMatrixNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Vector\AddVectorNodeViewModel.cs" />
     <Compile Include="Nodes\Numeric\Vector\ConstantVectorNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Vector\DivVectorNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Vector\MulVectorNodeViewModel.cs" />
+    <Compile Include="Nodes\Numeric\Vector\SubVectorNodeViewModel.cs" />
     <Compile Include="Nodes\Sound\ConstantSoundNodeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectedNode.cs" />

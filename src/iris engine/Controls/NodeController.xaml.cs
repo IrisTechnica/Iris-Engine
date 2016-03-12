@@ -129,6 +129,9 @@ namespace iris_engine.Controls
         {
             CreateNode<ConstantBooleanNodeViewModel>();
         }
+        private void CreateViewBooleanNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<ViewBooleanNodeViewModel>();
+        }
         private void CreateAndBooleanNode_Executed(object sender, ExecutedRoutedEventArgs e) {
             CreateNode<AndBooleanNodeViewModel>();
         }
@@ -141,7 +144,25 @@ namespace iris_engine.Controls
         private void CreateXorBooleanNode_Executed(object sender, ExecutedRoutedEventArgs e) {
             CreateNode<XorBooleanNodeViewModel>();
         }
-
+        //--------------Integer--------------//
+        private void CreateConstantIntegerNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<ConstantIntegerNodeViewModel>();
+        }
+        private void CreateAddIntegerNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<AddIntegerNodeViewModel>();
+        }
+        private void CreateSubIntegerNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<SubIntegerNodeViewModel>();
+        }
+        private void CreateDivIntegerNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<DivIntegerNodeViewModel>();
+        }
+        private void CreateMulIntegerNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<MulIntegerNodeViewModel>();
+        }
+        private void CreateResiIntegerNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<ResidueIntegerNodeViewModel>();
+        }
         //--------------Float--------------//
         /// <summary>
         /// Event raised to create a new node.
@@ -169,7 +190,53 @@ namespace iris_engine.Controls
         {
             CreateNode<PrintStringNodeViewModel>();
         }
+        //--------------Vector--------------//
+        /// <summary>
+        /// Event raised to create a new node.
+        /// </summary>
 
+        private void CreateConstantVectorNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<ConstantVectorNodeViewModel>();
+        }
+        private void CreateAddVectorNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<AddVectorNodeViewModel>();
+        }
+        private void CreateSubVectorNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<SubVectorNodeViewModel>();
+        }
+        private void CreateDivVectorNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<DivVectorNodeViewModel>();
+        }
+        private void CreateMulVectorNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<MulVectorNodeViewModel>();
+        }
+        //--------------Matrix--------------//
+        /// <summary>
+        /// Event raised to create a new node.
+        /// </summary>
+        private void CreateConstantMatrixNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<ConstantMatrixNodeViewModel>();
+        }
+        private void CreateMulMatrixNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<MulMatrixNodeViewModel>();
+        }
+
+        //--------------Light--------------//
+        private void CreateConstantLightNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<ConstantLightNodeViewModel>();
+        }
+        //--------------Sound--------------//
+        private void CreateConstantSoundNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<ConstantSoundNodeViewModel>();
+        }
+        //--------------Mesh --------------//
+        private void CreateConstantMeshNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<ConstantMeshNodeViewModel>();
+        }
+        //--------------Color--------------//
+        private void CreateConstantColorNode_Executed(object sender, ExecutedRoutedEventArgs e) {
+            CreateNode<ConstantColorNodeViewModel>();
+        }
         #endregion
 
         /// <summary>

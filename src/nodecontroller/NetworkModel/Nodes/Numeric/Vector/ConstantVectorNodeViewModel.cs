@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-
+using System.Numerics;
 namespace NetworkModel {
     public class ConstantVectorNodeViewModel : AbstractNodeViewModel {
         #region Internal Classes [None Internal constraints]
@@ -58,8 +58,9 @@ namespace NetworkModel {
 
         #region Public Methods
 
-        public ConstantVectorNodeViewModel( ) : base("Constant", typeof(float[])) {
+        public ConstantVectorNodeViewModel( ) : base("Constant", typeof(Vector3)) {
             Initialize();
+            
         }
 
 

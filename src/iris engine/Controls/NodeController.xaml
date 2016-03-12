@@ -40,20 +40,44 @@
 			<RoutedUICommand x:Key="Commands.DeleteSelectedNodes" />
 			<RoutedUICommand x:Key="Commands.CreateConstantNode" />
 			<RoutedUICommand x:Key="Commands.CreateUVNode" />
-            <!--Boolean-->
-            <RoutedUICommand x:Key="Commands.CreateConstantBooleanNode" />
-            <RoutedUICommand x:Key="Commands.CreateAndBooleanNode" />
-            <RoutedUICommand x:Key="Commands.CreateNotBooleanNode" />
-            <RoutedUICommand x:Key="Commands.CreateOrBooleanNode" />
-            <RoutedUICommand x:Key="Commands.CreateXorBooleanNode" />
+            <!--Numeric begin -->
+                <!--Integer-->
+                <RoutedUICommand x:Key="Commands.CreateConstantIntegerNode" />
+                <RoutedUICommand x:Key="Commands.CreateAddIntegerNode" />
+                <RoutedUICommand x:Key="Commands.CreateSubIntegerNode" />
+                <RoutedUICommand x:Key="Commands.CreateDivIntegerNode" />
+                <RoutedUICommand x:Key="Commands.CreateMulIntegerNode" />
+                <RoutedUICommand x:Key="Commands.CreateResiIntegerNode" />
+                <!--Boolean-->
+                <RoutedUICommand x:Key="Commands.CreateConstantBooleanNode" />
+                <RoutedUICommand x:Key="Commands.CreateViewBooleanNode" />
+                <RoutedUICommand x:Key="Commands.CreateAndBooleanNode" />
+                <RoutedUICommand x:Key="Commands.CreateNotBooleanNode" />
+                <RoutedUICommand x:Key="Commands.CreateOrBooleanNode" />
+                <RoutedUICommand x:Key="Commands.CreateXorBooleanNode" />
             
-            
-            <!-- Float -->
-			<RoutedUICommand x:Key="Commands.CreateConstantFloatNode" />
-			<RoutedUICommand x:Key="Commands.CreateAddFloatNode" />
-            <RoutedUICommand x:Key="Commands.CreateMulFloatNode" />
-            <RoutedUICommand x:Key="Commands.CreateDivFloatNode" />
-            
+                <!-- Float -->
+			    <RoutedUICommand x:Key="Commands.CreateConstantFloatNode" />
+			    <RoutedUICommand x:Key="Commands.CreateAddFloatNode" />
+                <RoutedUICommand x:Key="Commands.CreateMulFloatNode" />
+                <RoutedUICommand x:Key="Commands.CreateDivFloatNode" />
+
+                <!-- Vector -->
+			    <RoutedUICommand x:Key="Commands.CreateConstantVectorNode" />
+			    <RoutedUICommand x:Key="Commands.CreateAddVectorNode" />
+			    <RoutedUICommand x:Key="Commands.CreateSubVectorNode" />
+                <RoutedUICommand x:Key="Commands.CreateMulVectorNode" />
+                <RoutedUICommand x:Key="Commands.CreateDivVectorNode" />
+                <!-- Matrix -->
+                <RoutedUICommand x:Key="Commands.CreateConstantMatrixNode" />
+                <RoutedUICommand x:Key="Commands.CreateMulMatrixNode" />
+
+            <!--Numeric end-->
+            <RoutedUICommand x:Key="Commands.CreateConstantLightNode" />
+            <RoutedUICommand x:Key="Commands.CreateConstantSoundNode" />
+            <RoutedUICommand x:Key="Commands.CreateConstantMeshNode" />
+            <RoutedUICommand x:Key="Commands.CreateConstantColorNode" />
+
             <RoutedUICommand x:Key="Commands.CreatePrintNode" />
             <RoutedUICommand x:Key="Commands.DeleteNode" />
 			<RoutedUICommand x:Key="Commands.DeleteConnection" />
@@ -552,7 +576,8 @@
 
 	<UserControl.CommandBindings>
 
-		<!-- Bind commands to event handlers.-->
+        <!--Numeric begin -->
+        <!-- Bind commands to event handlers.-->
 
 		<CommandBinding 
 			Command="{StaticResource Commands.DeleteSelectedNodes}" 
@@ -566,6 +591,10 @@
 		<CommandBinding 
 			Command="{StaticResource Commands.CreateConstantBooleanNode}" 
 			Executed="CreateConstantBooleanNode_Executed" 
+			/>
+        <CommandBinding 
+			Command="{StaticResource Commands.CreateViewBooleanNode}" 
+			Executed="CreateViewBooleanNode_Executed" 
 			/>
         <CommandBinding 
 			Command="{StaticResource Commands.CreateAndBooleanNode}" 
@@ -583,7 +612,31 @@
 			Command="{StaticResource Commands.CreateXorBooleanNode}" 
 			Executed="CreateXorBooleanNode_Executed" 
 			/>
-
+        <!-- Integer -->
+        <CommandBinding 
+			Command="{StaticResource Commands.CreateConstantIntegerNode}" 
+			Executed="CreateConstantIntegerNode_Executed" 
+			/>
+        <CommandBinding 
+			Command="{StaticResource Commands.CreateAddIntegerNode}" 
+			Executed="CreateAddIntegerNode_Executed" 
+			/>
+        <CommandBinding
+            Command="{StaticResource Commands.CreateSubIntegerNode}"
+            Executed="CreateSubIntegerNode_Executed" 
+			/>
+        <CommandBinding
+            Command="{StaticResource Commands.CreateDivIntegerNode}"
+            Executed="CreateDivIntegerNode_Executed" 
+			/>
+        <CommandBinding
+            Command="{StaticResource Commands.CreateMulIntegerNode}"
+            Executed="CreateMulIntegerNode_Executed" 
+			/>
+        <CommandBinding
+            Command="{StaticResource Commands.CreateResiIntegerNode}"
+            Executed="CreateResiIntegerNode_Executed" 
+			/>
         <!-- Float -->
 		<CommandBinding 
 			Command="{StaticResource Commands.CreateConstantFloatNode}" 
@@ -600,6 +653,53 @@
         <CommandBinding 
 			Command="{StaticResource Commands.CreateDivFloatNode}" 
 			Executed="CreateDivFloatNode_Executed"
+			/>
+        <!-- Vector -->
+        <CommandBinding
+            Command="{StaticResource Commands.CreateConstantVectorNode}"
+            Executed="CreateConstantVectorNode_Executed" 
+			/>
+        <CommandBinding
+            Command="{StaticResource Commands.CreateAddVectorNode}"
+            Executed="CreateAddVectorNode_Executed" 
+			/>
+        <CommandBinding
+            Command="{StaticResource Commands.CreateSubVectorNode}"
+            Executed="CreateSubVectorNode_Executed" 
+			/>
+        <CommandBinding
+            Command="{StaticResource Commands.CreateDivVectorNode}"
+            Executed="CreateDivVectorNode_Executed" 
+			/>
+        <CommandBinding
+            Command="{StaticResource Commands.CreateMulVectorNode}"
+            Executed="CreateMulVectorNode_Executed" 
+			/>
+        <!-- Matrix -->
+        <CommandBinding
+            Command="{StaticResource Commands.CreateConstantMatrixNode}"
+            Executed="CreateConstantMatrixNode_Executed" 
+			/>
+        <CommandBinding
+            Command="{StaticResource Commands.CreateMulMatrixNode}"
+            Executed="CreateMulMatrixNode_Executed" 
+			/>
+        <!--Numeric end -->
+        <CommandBinding
+            Command="{StaticResource Commands.CreateConstantLightNode}"
+            Executed="CreateConstantLightNode_Executed" 
+			/>
+        <CommandBinding
+            Command="{StaticResource Commands.CreateConstantSoundNode}"
+            Executed="CreateConstantSoundNode_Executed" 
+			/>
+        <CommandBinding
+            Command="{StaticResource Commands.CreateConstantMeshNode}"
+            Executed="CreateConstantMeshNode_Executed" 
+			/>
+        <CommandBinding
+            Command="{StaticResource Commands.CreateConstantColorNode}"
+            Executed="CreateConstantColorNode_Executed" 
 			/>
         <CommandBinding 
 			Command="{StaticResource Commands.CreatePrintNode}" 
@@ -647,48 +747,172 @@
 
 			<!-- Clicking this menu item creates a new node. -->
 
-			<MenuItem
+            <MenuItem
 				Header="Create Node"
 				ToolTip="Creates a new node"
 				>
-                <!-- Boolean -->
+                <!-- Numeric -->
                 <MenuItem
-					Header="Constant"
-					Command="{StaticResource Commands.CreateConstantBooleanNode}"
-					ToolTip="One Ooutput Constant Value"/>
+				    Header="Numeric Node"
+				    ToolTip="Numeric a new node"
+				    >
+                    <!-- Boolean -->
+                    <MenuItem
+				    Header="Boolean Node"
+				    ToolTip="Boolean a new node"
+				    >
+                        <MenuItem
+					    Header="Constant"
+				    	Command="{StaticResource Commands.CreateConstantBooleanNode}"
+					    ToolTip="One Ooutput Constant Value"/>
+                        <MenuItem
+					    Header="View"
+				    	Command="{StaticResource Commands.CreateViewBooleanNode}"
+					    ToolTip="One Ooutput Constant Value"/>
+                        <MenuItem
+				    	Header="And"
+					    Command="{StaticResource Commands.CreateAndBooleanNode}"
+					    ToolTip="And Two Value"/>
+                        <MenuItem
+					    Header="Not"
+    					Command="{StaticResource Commands.CreateNotBooleanNode}"
+    					ToolTip="Not One Value"/>
+                        <MenuItem
+	    				Header="Or"
+	    				Command="{StaticResource Commands.CreateOrBooleanNode}"
+	    				ToolTip="Or Two Value"/>
+                        <MenuItem
+		    			Header="Xor"
+		    			Command="{StaticResource Commands.CreateXorBooleanNode}"
+		    			ToolTip="Xor Two Value"/>
+                    </MenuItem>
+                    
+                    <!-- Integer -->
+                    <MenuItem
+				    Header="Integer Node"
+				    ToolTip="Integer a new node"
+				    >
+                        <MenuItem
+		    			Header="Constant"
+		    			Command="{StaticResource Commands.CreateConstantIntegerNode}"
+		    			ToolTip="One Ooutput Constant Value"/>
+                        <MenuItem
+		    			Header="Add"
+		    			Command="{StaticResource Commands.CreateAddIntegerNode}"
+		    			ToolTip="Add Two Value"/>
+                        <MenuItem
+		    			Header="Sub"
+		    			Command="{StaticResource Commands.CreateSubIntegerNode}"
+		    			ToolTip="Sub Two Value"/>
+                        <MenuItem
+		    			Header="Div"
+		    			Command="{StaticResource Commands.CreateDivIntegerNode}"
+		    			ToolTip="Div Two Value"/>
+                        <MenuItem
+		    			Header="Mul"
+		    			Command="{StaticResource Commands.CreateMulIntegerNode}"
+		    			ToolTip="Mul Two Value"/>
+                        <MenuItem
+		    			Header="Resi"
+		    			Command="{StaticResource Commands.CreateResiIntegerNode}"
+		    			ToolTip="Resi Two Value"/>
+                        
+                    </MenuItem>
+                    
+                    <!-- Float -->
+                    <MenuItem
+				    Header="Float Node"
+				    ToolTip="Float a new node"
+				    >
+                        <MenuItem
+				    	Header="Constant"
+				    	Command="{StaticResource Commands.CreateConstantFloatNode}"
+			    		ToolTip="One Ooutput Constant Value"/>
+                        <MenuItem
+			    		Header="Add"
+			    		Command="{StaticResource Commands.CreateAddFloatNode}"
+			    		ToolTip="Add Two Value"/>
+                        <MenuItem
+				    	Header="Mul"
+		    			Command="{StaticResource Commands.CreateMulFloatNode}"
+		    			ToolTip="Mul Two Value"/>
+                        <MenuItem
+			    		Header="Div"
+			    		Command="{StaticResource Commands.CreateDivFloatNode}"
+			    		ToolTip="Div Two Value"/>
+                    </MenuItem>
+
+                    <!-- Vector -->
+                    <MenuItem
+				    Header="Vector Node"
+				    ToolTip="Vector a new node"
+				    >
+                        <MenuItem
+				    	Header="Constant"
+				    	Command="{StaticResource Commands.CreateConstantVectorNode}"
+			    		ToolTip="One Ooutput Vector Value"/>
+                        <MenuItem
+			    		Header="Add"
+			    		Command="{StaticResource Commands.CreateAddVectorNode}"
+			    		ToolTip="Add Two Value"/>
+                        <MenuItem
+			    		Header="Sub"
+			    		Command="{StaticResource Commands.CreateSubVectorNode}"
+			    		ToolTip="Sub Two Value"/>
+                        <MenuItem
+				    	Header="Mul"
+		    			Command="{StaticResource Commands.CreateMulVectorNode}"
+		    			ToolTip="Mul Two Value"/>
+                        <MenuItem
+			    		Header="Div"
+			    		Command="{StaticResource Commands.CreateDivVectorNode}"
+			    		ToolTip="Div Two Value"/>
+                    </MenuItem>
+                    <!-- Matrix -->
+                    <MenuItem
+				    Header="Matrix Node"
+				    ToolTip="Matrix a new node"
+				    >
+                        <MenuItem
+				    	Header="Constant"
+				    	Command="{StaticResource Commands.CreateConstantMatrixNode}"
+			    		ToolTip="One Ooutput Matrix Value"/>
+                        <MenuItem
+			    		Header="Mul"
+			    		Command="{StaticResource Commands.CreateMulMatrixNode}"
+			    		ToolTip="Mul Two Value"/>
+                    </MenuItem>
+                    </MenuItem>
+                <!-- Sound -->
                 <MenuItem
-					Header="And"
-					Command="{StaticResource Commands.CreateAndBooleanNode}"
-					ToolTip="And Two Value"/>
+				    Header="Sound Node"
+				    ToolTip="Sound a new node"
+				    >
+                    <MenuItem
+					    Header="Sound"
+				    	Command="{StaticResource Commands.CreateConstantSoundNode}"
+					    ToolTip="One Ooutput Sound"/>
+                </MenuItem>
+                <!-- Mesh -->
                 <MenuItem
-					Header="Not"
-					Command="{StaticResource Commands.CreateNotBooleanNode}"
-					ToolTip="Not One Value"/>
+				    Header="Mesh Node"
+				    ToolTip="Mesh a new node"
+				    >
+                    <MenuItem
+					    Header="Mesh"
+				    	Command="{StaticResource Commands.CreateConstantMeshNode}"
+					    ToolTip="One Ooutput Mesh"/>
+                </MenuItem>
+                <!-- Color -->
                 <MenuItem
-					Header="Or"
-					Command="{StaticResource Commands.CreateOrBooleanNode}"
-					ToolTip="Or Two Value"/>
-                <MenuItem
-					Header="Xor"
-					Command="{StaticResource Commands.CreateXorBooleanNode}"
-					ToolTip="Xor Two Value"/>
-                <!-- Float -->
-				<MenuItem
-					Header="Constant"
-					Command="{StaticResource Commands.CreateConstantFloatNode}"
-					ToolTip="One Ooutput Constant Value"/>
-				<MenuItem
-					Header="Add"
-					Command="{StaticResource Commands.CreateAddFloatNode}"
-					ToolTip="Add Two Value"/>
-				<MenuItem
-					Header="Mul"
-					Command="{StaticResource Commands.CreateMulFloatNode}"
-					ToolTip="Mul Two Value"/>
-                <MenuItem
-					Header="Div"
-					Command="{StaticResource Commands.CreateDivFloatNode}"
-					ToolTip="Div Two Value"/>
+				    Header="Color Node"
+				    ToolTip="Color a new node"
+				    >
+                    <MenuItem
+					    Header="Color"
+				    	Command="{StaticResource Commands.CreateConstantColorNode}"
+					    ToolTip="One Ooutput Color"/>
+                </MenuItem>
                 <MenuItem
 					Header="UV"
 					Command="{StaticResource Commands.CreateUVNode}"
@@ -699,9 +923,9 @@
 					ToolTip="Print to Console"/>
             </MenuItem>
 
-			<Separator />
+            <Separator />
 
-			<MenuItem
+            <MenuItem
 				Header="Fit"
 				Command="{StaticResource Commands.FitContent}"
 				ToolTip="Fit selected nodes to the viewport, when nothing is selected fits all nodes to the viewport"

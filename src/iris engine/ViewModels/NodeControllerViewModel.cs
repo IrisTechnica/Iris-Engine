@@ -281,7 +281,6 @@ namespace iris_engine.ViewModels
             {
                 var sourceConnector = draggedOutConnector;
                 var destConnector = draggedOverConnector;
-
                 //
                 // Only allow connections from output connector to input connector (ie each
                 // connector must have a different type).
@@ -575,31 +574,28 @@ namespace iris_engine.ViewModels
             //
             // Create a network, the root of the view-model.
             //
-            this.Network = new NetworkViewModel();
+            //this.Network = new NetworkViewModel();
 
             //
             // Create some nodes and add them to the view-model.
             //
-            AbstractNodeViewModel testInXamlEditor = CreateNode<PrintStringNodeViewModel>(new Point(350, 280), false);
-            AbstractNodeViewModel node1 = CreateNode<ConstantIntegerNodeViewModel>(new Point(100, 60), false);
-            AbstractNodeViewModel node2 = CreateNode<ConstantIntegerNodeViewModel>(new Point(100, 90), false);
-            AbstractNodeViewModel node3 = CreateNode<AddIntegerNodeViewModel>(new Point(350, 80), false);
+            //AbstractNodeViewModel testInXamlEditor = CreateNode<PrintStringNodeViewModel>(new Point(350, 280), false);
+            //AbstractNodeViewModel node1 = CreateNode<ConstantIntegerNodeViewModel>(new Point(100, 60), false);
+            //AbstractNodeViewModel node2 = CreateNode<ConstantIntegerNodeViewModel>(new Point(100, 90), false);
+            //AbstractNodeViewModel node3 = CreateNode<AddIntegerNodeViewModel>(new Point(350, 80), false);
 
-            AbstractNodeViewModel node4 = CreateNode<ConstantFloatNodeViewModel>(new Point(100, 150), false);
-            AbstractNodeViewModel node5 = CreateNode<ConstantFloatNodeViewModel>(new Point(100, 190), false);
-            AbstractNodeViewModel node6 = CreateNode<AddFloatNodeViewModel>(new Point(350, 120), false);
-
+            
             //
             // Create a connection between the nodes.
             //
-            ConnectionViewModel connection = new ConnectionViewModel();
-            connection.SourceConnector = node1.OutputConnectors[0];
-            connection.DestConnector = node3.InputConnectors[0];
+            //ConnectionViewModel connection = new ConnectionViewModel();
+            //connection.SourceConnector = node1.OutputConnectors[0];
+            //connection.DestConnector = node3.InputConnectors[0];
 
             //
             // Add the connection to the view-model.
             //
-            this.Network.Connections.Add(connection);
+            //this.Network.Connections.Add(connection);
         }
 
         #endregion Private Methods
