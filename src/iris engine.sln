@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IrisEngine", "iris engine\IrisEngine.csproj", "{43C639B3-8FA5-4D43-8F89-3A554AD50B4D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{1FC9924D-3834-4A0B-A0D9-83D77C2A0344} = {1FC9924D-3834-4A0B-A0D9-83D77C2A0344}
+		{A3082956-9EE4-4B35-9B4E-B07D0C4C8B56} = {A3082956-9EE4-4B35-9B4E-B07D0C4C8B56}
 		{DB81988F-E0F2-45A0-A1FD-8C37F3D35244} = {DB81988F-E0F2-45A0-A1FD-8C37F3D35244}
 	EndProjectSection
 EndProject
@@ -26,6 +27,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdornedControl", "nodecontroller\adornedcontrol\AdornedControl.csproj", "{94B81CB7-F8A6-44BC-BD71-E927F701E0D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedNetworkModel", "nodecontroller\NetworkModel\AdvancedNetworkModel.csproj", "{669475DA-8F89-4657-B917-0B0C126BCD1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "searchtextbox", "searchtextbox", "{B4920B3B-AEF1-4DC5-A609-EB004AFDC484}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchTextBox", "searchtextbox\SearchTextBox.csproj", "{A3082956-9EE4-4B35-9B4E-B07D0C4C8B56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +70,10 @@ Global
 		{669475DA-8F89-4657-B917-0B0C126BCD1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{669475DA-8F89-4657-B917-0B0C126BCD1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{669475DA-8F89-4657-B917-0B0C126BCD1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3082956-9EE4-4B35-9B4E-B07D0C4C8B56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3082956-9EE4-4B35-9B4E-B07D0C4C8B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3082956-9EE4-4B35-9B4E-B07D0C4C8B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3082956-9EE4-4B35-9B4E-B07D0C4C8B56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,5 +86,6 @@ Global
 		{B7CA1480-C144-40AC-AB97-A626F800D5B4} = {15BE44D2-C92B-472B-A231-F1BF6FE53B3C}
 		{94B81CB7-F8A6-44BC-BD71-E927F701E0D8} = {15BE44D2-C92B-472B-A231-F1BF6FE53B3C}
 		{669475DA-8F89-4657-B917-0B0C126BCD1D} = {15BE44D2-C92B-472B-A231-F1BF6FE53B3C}
+		{A3082956-9EE4-4B35-9B4E-B07D0C4C8B56} = {B4920B3B-AEF1-4DC5-A609-EB004AFDC484}
 	EndGlobalSection
 EndGlobal

@@ -175,6 +175,7 @@ namespace iris_engine.Data
                 await Task.Run(() => UnitSolve(node));
             }
             Console.WriteLine("------------------------------");
+            Console.Out.Flush();
         }
 
         public void DetectEndOfNode(AbstractNodeViewModel node)

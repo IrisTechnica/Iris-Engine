@@ -26,14 +26,16 @@
 	</Window.DataContext>
 
 	<Grid>
-		<Grid.RowDefinitions>
+
+        <Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
-			<RowDefinition Height="23" />
+            <RowDefinition Height="23" />
 		</Grid.RowDefinitions>
 
-		<Border Grid.Row="0"
+        <Border Grid.Row="0"
 				controls:MetroWindow.IsCaptionBar="True">
 			<Grid>
 				<Grid.ColumnDefinitions>
@@ -106,9 +108,16 @@
             </MenuItem>
         </Menu>
 
-        
-        
-        <ScrollViewer Grid.Row="2"
+        <ToolBarTray Grid.Row="2" IsLocked="True">
+            <local:ExtendToolBar>
+                <Button Height="20">
+                    <local:FantScalingImage Source="/iris engine;component/Resources/play.png"/>
+                </Button>
+            </local:ExtendToolBar>
+        </ToolBarTray>
+
+
+        <ScrollViewer Grid.Row="3"
 					  HorizontalScrollBarVisibility="Disabled"
 					  VerticalScrollBarVisibility="Disabled">
 			<Grid>
@@ -142,7 +151,7 @@
 							<dock:LayoutAnchorablePane DockHeight="100">
 								<!-- ツールウィンドウ2 -->
 								<dock:LayoutAnchorable Title="ログ">
-                                    <!--<local:LogController/>-->
+                                    <local:LogController/>
                                 </dock:LayoutAnchorable>
 								<!-- ツールウィンドウ3 -->
 								<dock:LayoutAnchorable Title="ToolWindow3">
@@ -154,7 +163,7 @@
 			</Grid>
 		</ScrollViewer>
 
-		<Grid Grid.Row="3"
+        <Grid Grid.Row="4"
 			  Background="{DynamicResource AccentBrushKey}">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />
@@ -162,5 +171,12 @@
 			</Grid.ColumnDefinitions>
 			<controls:ResizeGrip Grid.Column="1" />
 		</Grid>
-	</Grid>
+
+        <Grid Grid.Row="0" Grid.RowSpan="5" Visibility="Collapsed">
+            <Rectangle x:Name="ModalOverrayPanel" Fill="Gray" Opacity="0.5"/>
+            <!--Mordal Popup Area-->
+            <local:ModalStartPage/>
+        </Grid>
+
+    </Grid>
 </controls:MetroWindow>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iris_engine.IO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace iris_engine.ViewModels
 
         private string logText = null;
 
-        private MemoryStream memory = null;
+        private NotificationMemoryStream memory = null;
 
         private StreamWriter writer = null;
 
@@ -57,12 +58,12 @@ namespace iris_engine.ViewModels
                 var text = Reader.ReadToEnd();
                 Memory.Position = Memory.Length;
                 return text;
-                //if (logText == null) logText = "";
-                //return logText;
             }
             set
             {
-                this.SetProperty(ref logText, value);
+                Memory.SetLength(0);
+                Writer.Write(value);
+                this.OnPropertyChanged(nameof(LogText));
             }
         }
 
@@ -70,7 +71,11 @@ namespace iris_engine.ViewModels
         {
             get
             {
-                if (writer == null) writer = new StreamWriter(Memory);
+                if (writer == null)
+                {
+                    writer = new StreamWriter(Memory);
+                    writer.AutoFlush = true;
+                }
                 return writer;
             }
 
@@ -94,11 +99,15 @@ namespace iris_engine.ViewModels
             }
         }
 
-        public MemoryStream Memory
+        public NotificationMemoryStream Memory
         {
             get
             {
-                if (memory == null) memory = new MemoryStream();
+                if (memory == null)
+                {
+                    memory = new NotificationMemoryStream();
+                    memory.WriteCompleted += (sender,e) => { this.OnPropertyChanged(nameof(LogText)); };
+                }
                 this.Raise();
                 return memory;
             }

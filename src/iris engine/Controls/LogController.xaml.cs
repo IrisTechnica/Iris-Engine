@@ -27,7 +27,6 @@ namespace iris_engine.Controls
         {
             InitializeComponent();
             this.ViewModel.PropertyChanged += LogBox_PropertyChanged;
-            //this.LogBox.TextChanged += LogBox_TextChanged;
 
             ViewModel.RegexTextFormats.Add(@"(a.*b)", 
                 new List<LogControllerViewModel.InternalFormat>()
@@ -35,28 +34,32 @@ namespace iris_engine.Controls
 
 
             this.ViewModel.Writer.AutoFlush = true;
-            //Console.SetOut(TextWriter.Synchronized(this.ViewModel.Writer));
-            //Console.WriteLine("test");
+            Console.SetOut(TextWriter.Synchronized(this.ViewModel.Writer));
         }
-
-        //private void LogBox_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    if (this.LogBox.Text != this.ViewModel.LogText)
-        //    {
-        //        this.ViewModel.LogText = this.LogBox.Text;
-        //    }
-        //}
 
         private void LogBox_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(this.ViewModel.Memory))
-                Update();
+            if (e.PropertyName == nameof(this.ViewModel.LogText))
+            {
+                var dispatcher = Application.Current.Dispatcher;
+                if(dispatcher.CheckAccess())
+                {
+                    Update();
+                }
+                else
+                {
+                    dispatcher.Invoke(() => Update());
+                }
+
+            }
         }
 
         private void Update()
         {
             var control = this.LogBox;
             if (control == null) return;
+            if (control.Text == "") return;
+            control.Text = this.ViewModel.LogText;
 
 
             var currentStart = control.Selection.Start;
@@ -85,6 +88,7 @@ namespace iris_engine.Controls
 
             control.Selection.Select(currentStart, currentEnd);
 
+            this.LogBox.ScrollToEnd();
 
         }
 

@@ -5,9 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:iris_engine.Controls"
              xmlns:tool="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:ViewModels="clr-namespace:iris_engine.ViewModels"
              mc:Ignorable="d" 
              Foreground="{DynamicResource ForegroundBrushKey}"
+             Height="auto"
+             Width="auto"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
         <ViewModels:LogControllerViewModel/>
@@ -23,13 +26,21 @@
             <TextBlock>ログデータ</TextBlock>
         </Menu>
         <tool:RichTextBox
-            IsReadOnly="True"
+            Height="auto"
+            Width="auto"
+            IsReadOnly="false"
             IsUndoEnabled="False"
             BorderThickness="0"
             Grid.Row="1"
             x:Name="LogBox"
-            Text="{Binding LogText,Mode=OneWay}"
+            
+            Block.LineHeight="1"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            
             Background="{DynamicResource BackgroundBrushKey}" IsDocumentEnabled="True">
+            <i:Interaction.Behaviors>
+                
+            </i:Interaction.Behaviors>
             <tool:RichTextBox.TextFormatter>
                 <tool:PlainTextFormatter/>
             </tool:RichTextBox.TextFormatter>

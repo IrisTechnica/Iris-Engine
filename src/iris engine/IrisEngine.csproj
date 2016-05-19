@@ -45,6 +45,46 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\ir.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
@@ -76,6 +116,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -107,9 +148,19 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Attributes\OnStartupSingletonInitializeAttribute.cs" />
+    <Compile Include="Controls\ExtendToolBar.cs" />
+    <Compile Include="Controls\FantScalingImage.cs" />
     <Compile Include="Controls\LogController.xaml.cs">
       <DependentUpon>LogController.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Modal\ModalStartPage.xaml.cs">
+      <DependentUpon>ModalStartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NodePopupController.xaml.cs">
+      <DependentUpon>NodePopupController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\Generator.cs" />
+    <Compile Include="Managers\CodeGeneratorManager.cs" />
     <Compile Include="Serializer\IPortableSettingsSerializer.cs" />
     <Compile Include="Serializer\PortableSettingBinarySerializer.cs" />
     <Compile Include="Serializer\PortableSettingsJsonSerializer.cs" />
@@ -154,6 +205,7 @@
     <Compile Include="Serializer\PortableSettingsXmlSerializer.cs" />
     <Compile Include="Shapes\CurvedArrow.cs" />
     <Compile Include="Statistics\ProcessorInfomation.cs" />
+    <Compile Include="IO\NotificationMemoryStream.cs" />
     <Compile Include="Util\Json.cs" />
     <Compile Include="Util\OnStartupSingletonInitializeAttributeSolver.cs" />
     <Compile Include="Util\Xml.cs" />
@@ -197,6 +249,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\LogController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Modal\ModalStartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NodePopupController.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -272,6 +332,10 @@
       <Project>{468adede-6f5e-40c0-99c9-c6dac4fac934}</Project>
       <Name>ZoomAndPan</Name>
     </ProjectReference>
+    <ProjectReference Include="..\searchtextbox\SearchTextBox.csproj">
+      <Project>{a3082956-9ee4-4b35-9b4e-b07d0c4c8b56}</Project>
+      <Name>SearchTextBox</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\block_16.png" />
@@ -280,6 +344,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pause.png" />
+    <Resource Include="Resources\play.png" />
+    <Resource Include="Resources\record.png" />
+    <Resource Include="Resources\stop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
